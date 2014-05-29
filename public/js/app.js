@@ -1,1 +1,9 @@
-app.js
+angular.module('golfApp', 
+	['ngRoute', 
+		'appRoutes', 
+		'MainCtrl', 
+		'UserCtrl', 
+		'UserService', 
+		'CourseCtrl', 
+		'CourseService']
+	);
