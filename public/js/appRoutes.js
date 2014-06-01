@@ -8,7 +8,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			controller: 'MainController'
 		})
 
-		// nerds page that will use the NerdController
+		// users page that will use the UserController
 		.when('/users', {
 			templateUrl: 'views/user.html',
 			controller: 'UserController'
