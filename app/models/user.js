@@ -2,7 +2,10 @@ var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
 var userSchema   = new Schema({
-	userName: String/*,
+	userName: 	String,
+	password: 	String,
+	isAdmin: 	Boolean,
+	isLoggedin: Boolean/*,
 	name: 
 		{
 		first: String,

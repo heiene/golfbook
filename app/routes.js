@@ -1,104 +1,104 @@
+
 var User = require('./models/user');
 
-module.exports = function(app) {
+//Middleware for router
 
-	// server routes ===========================================================
-	// handle things like api calls
-	// authentication routes
-	app.use(function(req, res, next) {
-	// do logging
-	console.log('Something is happening.');
-	next(); // make sure we go to the next routes and don't stop here
+module.exports = function(app, express) {
+
+	var router = express.Router();
+	
+	router.use(function(req, res, next) {
+
+		// log each request to the console
+		console.log(req.method, req.url,'Something is happening!!');
+
+		// continue doing what we were doing and go to the route
+		next();	
 	});
 
-	// sample api route
-	app.get('/api/users', function(req, res) {
-		// use mongoose to get all users in the database
-		User.find(function(err, users) {
-			// if there is an error retrieving, send the error. nothing after res.send(err) will execute
-			if (err) {
-				res.send(err);
-			}
-			res.json(users); // return all users in JSON format
-		});
-	});
+// User Route ====================================================
 
-	// route to handle creating (app.post)
+	router.route('/users')
+		.post(function (req, res) {
+			var user = new User(); 		// create a new instance of the user model
+			user.userName = req.body.userName;  // set the user name (comes from the request)
+			user.password = req.body.password;
+			// save the user and check for errors
+			user.save(function (err) {
+				if (err) {
+					res.send(err);
+				}
+				else {
+					res.json({ message: 'User created!' });
+				}
+			});
+		})
 
-	app.post('/api/users', function(req, res) {
-
-		// create a user, information comes from AJAX request from Angular
-		User.create({
-			userName : req.body.userName
-		}, function(err, user) {
-			if (err) {
-				res.send(err);
-			}
-			// get and return all the users after you create another
+		.get(function (req, res) {
 			User.find(function(err, users) {
 				if (err) {
-					res.send(err)
+					res.send(err);
 				}
-				res.json(users);
+				else {
+					res.json(users);
+				}
 			});
-		});
+		})
 
-	});
-	// route to handle delete (app.delete)
-	app.delete('/api/users/:user_id', function(req, res) {
-		console.log('request id in delete', req.params)
-
-		User.remove({
-			_id : req.params.user_id
-		}, function(err, user) {
-			if (err) {
-				res.send(err);
-			}
-			// get and return all the todos after you create another
-			User.find(function(err, users) {
+	router.route('/users/:user_id')
+		.get(function (req, res) {
+			User.findById(req.params.user_id, function (err, user) {
 				if (err) {
-					res.send(err)
+					res.send(err);
 				}
-				res.json(users);
-			});
-		});
-	});
+				else {
+					res.json(user);
+				}
+			})
+		})
 
-	app.put('/api/users/:user_id', function(req, res) {
-		console.log('request id in PUT', req.params)
-
-		User.findById(req.params.user_id, function(err, user) {
-			if (err) {
-				res.send(err);
-			}
-			user.userName = req.body.userNames
-			user.save(function(err) {
+		.put(function (req, res) {
+			User.findById(req.params.user_id, function (err, user) {
 				if (err) {
-					res.send(err)
+					res.send(err);
 				}
-				res.json(users);
+				else {
+					user.userName = req.body.userName;
+					user.password = req.body.password;
+					user.isAdmin = true;
 
-			});
-		});
+					user.save(function (err) {
+						if (err) {
+							res.send(err);
+						}
+						else {
+							res.json({ message: 'User updated!' });
+						}
+					})
+				};
+
+			})
+		})
+
+		.delete(function (req, res) {
+			User.remove( {
+				_id: req.params.user_id
+			}, function (err, user) {
+				if (err) {
+					res.send(err);
+				}
+				else {
+					res.json({ message: 'User deleted!' });
+				}
+			})
+		})
+
+	// home page route (http://localhost:8080)
+	router.get('/', function(req, res) {
+		res.send('API ROOT');	
 	});
 
-	app.get('/api/users/:user_id', function(req, res) {
-		console.log('request id in get by id', req.params)
 
-		User.findById(req.params.user_id, function(err, user) {
-			if (err) {
-				res.send(err);
-			}
-			res.json(user);
 
-		});
-	});
-
-	// frontend routes =========================================================
-	// route to handle all angular requests
-
-	app.get('*', function(req, res) {
-		res.sendfile('./public/index.html'); // load our public/index.html file
-	});
-
+	app.use('/api', router);
 };

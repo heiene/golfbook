@@ -2,7 +2,10 @@
 	"name": "golf-app",
 	"main": "server.js",
 	"dependencies": {
-		"express": "~3.5.0",
-		"mongoose": "~3.6.13"
+		"express": "~4.0.0",
+		"mongoose": "~3.6.13",
+		"morgan": "~1.0.0",
+    	"body-parser": "~1.0.0",
+    	"method-override": "~1.0.0"
 	}
 }
