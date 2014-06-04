@@ -1,10 +1,11 @@
-angular.module('UserCtrl', []).controller('UserController', function($scope, $http, Users) {
+angular.module('UserCtrl', []).controller('UserController', function($scope, $http, $location, Users) {
 	$scope.formData = {};
 
 
 	Users.get()
 		.success(function(data) {
 			$scope.users = data;
+			$scope.message = 'null';
 	});
  	$scope.createUser = function() {
 
@@ -12,8 +13,32 @@ angular.module('UserCtrl', []).controller('UserController', function($scope, $ht
 		Users.create($scope.formData)
 			// if successful creation, call our get function to get all the new users
 			.success(function(data) {
-				$scope.formData = {}; // clear the form so our user is ready to enter another
-				$scope.users = data; // assign our new list of users
+				$scope.formData = {}; // clear the form
+				
+				if (data.user) {
+					console.log('kommer jeg til successen?', data)
+					$location.path('/redirect')
+				} else {
+					console.log(data, 'errorlocation')
+				}
+			});
+			
+	};
+
+	$scope.loginUser = function() {
+
+		// call the create function from our service (returns a promise object)
+		Users.login($scope.formData)
+			// if successful creation, call our get function to get all the new users
+			.success(function(data) {
+				$scope.formData = {}; // clear the form
+				
+				if (data.user) {
+					console.log('kommer jeg til successen, er jeg logga inn?', data)
+					$location.path('/loginruta')
+				} else {
+					console.log(data, 'errorlocation')
+				}
 			});
 			
 	};
@@ -23,7 +48,7 @@ angular.module('UserCtrl', []).controller('UserController', function($scope, $ht
 		Users.delete(id)
 			// if successful creation, call our get function to get all the new users
 			.success(function(data) {
-				$scope.users = data; // assign our new list of users
+				// $scope.users = Users.get(); // assign our new list of users
 			});
 	};
 
@@ -32,7 +57,7 @@ angular.module('UserCtrl', []).controller('UserController', function($scope, $ht
 		Users.put(id)
 			// if successful creation, call our get function to get all the new users
 			.success(function(data) {
-				$scope.users = data; // assign our new list of users
+				// $scope.users = Users.get(); // assign our new list of users
 			});
 	};
 

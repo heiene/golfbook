@@ -19,19 +19,23 @@ module.exports = function(app, express) {
 // User Route ====================================================
 
 	router.route('/users')
+		
 		.post(function (req, res) {
-			var user = new User(); 		// create a new instance of the user model
-			user.userName = req.body.userName;  // set the user name (comes from the request)
-			user.password = req.body.password;
-			// save the user and check for errors
-			user.save(function (err) {
-				if (err) {
-					res.send(err);
-				}
-				else {
-					res.json({ message: 'User created!' });
-				}
-			});
+			User.create({
+					userName: req.body.userName,
+					password: req.body.password,
+					isAdmin: req.body.isAdmin
+				}, function (err, user) {
+					if (err) {
+						res.send(err);
+					}
+					else {
+
+						res.json({message: 'User created', user: user})
+						
+					}
+				})
+
 		})
 
 		.get(function (req, res) {
@@ -72,7 +76,7 @@ module.exports = function(app, express) {
 							res.send(err);
 						}
 						else {
-							res.json({ message: 'User updated!' });
+							res.json({ message: 'User updated!' , user: user});
 						}
 					})
 				};
@@ -88,7 +92,7 @@ module.exports = function(app, express) {
 					res.send(err);
 				}
 				else {
-					res.json({ message: 'User deleted!' });
+					res.json({ message: 'User deleted!', user: user });
 				}
 			})
 		})

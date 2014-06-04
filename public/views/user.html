@@ -2,6 +2,7 @@
 	<h1>Users</h1>
 
 	<p>{{ tagline }}</p>
+  <p>{{ message }}</p>
 	<p ng-repeat = "user in users">
 		{{ user.userName }} <button  type="submit" class="btn btn-danger" ng-click="deleteUser(user._id)">X</button>
 	</form>
@@ -12,6 +13,7 @@
     <div class="row">
       <div class="input-group">
         <input type="text" ng-model="formData.userName" placeholder="Add a new User" class="form-control">
+        <input type="password" ng-model="formData.password" placeholder="enter password" class="form-control">
         <span class="input-group-btn">
           <input type="submit" class="btn btn-primary" value="Add">
         </span>
