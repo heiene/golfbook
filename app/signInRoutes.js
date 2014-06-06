@@ -38,30 +38,47 @@ module.exports = function(app, express, passport) {
 			});
 		})
 		// process the signup form
-		.post(passport.authenticate('local-signup', 
-				{successRedirect: '/api/signup/success',
-            	failureRedirect: '/login',
-                failureFlash: true })/*, 
+		.post(passport.authenticate('local-signup'/*, {failureRedirect: '/FAILyooo', failureFlash: true}*/), function (req, res) {
+					console.log("ERRRRRRRRRRRRRRRRRRR")
+					res.json({message: 'signup successfull', user: req.user})
+					}/*, 
 				function (req, res) {
 					res.json({message: 'signup successfull', user: req.user})*/
 		);
 
-	router.route('/api/signup/success')
+/*	router.route('/api/signup/success')
 		.get(function (req, res, user){
         	res.json({
             	success: true,
             	mesag: ''
-        	});
-    });
+        	});*/
 				
 
 	router.route('/login')
-		.post(passport.authenticate('local-login', 
-				{successRedirect : '/fittanda', // redirect to the secure profile section
-				failureRedirect : '/faen', // redirect back to the signup page if there is an error
-				}) // allow flash messages with failureflash
+		.get( function (req, res) {
+			console.log('funker detta da?')
+		})
+		.post(passport.authenticate('local-login', {failureRedirect: '/FAILTOLOGIN'}), function (req, res) {
+					console.log("LOggga inn")
+					res.json({message: 'signin successfull', user: req.user})
+
+					} 
 			
 		);
+
+	app.get('/logout', function(req, res, next) {
+		console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',req.session)
+		req.logout();
+		console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb', req.user)
+		res.send(req.user)
+		res.redirect('/courses');
+	});
+
+	app.get('/profile', auth, function(req, res, next) {
+		console.log('Logga inn')
+	});
+
+
 			
 		
 
@@ -70,8 +87,10 @@ module.exports = function(app, express, passport) {
 }
 
 var auth = function(req, res, next) { 
-	if (!req.isAuthenticated()) 
+	if (!req.isAuthenticated()) {
 		res.send(401); 
-	else next(); 
+	} else {
+		console.log('auth ok')
+		next();
+		} 
 };
-

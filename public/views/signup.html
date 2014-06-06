@@ -1,3 +1,7 @@
+
+		<div class="alert alert-danger">{{message}}</div>
+
+
 <form role="form" ng-submit="createUser()">
     <div class="row">
       <div class="input-group">
@@ -9,3 +13,11 @@
       </div>
     </div>
 </form>
+
+<span class="input-group-btn">
+          <input  ng-click="logutUser()" type="submit" class="btn btn-primary" value="logut">
+</span>
+
+<span class="input-group-btn">
+          <input  ng-click="testLogin()" type="submit" class="btn btn-primary" value="TEST">
+</span>

@@ -27,7 +27,13 @@ angular.module('UserService', [])
 
 		login: function(userData) {
 			return $http.post('/login', userData);
-		}
+		},
+		logout: function() {
+			return $http.get('/logout');
+		},
+		testLogin: function() {
+			return $http.get('/profile');
+		} 
 
 	}
 	
