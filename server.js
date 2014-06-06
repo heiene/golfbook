@@ -9,6 +9,8 @@ var passport 		= require('passport');
 var session 		= require('express-session')
 var bodyParser 		= require('body-parser');
 var methodOverride 	= require('method-override');
+var flash			= require('connect-flash')
+var cookieParser 	= require('cookie-parser')
 
 // configuration ===========================================
 	
@@ -24,10 +26,12 @@ require('./config/passport')(passport); // pass passport for configuration
 app.use(express.static(__dirname + '/public')); 	// set the static files location /public/img will be /img for users
 app.use(morgan('dev')); 					// log every request to the console
 app.use(bodyParser()); 						// pull information from html in POST
+app.use(cookieParser()); 					
 app.use(methodOverride()); 					// simulate DELETE and PUT
 
 // required for passport
-// app.use(session({ secret: 'iloverykketinvite' })); // session secret
+app.use(session({ secret: 'iloverykketinvite' })); // session secret
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 

@@ -52,7 +52,7 @@ module.exports = function(passport) {
 
             // check to see if theres already a user with that userName
             if (user) {
-                return done(null, false, req);
+                return done(null, false, req.flash('User already exists'));
             } else {
 
 				// if there is no user with that userName

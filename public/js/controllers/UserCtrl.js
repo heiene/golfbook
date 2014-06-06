@@ -12,14 +12,14 @@ angular.module('UserCtrl', []).controller('UserController', function($scope, $ht
 		// call the create function from our service (returns a promise object)
 		Users.create($scope.formData)
 			// if successful creation, call our get function to get all the new users
-			.success(function(data) {
+			.success(function(a,b,c,data) {
 				$scope.formData = {}; // clear the form
-				
+				console.log('hit må jeg komme a:',a, 'b:', b, 'c:', c, 'data:', data)
 				if (data.user) {
-					console.log('kommer jeg til successen?', data)
+					console.log('kommer jeg til successen?')
 					$location.path('/redirect')
 				} else {
-					console.log(data, 'errorlocation')
+					console.log('errorlocation')
 				}
 			});
 			

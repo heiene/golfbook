@@ -10,6 +10,8 @@
     	"passport" : "latest", 		
     	"passport-local" : "latest",
     	"bcrypt-nodejs" : "latest",
-    	"express-session": "latest"
+    	"express-session": "latest",
+    	"connect-flash": "latest",
+    	"cookie-parser": "latest"
 	}
 }
