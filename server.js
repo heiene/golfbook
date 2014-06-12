@@ -18,7 +18,7 @@ var cookieParser 	= require('cookie-parser')
 var db = require('./config/db');
 
 var port = process.env.PORT || 8080; // set our port
-mongoose.connect(db.url); // connect to our mongoDB database (uncomment after you enter in your own credentials in config/db.js)
+mongoose.connect(db.local); // connect to our mongoDB database (uncomment after you enter in your own credentials in config/db.js)
 require('./config/passport')(passport); // pass passport for configuration
 
 
@@ -37,12 +37,15 @@ app.use(passport.session()); // persistent login sessions
 
 // routes ==================================================
 
-require('./app/routes')(app, express); // configure our userroutes
-require('./app/signInRoutes')(app, express, passport); // signinroutes
-
+require('./app/routes/')(app,express, passport)
+// require('./app/userRoutes')(app, express, passport); // configure our userroutes
+// require('./app/signInRoutes')(app, express, passport); // signinroutes
+// require('./app/adminRoutes')(app, express, passport);
 app.get('*', function(req, res){
-    res.sendfile('./public/index.html');
+    	res.sendfile(__dirname + '/public/index.html');
 });
+	
+
 
 
 // Pick up any unrouted requests on the backend, and send it back to the indexfile

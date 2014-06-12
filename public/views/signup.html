@@ -1,7 +1,10 @@
 
-		<div class="alert alert-danger">{{message}}</div>
+<div ng-show="showAlert()" class="alert alert-danger">
+  <button type="button" class= "close" data-dismiss="alert" ng-click="clearAlert()">&times;</button>
+  {{message}}
+</div>
 
-
+{{test}}
 <form role="form" ng-submit="createUser()">
     <div class="row">
       <div class="input-group">

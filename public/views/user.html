@@ -3,8 +3,11 @@
 
 	<p>{{ tagline }}</p>
   <p>{{ message }}</p>
+
+
+  
 	<p ng-repeat = "user in users">
-		{{ user.userName }} <button  type="submit" class="btn btn-danger" ng-click="deleteUser(user._id)">X</button>
+		{{ user.userName }} <button ng-show="isAdmin()" type="submit" class="btn btn-danger" ng-click="deleteUser(user._id)">X</button>
 	</form>
 	</p>
 
