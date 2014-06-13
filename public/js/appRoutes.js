@@ -38,6 +38,10 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			templateUrl: 'views/profile.html',
 			controller: 'UserController'	
 		})
+		.when('/editprofile', {
+			templateUrl: 'views/editprofile.html',
+			controller: 'UserController'	
+		})
 
 		.otherwise({
         	redirectTo: '/'

@@ -52,6 +52,7 @@ module.exports = function(app, express, passport) {
 	});
 
 	app.get('/profile', auth, function(req, res, next) {
+		res.redirect('/profile')
 		console.log('Logga inn')
 	});
 

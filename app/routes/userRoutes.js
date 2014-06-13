@@ -31,9 +31,10 @@ module.exports = function(app, express, passport) {
 			});
 		})
 
-	router.route('/api/users/:user_id')
+	router.route('/api/users/profile/:user_id')
 		.get(function (req, res) {
 			User.findById(req.params.user_id, function (err, user) {
+				console.log('uppdate user 1 steg')
 				if (err) {
 					res.send(err);
 				}
@@ -44,8 +45,29 @@ module.exports = function(app, express, passport) {
 
 		})})
 
-		.put(correctUser, function(req, res) {
+		.put(function (req, res) {
+			User.findById(req.params.user_id, function (err, user) {
+				if (err) {
+					res.send(err);
+				}
+				else {
+					console.log('userprofile update, user: ', user)
+					user.name.first = req.body.name.first;
+					user.name.last = req.body.name.last;
+					user.email = req.body.email;
+					user.hcp = req.body.hcp;
 
+					user.save(function (err) {
+						if (err) {
+							res.send(err);
+						}
+						else {
+							res.json({ message: 'User updated!' , user: user});
+						}
+					})
+				};
+
+			})
 		})
 
 	app.use(router);

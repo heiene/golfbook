@@ -22,7 +22,7 @@
 	<script src="js/appRoutes.js"></script>
 	<script src="js/app.js"></script>
 </head>
-<body ng-app="golfApp" ng-controller="UserController">
+<body ng-app="golfApp" ng-controller="MainController">
 <div class="container">
 
 	<!-- HEADER -->
@@ -40,7 +40,9 @@
 			<li><a></a></li>
 			<div ng-if="user">
 			<li><a>Logged in as: {{user.userName}}</a></li>
-			<li><a ng-if="user" href="/logout" ng-click="logutUser()">Logout</a></li>
+			<li><a href="/profile" >Profile</a></li>
+			<li><a href="/logout" ng-click="logutUser()">Logout</a></li>
+
 			</div>
 		</ul>
 	</nav>

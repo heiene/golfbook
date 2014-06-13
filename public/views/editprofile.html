@@ -1,0 +1,16 @@
+{{user.userName}}
+{{user.passWord}}
+<form ng-submit="updateProfile(user._id)">
+	<div>
+		<div>
+			<input type="text" ng-model="user.name.first" placeholder="Enter your First Name">
+
+			<input type="text" ng-model="user.name.last" placeholder="Enter your Last Name">
+
+			<input type="email" ng-model="user.email" placeholder="Enter your email">
+
+			<input type="number" ng-model="user.hcp" placeholder="Enter your ">
+			<input type="submit" value="update">
+		</div>
+	</div>
+</form>

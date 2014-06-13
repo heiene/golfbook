@@ -1,6 +1,6 @@
 angular.module('UserCtrl', []).controller('UserController', function($rootScope, $scope, $http, $location, Users) {
 	$scope.formData = {};
-	$scope.test = 'testscopeish'
+	$scope.loggedin = {user: '', session: ''}
 
 
 	Users.get()
@@ -19,6 +19,7 @@ angular.module('UserCtrl', []).controller('UserController', function($rootScope,
 				if (data.user) {
 					console.log('DATA:',data, 'b:::::', b, 'c:::::', c, 'a::::', a)
 					$rootScope.user = data.user
+					this.loggedin.user = data.user;
 					console.log('login success with user')
 					$location.path('/profile')
 				} else {
@@ -118,6 +119,14 @@ angular.module('UserCtrl', []).controller('UserController', function($rootScope,
 	$scope.clearAlert = function() {
 		
 		$scope.message = ''
+	}
+
+	$scope.updateProfile = function (id) {
+		Users.updateUser(id)
+			// if successful creation, call our get function to get all the new users
+			.success(function(data) {
+				// $scope.users = Users.get(); // assign our new list of users
+		});
 	}
 
 	$scope.isAdmin = function() {
