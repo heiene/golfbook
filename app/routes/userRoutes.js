@@ -31,7 +31,7 @@ module.exports = function(app, express, passport) {
 			});
 		})
 
-	router.route('/api/users/profile/:user_id')
+	router.route('/api/editprofile/:user_id')
 		.get(function (req, res) {
 			User.findById(req.params.user_id, function (err, user) {
 				console.log('uppdate user 1 steg')
@@ -46,6 +46,7 @@ module.exports = function(app, express, passport) {
 		})})
 
 		.put(function (req, res) {
+			// console.log('REEEddeeeeeeeeeeeEEEQQQ', req, 'reseeesedddddddddeesss', res)
 			User.findById(req.params.user_id, function (err, user) {
 				if (err) {
 					res.send(err);

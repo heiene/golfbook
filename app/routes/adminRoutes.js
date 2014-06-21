@@ -14,7 +14,7 @@ module.exports = function(app, express, passport) {
 	});
 
 	router.route('/api/users/:user_id')
-		/*.put(function (req, res) {
+		.put(function (req, res) {
 			User.findById(req.params.user_id, function (err, user) {
 				if (err) {
 					res.send(err);
@@ -36,7 +36,7 @@ module.exports = function(app, express, passport) {
 
 			})
 		
-		})*/
+		})
 		.delete( function (req, res) {
 			User.remove( {
 				_id: req.params.user_id

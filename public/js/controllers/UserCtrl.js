@@ -1,14 +1,14 @@
 angular.module('UserCtrl', []).controller('UserController', function($rootScope, $scope, $http, $location, Users) {
 	$scope.formData = {};
 	$scope.loggedin = {user: '', session: ''}
-
+	$scope.currentUser = {};
 
 	Users.get()
 		.success(function(data) {
 			$scope.users = data;
 			$scope.message = '';
 	});
- 	$scope.createUser = function() {
+ 	/*$scope.createUser = function() {
 
 		// call the create function from our service (returns a promise object)
 		Users.create($scope.formData)
@@ -44,9 +44,9 @@ angular.module('UserCtrl', []).controller('UserController', function($rootScope,
 
 
 			})
-	};
+	};*/
 
-	$scope.loginUser = function() {
+	/*$scope.loginUser = function() {
 
 		// call the create function from our service (returns a promise object)
 		Users.login($scope.formData)
@@ -54,10 +54,10 @@ angular.module('UserCtrl', []).controller('UserController', function($rootScope,
 			.success(function(data) {
 				$scope.formData = {}; // clear the form
 				$scope.test2 = 'test2'
-				$scope.currentUser = data.user; //DENNE VIRKER IKKE AV EN ELLER ANNEN GRUNN....
+				$scope.currentUser.userName = data.user.userName; //DENNE VIRKER IKKE AV EN ELLER ANNEN GRUNN....
 				$rootScope.user = data.user
 				if (data.user) {
-					console.log('kommer jeg til successen, er jeg logga inn!!!!', 'currentuser:', $scope.currentUser)
+					console.log('kommer jeg til successen, er jeg logga inn!!!!', 'currentuser:', $scope.currentUser, data.user.userName)
 					$location.path('/profile')
 				} else {
 					console.log(data, 'errorlocation')
@@ -78,7 +78,7 @@ angular.module('UserCtrl', []).controller('UserController', function($rootScope,
 
 			})
 			
-	};
+	};*/
 
 	$scope.deleteUser = function(id) {
 
@@ -89,20 +89,22 @@ angular.module('UserCtrl', []).controller('UserController', function($rootScope,
 			});
 	};
 
-	$scope.updateUser = function(id) {
+	$scope.updateUser = function() {
 
-		Users.put(id)
+		Users.put($scope.formData)
 			// if successful creation, call our get function to get all the new users
 			.success(function(data) {
+				console.log('yes, user updated!')
 				// $scope.users = Users.get(); // assign our new list of users
 			});
 	};
 
-	$scope.logutUser = function() {
+/*	$scope.logoutUser = function() {
+		console.log('is it called')
 		$rootScope.user = null
 		Users.logout();
-		console.log($rootScope)
-	};
+		console.log('what is the rootscope when loggedout', $rootScope)
+	};*/
 
 	$scope.testLogin = function() {
 		Users.testLogin();
@@ -122,14 +124,17 @@ angular.module('UserCtrl', []).controller('UserController', function($rootScope,
 	}
 
 	$scope.updateProfile = function (id) {
-		Users.updateUser(id)
-			// if successful creation, call our get function to get all the new users
+		console.log('put function for update entered', id, $scope.formData)
+		Users.updateUser(id, $scope.formData)
+			// if successful update, go back to profile
 			.success(function(data) {
-				// $scope.users = Users.get(); // assign our new list of users
+				$rootScope.user = data.user
+				$location.path('/profile')
 		});
 	}
 
 	$scope.isAdmin = function() {
+		console.log( 'hvem er scopeuser' , $scope.user);
 		if ($rootScope.user){
 			console.log('am i here?')
 			

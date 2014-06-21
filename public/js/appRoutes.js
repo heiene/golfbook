@@ -22,12 +22,12 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 
 		.when('/signup', {
 			templateUrl: 'views/signup.html',
-			controller: 'UserController'	
+			controller: 'MainController'	
 		})
 
 		.when('/login', {
 			templateUrl: 'views/login.html',
-			controller: 'UserController'	
+			controller: 'MainController'	
 		})
 
 		.when('/redirect', {
@@ -36,7 +36,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		})
 		.when('/profile', {
 			templateUrl: 'views/profile.html',
-			controller: 'UserController'	
+			controller: 'MainController'	
 		})
 		.when('/editprofile', {
 			templateUrl: 'views/editprofile.html',

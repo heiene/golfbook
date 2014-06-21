@@ -20,8 +20,8 @@ angular.module('UserService', [])
 		put : function(id) {
 			return $http.put('/api/users/' + id);
 		},
-		updateUser : function(id) {
-			return $http.put('/api/users/profile/' + id);
+		updateUser : function(id,userData) {
+			return $http.put('/api/editprofile/' + id, userData);
 		},
 		// call to get a user by id
 		getById: function(id) {
