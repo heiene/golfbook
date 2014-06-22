@@ -83,6 +83,14 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ro
 			
 	};
 
+	$scope.testLogin = function() {
+		Users.testLogin()
+			.success(function(data) {
+				$location.path('/profile')
+				console.log(data);
+			});
+	}
+
 	$scope.logoutUser = function() {
 		console.log('what is the rootscope before loggout', $rootScope)
 		$rootScope.user = null

@@ -7,7 +7,7 @@
 
   
 	<p ng-repeat = "user in users">
-		{{ user.userName }} <button ng-show="isAdmin()" type="submit" class="btn btn-danger" ng-click="deleteUser(user._id)">X</button>
+		{{ user.userName }} <button ng-show="isAdmin()" type="submit" class="btn btn-danger btn-xs" ng-click="deleteUser(user._id)">x</button>
 	</form>
 	</p>
 

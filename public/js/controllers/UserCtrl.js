@@ -106,9 +106,7 @@ angular.module('UserCtrl', []).controller('UserController', function($rootScope,
 		console.log('what is the rootscope when loggedout', $rootScope)
 	};*/
 
-	$scope.testLogin = function() {
-		Users.testLogin();
-	}
+
 
 	$scope.showAlert = function() {
 		

@@ -116,7 +116,7 @@ module.exports = function(app, express, passport) {
 
 	// USER PROFILE ROUTE - USER MUST BE LOGGED IN ===========
 	app.get('/profile', auth, function(req, res, next) {
-		res.redirect('/profile')
+		res.json({message: 'Logged in user, profile page is ok to access', user: req.user})
 		console.log('Logga inn')
 	});
 
