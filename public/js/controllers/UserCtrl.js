@@ -37,8 +37,8 @@ angular.module('UserCtrl', []).controller('UserController', function($rootScope,
 
 				console.log('K',k,'l', l,'m',m,'n',n,'o',o,'p',p)
 				if (l==401) {
-					$scope.message = 'Username: "' + $scope.formData.userName + '" is taken, try again!'
-					$scope.formData.userName = '';
+					$scope.message = 'username: "' + $scope.formData.username + '" is taken, try again!'
+					$scope.formData.username = '';
 					$scope.formData.password = '';
 				}
 
@@ -54,10 +54,10 @@ angular.module('UserCtrl', []).controller('UserController', function($rootScope,
 			.success(function(data) {
 				$scope.formData = {}; // clear the form
 				$scope.test2 = 'test2'
-				$scope.currentUser.userName = data.user.userName; //DENNE VIRKER IKKE AV EN ELLER ANNEN GRUNN....
+				$scope.currentUser.username = data.user.username; //DENNE VIRKER IKKE AV EN ELLER ANNEN GRUNN....
 				$rootScope.user = data.user
 				if (data.user) {
-					console.log('kommer jeg til successen, er jeg logga inn!!!!', 'currentuser:', $scope.currentUser, data.user.userName)
+					console.log('kommer jeg til successen, er jeg logga inn!!!!', 'currentuser:', $scope.currentUser, data.user.username)
 					$location.path('/profile')
 				} else {
 					console.log(data, 'errorlocation')
@@ -70,8 +70,8 @@ angular.module('UserCtrl', []).controller('UserController', function($rootScope,
 
 				console.log('K',k,'l', l,'m',m,'n',n,'o',o,'p',p)
 				if (l==401) {
-					// $scope.message = 'Username: "' + $scope.formData.userName + '" is taken, try again!'
-					// $scope.formData.userName = '';
+					// $scope.message = 'username: "' + $scope.formData.username + '" is taken, try again!'
+					// $scope.formData.username = '';
 					// $scope.formData.password = '';
 				}
 

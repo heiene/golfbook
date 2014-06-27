@@ -19,9 +19,6 @@ var db = require('./config/db');
 
 var port = process.env.PORT || 8080; // set our port
 mongoose.connect(db.local); // connect to our mongoDB database (uncomment after you enter in your own credentials in config/db.js)
-require('./config/passport')(passport); // pass passport for configuration
-
-
 
 app.use(express.static(__dirname + '/public')); 	// set the static files location /public/img will be /img for users
 app.use(morgan('dev')); 					// log every request to the console
@@ -30,17 +27,20 @@ app.use(cookieParser());
 app.use(methodOverride()); 					// simulate DELETE and PUT
 
 // required for passport
-app.use(session({ secret: 'iloverykketinvite' })); // session secret
-app.use(flash());
+// app.use(session({ secret: 'iloverykketinvite' })); // session secret
+// app.use(flash());
 app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
+// app.use(passport.session()); // persistent login sessions
 
 // routes ==================================================
 
-require('./app/routes/')(app,express, passport)
+require('./app/routes/')(app,express)
 // require('./app/userRoutes')(app, express, passport); // configure our userroutes
 // require('./app/signInRoutes')(app, express, passport); // signinroutes
 // require('./app/adminRoutes')(app, express, passport);
+
+
+// Catchall route
 app.get('*', function(req, res){
     	res.sendfile(__dirname + '/public/index.html');
 });

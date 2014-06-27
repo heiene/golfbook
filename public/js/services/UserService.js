@@ -9,7 +9,7 @@ angular.module('UserService', [])
 
 		// call to POST and create a new user
 		create : function(userData) {
-			return $http.post('/signup', userData);
+			return $http.post('/api/signup', userData);
 		},
 
 		// call to DELETE a user
@@ -29,7 +29,7 @@ angular.module('UserService', [])
 		},
 
 		login: function(userData) {
-			return $http.post('/login', userData);
+			return $http.post('/api/login', userData);
 		},
 		logout: function() {
 			return $http.get('/logout');
