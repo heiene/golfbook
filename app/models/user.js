@@ -6,7 +6,6 @@ var userSchema  = new Schema({
 	username: 	String,
 	password: 	String,
 	isAdmin: 	Boolean,
-	isLoggedin: Boolean,
 	name: 
 		{
 		first: String,

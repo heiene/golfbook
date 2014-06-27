@@ -2,7 +2,7 @@ var passport = require('passport');
 
 
 //Litt usikker på hvilken strategi som bør brukes. Funker veldig bra på 
-//BAckend med passport osv alle rutene på basic, men for å få det itl på
+//BAckend med postman  basic strategi, men for å få det til på
 //frontend uten sånn popup login, så funker local bedre...
 
 var BasicStrategy = require('passport-http').BasicStrategy;

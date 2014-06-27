@@ -12,7 +12,6 @@ exports.getUsers = function (req, res) {
 };
 
 exports.getUser = function (req, res) {
-	
 	User.findById(req.params.user_id, function (err, user) {
 		if (err) {
 			res.send(err);
@@ -33,7 +32,6 @@ exports.postUser = function (req, res) {
 //Enten kan man legge inn en sjekk her, eller så legger man no sånn 
 //"unik" parameter på mongodb - usermodellen. litt usikker
 exports.putUser = function (req, res) {
-	
 	User.findById(req.params.user_id, function (err, user) {
 		if (err) {
 			res.send(err);
@@ -49,11 +47,9 @@ exports.putUser = function (req, res) {
 				else {
 					res.json({ message: 'User updated!' , data: user});
 				}
-			})
+			});
 		};
-
-	})
-	
+	});
 };
 
 exports.deleteUser = function (req, res) {
@@ -65,5 +61,5 @@ exports.deleteUser = function (req, res) {
 			else {
 				res.json({ message: 'User deleted!', data: user });
 			}
-		})
+		});
 };
