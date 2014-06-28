@@ -5,13 +5,15 @@ var passport = require('passport');
 //BAckend med postman  basic strategi, men for å få det til på
 //frontend uten sånn popup login, så funker local bedre...
 
-var BasicStrategy = require('passport-http').BasicStrategy;
-// var BasicStrategy   = require('passport-local').Strategy;
+
+// Bare kommenter ut og skift strategi
+var Strategy = require('passport-http').BasicStrategy;
+// var Strategy   = require('passport-local').Strategy;
 var User = require('../models/user');
 
 var ses = { session : false };
 
-passport.use('basic-signin', new BasicStrategy(
+passport.use('basic-signin', new Strategy(
   function(username, password, callback) {
     User.findOne({ username: username }, function (err, user) {
       if (err) { 
@@ -41,7 +43,7 @@ passport.use('basic-signin', new BasicStrategy(
   }
 ));
 
-passport.use('basic-signup', new BasicStrategy(
+passport.use('basic-signup', new Strategy(
   function(username, password, callback) {
     User.findOne({ username: username }, function (err, user) {
       if (err) { 
