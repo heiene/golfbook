@@ -1,10 +1,14 @@
 module.exports = function (app, express) {
 
-	var router 				= express.Router();
-	var usersController 	= require('../controllers/usersController');
-	var authController 		= require('../controllers/authController');
+	var router 					= express.Router();
+	var usersController 		= require('../controllers/usersController');
+	var authController 			= require('../controllers/authController');
+	var golfroundController  	= require('../controllers/golfRoundController');
+	var golfcourseController 	= require('../controllers/golfCourseController');
 
 // ======== Her definerer vi rutene for backend ==============
+
+	// ---- User Routes --------------------
 
 	// Signup routen (må lage en login route også)
 	router.route('/signup')
@@ -19,6 +23,20 @@ module.exports = function (app, express) {
   		.get(authController.isAuthenticated, usersController.getUser)
 		.put(authController.isAuthenticated, isAuthorized , usersController.putUser)
 		.delete(authController.isAuthenticated, isAdmin, usersController.deleteUser);
+
+
+	// ----- Golf Rounds Routes ------------
+	router.route('/golfrounds')
+		.get(golfroundController.getGolfrounds)
+		.post(authController.isAuthenticated, golfroundController.postGolfround);
+
+
+
+	// ----- Golf Course Routes ------------
+	router.route('/golfcourses')
+		.get(golfcourseController.getGolfCourses)
+		.post(authController.isAuthenticated, isAdmin, golfcourseController.postGolfCourse);
+
 
 	// Setter alle backend ruter til å bruke /api
 	app.use('/api', router);
