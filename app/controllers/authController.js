@@ -48,7 +48,7 @@ passport.use('basic-signup', new BasicStrategy(
       	return callback(err); 
       }
 
-      // No user found with that username
+      // User already exists
       if (user) { 
       	return callback(null, false); 
       } else {
