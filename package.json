@@ -2,17 +2,17 @@
   "name": "golf-app",
   "main": "server.js",
   "dependencies": {
-    "express": "~4.0.0",
-    "mongoose": "~3.6.13",
-    "morgan": "~1.0.0",
-    "body-parser": "~1.0.0",
-    "method-override": "~1.0.0",
-    "passport": "latest",
-    "passport-local": "latest",
     "bcrypt-nodejs": "latest",
-    "express-session": "latest",
+    "body-parser": "~1.0.0",
     "connect-flash": "latest",
     "cookie-parser": "latest",
-    "passport-http": "~0.2.2"
+    "express": "~4.0.0",
+    "express-session": "latest",
+    "method-override": "~1.0.0",
+    "mongoose": "~3.6.13",
+    "morgan": "~1.0.0",
+    "passport": "latest",
+    "passport-http": "^0.2.2",
+    "passport-local": "latest"
   }
 }
