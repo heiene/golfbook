@@ -13,65 +13,92 @@ var User = require('../models/user');
 
 var ses = { session : false };
 
+// Om vi skal ha session paa server saa maa vi bruke disse:
+/*passport.serializeUser(function(user, done) {
+    done(null, user.id);
+});
+*/
+// used to deserialize the user
+/*passport.deserializeUser(function(id, done) {
+    User.findById(id, function(err, user) {
+        done(err, user);
+    });
+});
+*/
+
+
+
+
 passport.use('basic-signin', new Strategy(
   function(username, password, callback) {
-    User.findOne({ username: username }, function (err, user) {
-      if (err) { 
-      	return callback(err); 
-      }
+    
+    // Uncomment den process.nextTick om vi vil ha async opplegg
+    // User.findOne wont fire unless data is sent back
+    // process.nextTick(function() {    
 
-      // No user found with that username
-      if (!user) { 
-      	return callback(null, false); 
-      }
-
-      // Make sure the password is correct
-      user.verifyPassword(password, function(err, isMatch) {
+      User.findOne({ username: username }, function (err, user) {
         if (err) { 
         	return callback(err); 
         }
 
-        // Password did not match
-        if (!isMatch) { 
+        // No user found with that username
+        if (!user) { 
         	return callback(null, false); 
         }
 
-        // Success
-        return callback(null, user);
+        // Make sure the password is correct
+        user.verifyPassword(password, function(err, isMatch) {
+          if (err) { 
+          	return callback(err); 
+          }
+
+          // Password did not match
+          if (!isMatch) { 
+          	return callback(null, false); 
+          }
+
+          // Success
+          return callback(null, user);
+        });
       });
-    });
+    // }); //Uncomment denne om vi vil ha det asyncronious  
   }
 ));
 
 passport.use('basic-signup', new Strategy(
   function(username, password, callback) {
-    User.findOne({ username: username }, function (err, user) {
-      if (err) { 
-      	return callback(err); 
-      }
+    
 
-      // User already exists
-      if (user) { 
-      	return callback(null, false); 
-      } else {
+    // Uncomment den process.nextTick om vi vil ha async opplegg
+    // asynchronous
+    // User.findOne wont fire unless data is sent back
+    // process.nextTick(function() {  
+      User.findOne({ username: username }, function (err, user) {
+        if (err) { 
+        	return callback(err); 
+        }
 
-      		var newUser	= new User();
-            // set the user's basic credentials
-            newUser.username    = username;
-            newUser.password 	= newUser.generateHash(password);
+        // User already exists
+        if (user) { 
+        	return callback(null, false); 
+        } else {
 
-            // save the user
-            newUser.save(function(err) {
-                if (err)
-                    throw err;
-                return callback(null, newUser);
-            });
+        		var newUser	= new User();
+              // set the user's basic credentials
+              newUser.username    = username;
+              newUser.password 	= newUser.generateHash(password);
 
-      }
+              // save the user
+              newUser.save(function(err) {
+                  if (err)
+                      throw err;
+                  return callback(null, newUser);
+              });
 
-      // Make sure the password is correct
-      
-    });
+        }
+        
+      });
+    // }); // Uncomment denne om vi vil ha det asyncronious (om man uncommenter process.nextTick funksjonen)  
   }
 ));
 
