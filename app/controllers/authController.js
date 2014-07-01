@@ -7,8 +7,8 @@ var passport = require('passport');
 
 
 // Bare kommenter ut og skift strategi
-var Strategy = require('passport-http').BasicStrategy;
-// var Strategy   = require('passport-local').Strategy;
+// var Strategy = require('passport-http').BasicStrategy;
+var Strategy   = require('passport-local').Strategy;
 var User = require('../models/user');
 
 var ses = { session : false };
