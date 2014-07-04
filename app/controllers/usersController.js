@@ -38,7 +38,7 @@ exports.putUser = function (req, res) {
 		}
 		else {
 			user.username = req.body.username;
-			user.password = req.body.password;
+			// user.password = req.body.password;
 
 			user.save(function (err) {
 				if (err) {

@@ -1,4 +1,4 @@
-angular.module('MainCtrl', []).controller('MainController', function($scope, $rootScope , $http, $location, Users) {
+angular.module('MainCtrl', []).controller('MainController', function($scope, $rootScope , $http, $location, UserRoutes) {
 
 	$scope.formData = {};
 	$scope.loggedin = {user: '', session: ''}
@@ -10,7 +10,7 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ro
 	$scope.createUser = function() {
 
 		// call the create function from our service (returns a promise object)
-		Users.create($scope.formData)
+		UserRoutes.create($scope.formData)
 			// if successful creation, call our get function to get all the new users
 			.success(function(data,b,c,a) {
 				$scope.formData = {}; // clear the form
@@ -50,7 +50,7 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ro
 	$scope.loginUser = function() {
 
 		// call the create function from our service (returns a promise object)
-		Users.login($scope.formData)
+		UserRoutes.login($scope.formData)
 			// if successful creation, call our get function to get all the new users
 			.success(function(data) {
 				$scope.formData = {}; // clear the form
@@ -84,7 +84,7 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ro
 	};
 
 	$scope.testLogin = function() {
-		Users.testLogin()
+		UserRoutes.testLogin()
 			.success(function(data) {
 				$location.path('/profile')
 				console.log(data);
@@ -94,7 +94,7 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ro
 	$scope.logoutUser = function() {
 		console.log('what is the rootscope before loggout', $rootScope)
 		$rootScope.user = null
-		Users.logout();
+		UserRoutes.logout();
 		console.log('what is the rootscope when loggedout', $rootScope)
 	};
 });

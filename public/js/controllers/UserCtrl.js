@@ -1,9 +1,8 @@
-angular.module('UserCtrl', []).controller('UserController', function($rootScope, $scope, $http, $location, Users) {
+angular.module('UserCtrl', []).controller('UserController', ['$rootScope', '$scope', '$http', '$location', 'UserRoutes', 'CurrentUser' ,function($rootScope, $scope, $http, $location, UserRoutes, CurrentUser) {
 	$scope.formData = {};
-	$scope.loggedin = {user: '', session: ''}
-	$scope.currentUser = {};
+	$scope.currentUser = CurrentUser;
 
-	Users.get()
+	UserRoutes.get()
 		.success(function(data) {
 			$scope.users = data;
 			$scope.message = '';
@@ -82,7 +81,7 @@ angular.module('UserCtrl', []).controller('UserController', function($rootScope,
 
 	$scope.deleteUser = function(id) {
 
-		Users.delete(id)
+		UserRoutes.delete(id)
 			// if successful creation, call our get function to get all the new users
 			.success(function(data) {
 				// $scope.users = Users.get(); // assign our new list of users
@@ -91,7 +90,7 @@ angular.module('UserCtrl', []).controller('UserController', function($rootScope,
 
 	$scope.updateUser = function() {
 
-		Users.put($scope.formData)
+		UserRoutes.put($scope.formData)
 			// if successful creation, call our get function to get all the new users
 			.success(function(data) {
 				console.log('yes, user updated!')
@@ -122,8 +121,7 @@ angular.module('UserCtrl', []).controller('UserController', function($rootScope,
 	}
 
 	$scope.updateProfile = function (id) {
-		console.log('put function for update entered', id, $scope.formData)
-		Users.updateUser(id, $scope.formData)
+		UserRoutes.updateUser(id, $scope.formData)
 			// if successful update, go back to profile
 			.success(function(data) {
 				$rootScope.user = data.user
@@ -131,26 +129,10 @@ angular.module('UserCtrl', []).controller('UserController', function($rootScope,
 		});
 	}
 
-	$scope.isAdmin = function() {
-		console.log( 'hvem er scopeuser' , $scope.user);
-		if ($rootScope.user){
-			console.log('am i here?')
-			
-			if ($rootScope.user.isAdmin) {
-				console.log('this is returned', $rootScope.user)
-				return true;
-				console.log('this is not')
 
-			} else {
-				return false;
-			}
-			
-		}
-		console.log('or only here?') 
-	};
 
 
 	$scope.tagline = 'Controller for users, or golfer';	
 
-});
+}]);
 

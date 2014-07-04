@@ -1,5 +1,5 @@
 angular.module('UserService', [])
-	.factory('Users', ['$http', function($http) {
+	.factory('UserRoutes', ['$http', function($http) {
 
 	return {
 		// call to get all users
@@ -40,4 +40,12 @@ angular.module('UserService', [])
 
 	}
 	
+}])
+	.factory('CurrentUser', ['$http', function($http) {
+
+	return {
+		isLogged: false,
+		username: "" 
+
+	}
 }]);

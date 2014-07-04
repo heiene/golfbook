@@ -7,11 +7,13 @@ var passport = require('passport');
 
 
 // Bare kommenter ut og skift strategi
-// var Strategy = require('passport-http').BasicStrategy;
-var Strategy   = require('passport-local').Strategy;
+var Strategy = require('passport-http').BasicStrategy;
+// var Strategy   = require('passport-local').Strategy;
 var User = require('../models/user');
 
-var ses = { session : false };
+var options = { 
+            session : false 
+            };
 
 // Om vi skal ha session paa server saa maa vi bruke disse:
 /*passport.serializeUser(function(user, done) {
@@ -102,5 +104,5 @@ passport.use('basic-signup', new Strategy(
   }
 ));
 
-exports.userSignup		= passport.authenticate('basic-signup', ses);
-exports.isAuthenticated = passport.authenticate('basic-signin', ses);
+exports.userSignup		= passport.authenticate('basic-signup', options);
+exports.isAuthenticated = passport.authenticate('basic-signin', options);

@@ -35,10 +35,6 @@ app.use(passport.initialize());
 // routes ==================================================
 
 require('./app/routes/')(app,express)
-// require('./app/userRoutes')(app, express, passport); // configure our userroutes
-// require('./app/signInRoutes')(app, express, passport); // signinroutes
-// require('./app/adminRoutes')(app, express, passport);
-
 
 // Catchall route
 app.get('*', function(req, res){
