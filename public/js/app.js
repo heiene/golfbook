@@ -4,7 +4,7 @@ angular.module('golfApp',
 		'MainCtrl', 
 		'UserCtrl',
 		'AdminCtrl', 
-		'LoginCtrl', 
+		/*'LoginCtrl',*/ 
 		'UserService', 
 		'CourseCtrl', 
 		'CourseService']

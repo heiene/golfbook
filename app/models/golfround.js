@@ -13,7 +13,9 @@ var Schema      = mongoose.Schema;
 
 var golfRoundSchema  = new Schema({
 	score: 			Number,
-	user_id: 		{ type: Schema.Types.ObjectId, ref: 'User' },
+	user_id: { 
+			type: Schema.Types.ObjectId, 
+			ref: 'User' },
     golfcourse_id: 	/*{ type: Schema.Types.ObjectId, ref: 'GolfCourse' }*/ Number
 })
 

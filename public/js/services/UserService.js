@@ -1,6 +1,7 @@
 angular.module('UserService', [])
-	.factory('UserRoutes', ['$http', function($http) {
-
+	
+	.factory('UserRoutes', ['$http' , 'CurrentUser', function($http, currenUser) {
+		$http.default.headers.common['Authorization'] = currentUser.basicString;
 	return {
 		// call to get all users
 		get : function() {
@@ -45,7 +46,8 @@ angular.module('UserService', [])
 
 	return {
 		isLogged: false,
-		username: "" 
+		user: "",
+		basicString: //regn ut den Tor Einar! 
 
 	}
 }]);
