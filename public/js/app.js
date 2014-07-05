@@ -1,11 +1,12 @@
 angular.module('golfApp', 
-	['ngRoute', 
-		'appRoutes', 
-		'MainCtrl', 
-		'UserCtrl',
-		'AdminCtrl', 
-		/*'LoginCtrl',*/ 
-		'UserService', 
-		'CourseCtrl', 
+	[   'ngRoute',
+        'MenuCtrl',
+        'AuthCtrl',
+        'AdminCtrl',
+        'UserCtrl',
+        'CourseCtrl',
+        'RoundCtrl',
+        'appRoutes',
+        'UserService',
 		'CourseService']
 	);

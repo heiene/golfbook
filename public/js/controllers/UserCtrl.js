@@ -1,6 +1,6 @@
 angular.module('UserCtrl', []).controller('UserController', ['$rootScope', '$scope', '$http', '$location', 'UserRoutes', 'CurrentUser' ,function($rootScope, $scope, $http, $location, UserRoutes, CurrentUser) {
 	$scope.formData = {};
-	$scope.currentUser = CurrentUser;
+	$scope.currentUser = CurrentUser.user;
 
 	UserRoutes.get()
 		.success(function(data) {
@@ -79,14 +79,7 @@ angular.module('UserCtrl', []).controller('UserController', ['$rootScope', '$sco
 			
 	};*/
 
-	$scope.deleteUser = function(id) {
 
-		UserRoutes.delete(id)
-			// if successful creation, call our get function to get all the new users
-			.success(function(data) {
-				// $scope.users = Users.get(); // assign our new list of users
-			});
-	};
 
 	$scope.updateUser = function() {
 
@@ -97,15 +90,6 @@ angular.module('UserCtrl', []).controller('UserController', ['$rootScope', '$sco
 				// $scope.users = Users.get(); // assign our new list of users
 			});
 	};
-
-/*	$scope.logoutUser = function() {
-		console.log('is it called')
-		$rootScope.user = null
-		Users.logout();
-		console.log('what is the rootscope when loggedout', $rootScope)
-	};*/
-
-
 
 	$scope.showAlert = function() {
 		

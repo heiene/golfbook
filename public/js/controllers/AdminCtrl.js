@@ -1,5 +1,12 @@
 angular.module('AdminCtrl', [])
-.controller('AdminController', function($rootScope, $scope, $http, $location, Users, Courses) {
+.controller('AdminController', ['$scope', '$http', '$location',function($scope, $http, $location) {
+    $scope.deleteUser = function(id) {
 
+        UserRoutes.delete(id)
+            // if successful creation, call our get function to get all the new users
+            .success(function(data) {
+                // $scope.users = Users.get(); // assign our new list of users
+            });
+    };
 
-});
+}]);

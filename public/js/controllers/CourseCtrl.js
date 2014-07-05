@@ -1,4 +1,4 @@
-angular.module('CourseCtrl', []).controller('CourseController', function($scope, $http) {
+angular.module('CourseCtrl', []).controller('CourseController', ['$scope', '$http', function($scope, $http) {
 	
 	$scope.formData = {};
 	
@@ -11,4 +11,4 @@ angular.module('CourseCtrl', []).controller('CourseController', function($scope,
                 });
 	$scope.tagline = 'Controller for golfcourses';	
 
-});
+}]);
