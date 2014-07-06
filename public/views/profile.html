@@ -1,15 +1,22 @@
-<section>
-</section>
-<aside>
-	<ul>
-		<li>User Name: </li>
-		<li>Password (should be encrypted): </li>
-		<li>First Name: </li>
-		<li>LaSt name: </li>
-		<li>email: </li>
-		<li>Hcp: </li>
-	</ul> 
-</aside>
-<div>
-	<a href="/editprofile">edit</a>
+<div class="jumbotron">
+    <h1>Profile</h1>
+    <section>
+
+    </section>
+    <aside>
+        <ul>
+            <li>User Name: {{currentUser.username}}</li>
+            <li>Password (should be encrypted): {{currentUser.password}} </li>
+            <li>ID: {{currentUser._id}}</li>
+            <li>First Name: </li>
+            <li>LaSt name: </li>
+            <li>email: </li>
+            <li>Hcp: </li>
+        </ul>
+    </aside>
+    <div>
+        <a href="/editprofile">edit</a>
+    </div>
+
+
 </div>

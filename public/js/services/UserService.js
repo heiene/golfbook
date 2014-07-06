@@ -1,7 +1,7 @@
 angular.module('UserService', [])
 
-	.factory('UserRoutes', ['$http' , 'CurrentUser', function($http, currenUser) {
-		$http.default.headers.common['Authorization'] = currentUser.basicString;
+	.factory('UserRoutes', ['$http' , 'CurrentUser', function($http, currentUser) {
+		$http.defaults.headers.common['Authorization'] = currentUser.basicString || '';
 	return {
 		signup: function(userData) {
 			return $http.post('/api/signup', userData);
@@ -29,11 +29,15 @@ angular.module('UserService', [])
 	}
 
 }])
-	.factory('CurrentUser', ['$http', function($http) {
+	.factory('CurrentUser', [ function() {
 
-	return {
-		isLogged: false,
-		user: "",
-		basicString: 'test'      //Denne må vel regnes ut i login og signup funksjon i controller!
-	}
+        return {
+            isLogged: true,
+            user: {username: 'test',
+                    password: 'test',
+                    isAdmin: false,
+                    _id: '123456'
+                    },
+            basicString: 'test'      //Denne må vel regnes ut i login og signup funksjon i controller!
+        }
 }]);

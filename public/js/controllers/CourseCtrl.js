@@ -1,14 +1,19 @@
-angular.module('CourseCtrl', []).controller('CourseController', ['$scope', '$http', function($scope, $http) {
+angular.module('CourseCtrl', []).controller('CourseController', ['$scope', '$http', 'CourseRoutes', 'GolfCourses', function($scope, $http, CourseRoutes, GolfCourses) {
 	
 	$scope.formData = {};
-	
-	$http.get('/api/courses')
-                .success(function(data) {
-                        $scope.courses = data;
-                })
-                .error(function(data) {
-                        console.log('Error: ' + data);
-                });
+
+    $scope.getGolfCourses = function () {
+        CourseRoutes.get()
+            .success(function(data) {
+                GolfCourses.courses = data;
+
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
+    }
+
+    $scope.courses = GolfCourses.courses;
 	$scope.tagline = 'Controller for golfcourses';	
 
 }]);

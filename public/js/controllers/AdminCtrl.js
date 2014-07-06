@@ -4,7 +4,7 @@ angular.module('AdminCtrl', [])
 
         UserRoutes.delete(id)
             // if successful creation, call our get function to get all the new users
-            .success(function(data) {
+            .success(function(data, status, headers, config) {
                 // $scope.users = Users.get(); // assign our new list of users
             });
     };

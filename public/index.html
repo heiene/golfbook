@@ -35,16 +35,52 @@
 
 		<!-- LINK TO OUR PAGES. ANGULAR HANDLES THE ROUTING HERE -->
 		<ul class="nav navbar-nav">
-            <li ng-if="loggedIn"><a href="/logout">Logout</a> </li>
-            <li ng-if="!loggedIn"><a href="/signup">Signup</a></li>
-			<li><a href="/login">Login</a></li>
+            <li ng-show="loggedIn"><a href="/logout">Logout</a> </li>
+            <li ng-hide="loggedIn"><a href="/signup">Signup</a></li>
+			<li ng-hide="loggedIn"><a href="/login">Login</a></li>
 			<li><a></a></li>
 		</ul>
 	</nav>
 
-	<!-- ANGULAR DYNAMIC CONTENT -->
-	<div ng-view></div>
 
+
+    <!-- Page setup-->
+    <div id="site-wrapper" class="{{classToggle}}">
+        <a href="#" class="toggle-nav glyphicon glyphicon-th-list" id="big-sexy" ng-click="toggleMenu()"><i ></i></a>
+
+        <div id="site-canvas">
+
+            <!-- SIDEBAR MENU - Not logged in-->
+
+            <div ng-hide = "loggedIn" id ="site-menu"class="" ng-click="toggleMenu()">
+                <ul class="">
+                    <li><a href="#">Not logged in menu</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- SIDEBAR MENU - Logged in-->
+            <div ng-show = "loggedIn" id ="site-menu"class="" ng-click="toggleMenu()">
+                <ul class="">
+                    <li><a href="/profile">Profile</a>
+                    </li>
+                    <li><a href="/rounds">GolfRounds</a>
+                    </li>
+                    <li><a href="/addround">Add Golf Round</a>
+                    </li>
+                    <li><a href="/golfcourses">Golfcourses</a>
+                    </li>
+                    <li><a href="/tournaments">Tournaments</a>
+                    </li>
+                    <li><a href="/halloffame">Hall of Fame</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- ANGULAR DYNAMIC CONTENT -->
+
+            <div ng-view></div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

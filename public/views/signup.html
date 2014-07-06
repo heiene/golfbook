@@ -1,21 +1,17 @@
-
+<!--
 <div ng-show="showAlert()" class="alert alert-danger">
   <button type="button" class= "close" data-dismiss="alert" ng-click="clearAlert()">&times;</button>
   {{message}}
-</div>
+</div>-->
 
 <form role="form" ng-submit="signupUser()">
-    <div class="row">
-      <div class="input-group">
-        <input type="text" ng-model="formData.username" placeholder="Enter your username" class="form-control">
-        <input type="password" ng-model="formData.password" placeholder="enter a password" class="form-control">
-        <span class="input-group-btn">
-          <input type="submit" class="btn btn-primary" value="Create User">
+    <div class="">
+      <div class="">
+        <input type="text" ng-model="formData.username" placeholder="Enter your username" class="">
+        <input type="password" ng-model="formData.password" placeholder="enter a password" class="">
+        <span class="">
+          <input type="submit" class="" value="Create User">
         </span>
       </div>
     </div>
 </form>
-
-<span class="input-group-btn">
-          <input  ng-click="testLogin()" type="submit" class="btn btn-primary" value="Test om man er logget inn">
-</span>

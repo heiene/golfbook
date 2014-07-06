@@ -28,14 +28,14 @@ module.exports = function (app, express) {
 	// ----- Golf Rounds Routes ------------
 	router.route('/golfrounds')
 		.get(golfroundController.getGolfrounds)
-		.post(authController.isAuthenticated, golfroundController.postGolfround);
+		.post(/*authController.isAuthenticated,*/ golfroundController.postGolfround);
 
 
 
 	// ----- Golf Course Routes ------------
 	router.route('/golfcourses')
 		.get(golfcourseController.getGolfCourses)
-		.post(authController.isAuthenticated, isAdmin, golfcourseController.postGolfCourse);
+		.post(/*authController.isAuthenticated, isAdmin,*/ golfcourseController.postGolfCourse);
 
 
 	// Setter alle backend ruter til å bruke /api

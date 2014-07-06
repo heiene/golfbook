@@ -1,0 +1,8 @@
+<div class="jumbotron text-center">
+    <h1>Courses</h1>
+
+    <p>{{ tagline }}</p>
+
+    <button ng-click="getGolfCourses()">Get courses</button>
+    <div ng-repeat="course in courses">{{course.name}}</div>
+</div>
