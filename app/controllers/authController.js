@@ -38,22 +38,8 @@ var basicOptions = {
 
 
 passport.use('basic-auth', new Strategy(
-  function(req, username, password, callback) {
+  function(username, password, callback) {
 
-
-      var auth = req.headers['authorization'];
-      console.log("Authorization Header is: ", auth);
-
-      var tmp = auth.split(' ');
-      var tmp2 = tmp[1];
-
-      var plainAuth = atob(tmp2);
-
-      var creds = plain_auth.split(':');      // split on a ':'
-      var username = creds[0];
-      var password = creds[1];
-
-      console.log("Authorization Header decoded: ", plainAuth);
     // Uncomment den process.nextTick om vi vil ha async opplegg
     // User.findOne wont fire unless data is sent back
     // process.nextTick(function() {    

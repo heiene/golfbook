@@ -12,7 +12,7 @@ module.exports = function (app, express) {
 
 	// Signup routen (må lage en login route også)
 	router.route('/signup')
-  		.post(authController.userSignup, usersController.postUser)
+  		.post(authController.userSignup, usersController.postUser);
 
   	// Users oversikt - returnerer bare alle brukere, ikke noe authendikasjon nødvendig per nå
 	router.route('/users')
