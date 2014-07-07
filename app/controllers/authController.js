@@ -77,6 +77,8 @@ passport.use('local-login', new LocalStrategy(
   function(username, password, callback) {
 
       User.findOne({ username: username }, function (err, user) {
+
+          console.log('USER',user)
               if (err) {
                   return callback(err);
               }
@@ -96,7 +98,7 @@ passport.use('local-login', new LocalStrategy(
                   if (!isMatch) {
                       return callback(null, false);
                   }
-
+                   console.log('kommer jeg hit')
                   // Success
                   return callback(null, user);
               });
