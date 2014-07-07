@@ -1,4 +1,4 @@
-angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider) {
 
 
     $locationProvider.html5Mode(true);
@@ -58,6 +58,23 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         });
 
 
-
+    var interceptor = ['$rootScope', '$q', function (scope, $q) {
+        function success(response) {
+            return response;
+        }
+        function error(response) {
+            var status = response.status;
+            if (status == 401) {
+                window.location = "/login";
+                return;
+            }
+            // otherwise
+            return $q.reject(response);
+        }
+        return function (promise) {
+            return promise.then(success, error);
+        }
+    }];
+    $httpProvider.responseInterceptors.push(interceptor);
 
 }]);

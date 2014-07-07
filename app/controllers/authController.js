@@ -73,41 +73,36 @@ passport.use('basic-auth', new Strategy(
   }
 ));
 
-passport.use('local-signup', new LocalStrategy(
+passport.use('local-login', new LocalStrategy(
   function(username, password, callback) {
 
-    // Uncomment den process.nextTick om vi vil ha async opplegg
-    // asynchronous
-    // User.findOne wont fire unless data is sent back
-    // process.nextTick(function() {  
       User.findOne({ username: username }, function (err, user) {
-        if (err) { 
-        	return callback(err); 
-        }
+              if (err) {
+                  return callback(err);
+              }
 
-        // User already exists
-        if (user) { 
-        	return callback(null, false); 
-        } else {
+              // No user found with that username
+              if (!user) {
+                  return callback(null, false);
+              }
 
-            var newUser	= new User();
-            // set the user's basic credentials
-            newUser.username    = username;
-            newUser.password 	= newUser.generateHash(password);
+              // Make sure the password is correct
+              user.verifyPassword(password, function(err, isMatch) {
+                  if (err) {
+                      return callback(err);
+                  }
 
-            // save the user
-            newUser.save(function(err) {
-              if (err)
-                  throw err;
-              return callback(null, newUser);
-            });
+                  // Password did not match
+                  if (!isMatch) {
+                      return callback(null, false);
+                  }
 
-        }
-        
-      });
-    // }); // Uncomment denne om vi vil ha det asyncronious (om man uncommenter process.nextTick funksjonen)  
+                  // Success
+                  return callback(null, user);
+              });
+      })
   }
 ));
 
-exports.userSignup		= passport.authenticate('local-signup', localOptions);
+exports.userLogin   	= passport.authenticate('local-login', localOptions);
 exports.isAuthenticated = passport.authenticate('basic-auth', basicOptions);

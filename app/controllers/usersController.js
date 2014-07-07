@@ -25,6 +25,18 @@ exports.getUser = function (req, res) {
 
 //alt her blir håndtert av passport, dette er kun for å sende user i callback for Post Request
 exports.postUser = function (req, res) {
+    var newUser	= new User();
+    // set the user's basic credentials
+    newUser.username    = req.params.username;
+    newUser.password 	= newUser.generateHash(req.params.password);
+    newUser.isAdmin = req.params.isAdmin;
+
+    // save the user
+    newUser.save(function(err) {
+        if (err)
+            throw err;
+        return callback(null, newUser);
+    });
 	res.json({message: 'signup successfull', user: req.user})
 };
 

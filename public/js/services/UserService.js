@@ -32,11 +32,11 @@ angular.module('UserService', [])
 	.factory('CurrentUser', [ function() {
 
         return {
-            isLogged: true,
-            user: {username: 'test',
-                    password: 'test',
+            isLogged: false,
+            user: { username: '',
+                    password: '',
                     isAdmin: false,
-                    _id: '123456'
+                    _id: ''
                     },
             basicString: ''      //Denne må vel regnes ut i login og signup funksjon i controller!
         }

@@ -9,14 +9,13 @@ module.exports = function (app, express) {
 // ======== Her definerer vi rutene for backend ==============
 
 	// ---- User Routes --------------------
-
-	// Signup routen (må lage en login route også)
-	router.route('/signup')
-  		.post(authController.userSignup, usersController.postUser);
+    router.route('/login')
+        .post(authController.userLogin);
 
   	// Users oversikt - returnerer bare alle brukere, ikke noe authendikasjon nødvendig per nå
 	router.route('/users')
-  		.get(usersController.getUsers);
+  		.get(authController.isAuthenticated, usersController.getUsers)
+        .post(authController.isAuthenticated, isAdmin, usersController.postUser);
 
   	// Alt som har med 1 user å gjøre
 	router.route('/users/:user_id')
@@ -27,15 +26,15 @@ module.exports = function (app, express) {
 
 	// ----- Golf Rounds Routes ------------
 	router.route('/golfrounds')
-		.get(golfroundController.getGolfrounds)
-		.post(/*authController.isAuthenticated,*/ golfroundController.postGolfround);
+		.get(authController.isAuthenticated, golfroundController.getGolfrounds)
+		.post(authController.isAuthenticated, golfroundController.postGolfround);
 
 
 
 	// ----- Golf Course Routes ------------
 	router.route('/golfcourses')
-		.get(golfcourseController.getGolfCourses)
-		.post(/*authController.isAuthenticated, isAdmin,*/ golfcourseController.postGolfCourse);
+		.get(authController.isAuthenticated, golfcourseController.getGolfCourses)
+		.post(authController.isAuthenticated, golfcourseController.postGolfCourse);
 
 
 	// Setter alle backend ruter til å bruke /api
