@@ -3,4 +3,6 @@ dist
 .tmp
 .sass-cache
 public/libs
-.idea/
+
+.idea
+*.iml
