@@ -72,7 +72,7 @@ angular.module('AuthCtrl', []).controller('AuthController', ['$scope', '$http', 
         var userCoded = btoa(user.username+":"+user.password);
         CurrentUser.isLogged = true;
         CurrentUser.user = user;
-        CurentUser.basicString = 'Basic '+userCoded;
+        CurrentUser.basicString = 'Basic '+userCoded;
         $location.path('/profile')
     }
 

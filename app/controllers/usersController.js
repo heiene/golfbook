@@ -12,8 +12,8 @@ exports.getUsers = function (req, res) {
 };
 
 exports.login = function (req, res) {
-    res.json({user: res.user});
-}
+    res.json({user: req.user});
+};
 
 exports.getUser = function (req, res) {
 	User.findById(req.params.user_id, function (err, user) {
@@ -65,7 +65,7 @@ exports.putUser = function (req, res) {
 					res.json({ message: 'User updated!' , data: user});
 				}
 			});
-		};
+		}
 	});
 };
 

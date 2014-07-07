@@ -7,6 +7,9 @@ angular.module('UserService', [])
 			return $http.post('/api/users', userData);
 		},
         login: function(userData) {
+            var basic = 'Basic ' + btoa(userData.username+":"+userData.password);
+            $http.defaults.headers.common['Authorization'] = basic;
+
             return $http.post('/api/login', userData);
         },
         logout: function() {
