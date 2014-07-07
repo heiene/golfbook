@@ -10,14 +10,12 @@ angular.module('AuthCtrl', []).controller('AuthController', ['$scope', '$http', 
                 $scope.formData = {}; // clear the form
 
                 if (data.user) {
-                    console.log('headers:',headers)
-                    CurrentUser.isLogged = true;
-                    CurrentUser.user = data.user;
-                    CurentUser.basicString = 'utregna basicstring i signup';
 
+                    loginActions(data.user);
+
+                    console.log('headers:',headers)
                     console.log('DATA:',data, 'CurrentUser', CurrentUser);
 
-                    $location.path('/profile')
                 } else {
                     console.log('succcess men ikke user object, returnert: ', data, status, headers, config)
                 }
@@ -39,13 +37,11 @@ angular.module('AuthCtrl', []).controller('AuthController', ['$scope', '$http', 
             .success(function(data, status, headers, config) {
                 $scope.formData = {}; // clear the form
                 if (data.user) {
-                    CurrentUser.isLogged = true;
-                    CurrentUser.user = data.user;
-                    CurentUser.basicString = 'utregna basicstring i login';
+
+                    loginActions(data.user);
 
                     console.log('DATA:',data, 'CurrentUser', CurrentUser);
 
-                    $location.path('/profile')
                 } else {
                     console.log('succcess men ikke user object, returnert: ', data, status, headers, config)
                 }
@@ -53,7 +49,7 @@ angular.module('AuthCtrl', []).controller('AuthController', ['$scope', '$http', 
             .error(function(data, status, headers, config){
                 console.log('Error, returnert: ', data, status, headers, config)
                 if (status==401) {
-
+                    $location.path('/login');
                 }
             })
     };
@@ -72,6 +68,13 @@ angular.module('AuthCtrl', []).controller('AuthController', ['$scope', '$http', 
 
 
     };
+    var loginActions = function(user) {
+        var userCoded = btoa(user.username+":"+user.password);
+        CurrentUser.isLogged = true;
+        CurrentUser.user = user;
+        CurentUser.basicString = 'Basic '+userCoded;
+        $location.path('/profile')
+    }
 
 }]);
 

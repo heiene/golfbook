@@ -38,6 +38,6 @@ angular.module('UserService', [])
                     isAdmin: false,
                     _id: '123456'
                     },
-            basicString: 'test'      //Denne må vel regnes ut i login og signup funksjon i controller!
+            basicString: ''      //Denne må vel regnes ut i login og signup funksjon i controller!
         }
 }]);

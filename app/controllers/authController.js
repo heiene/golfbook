@@ -8,12 +8,18 @@ var passport = require('passport');
 
 // Bare kommenter ut og skift strategi
 var Strategy = require('passport-http').BasicStrategy;
-// var Strategy   = require('passport-local').Strategy;
+var LocalStrategy   = require('passport-local').Strategy;
 var User = require('../models/user');
 
-var options = { 
-            session : false 
+var localOptions = {
+            session : false
             };
+
+var basicOptions = {
+    session : false,
+    passReqToCallback : true
+
+};
 
 // Om vi skal ha session paa server saa maa vi bruke disse:
 /*passport.serializeUser(function(user, done) {
@@ -31,9 +37,23 @@ var options = {
 
 
 
-passport.use('basic-signin', new Strategy(
-  function(username, password, callback) {
-    
+passport.use('basic-auth', new Strategy(
+  function(req, username, password, callback) {
+
+
+      var auth = req.headers['authorization'];
+      console.log("Authorization Header is: ", auth);
+
+      var tmp = auth.split(' ');
+      var tmp2 = tmp[1];
+
+      var plainAuth = atob(tmp2);
+
+      var creds = plain_auth.split(':');      // split on a ':'
+      var username = creds[0];
+      var password = creds[1];
+
+      console.log("Authorization Header decoded: ", plainAuth);
     // Uncomment den process.nextTick om vi vil ha async opplegg
     // User.findOne wont fire unless data is sent back
     // process.nextTick(function() {    
@@ -67,9 +87,8 @@ passport.use('basic-signin', new Strategy(
   }
 ));
 
-passport.use('basic-signup', new Strategy(
+passport.use('local-signup', new LocalStrategy(
   function(username, password, callback) {
-    
 
     // Uncomment den process.nextTick om vi vil ha async opplegg
     // asynchronous
@@ -85,17 +104,17 @@ passport.use('basic-signup', new Strategy(
         	return callback(null, false); 
         } else {
 
-        		var newUser	= new User();
-              // set the user's basic credentials
-              newUser.username    = username;
-              newUser.password 	= newUser.generateHash(password);
+            var newUser	= new User();
+            // set the user's basic credentials
+            newUser.username    = username;
+            newUser.password 	= newUser.generateHash(password);
 
-              // save the user
-              newUser.save(function(err) {
-                  if (err)
-                      throw err;
-                  return callback(null, newUser);
-              });
+            // save the user
+            newUser.save(function(err) {
+              if (err)
+                  throw err;
+              return callback(null, newUser);
+            });
 
         }
         
@@ -104,5 +123,5 @@ passport.use('basic-signup', new Strategy(
   }
 ));
 
-exports.userSignup		= passport.authenticate('basic-signup', options);
-exports.isAuthenticated = passport.authenticate('basic-signin', options);
+exports.userSignup		= passport.authenticate('local-signup', localOptions);
+exports.isAuthenticated = passport.authenticate('basic-auth', basicOptions);
