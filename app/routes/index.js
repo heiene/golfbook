@@ -10,7 +10,7 @@ module.exports = function (app, express) {
 
 	// ---- User Routes --------------------
     router.route('/login')
-        .post(authController.userLogin, usersController.login);
+        .get(authController.isAuthenticated, usersController.login);
 
   	// Users oversikt - returnerer bare alle brukere, ikke noe authendikasjon nødvendig per nå
 	router.route('/users')

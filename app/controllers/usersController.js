@@ -11,6 +11,9 @@ exports.getUsers = function (req, res) {
 	});
 };
 
+// Må ha denne, basic auth sender bare tilbake en htmlside av no slag...
+// req.user blir oppdatert inne i passport strategien slik at passordet strippes av objectet før det sendes tilbake.
+
 exports.login = function (req, res) {
     res.json({user: req.user});
 };
@@ -27,20 +30,20 @@ exports.getUser = function (req, res) {
 	})
 };
 
-//alt her blir håndtert av passport, dette er kun for å sende user i callback for Post Request
+//Kun admin som får lov til å poste users
 exports.postUser = function (req, res) {
     var newUser	= new User();
 
     // set the user's basic credentials
-    newUser.username    = req.params.username;
-    newUser.password 	= newUser.generateHash(req.params.password);
-    newUser.isAdmin     = req.params.isAdmin;
+    newUser.username    = req.body.username;
+    newUser.password 	= newUser.generateHash(req.body.password);
+    newUser.isAdmin     = req.body.isAdmin;
 
     // save the user
     newUser.save(function(err) {
-        if (err)
-            throw err;
-        return callback(null, newUser);
+        if (err) {
+            res.send(err);
+        }
     });
 	res.json({message: 'signup successfull', user: newUser})
 };

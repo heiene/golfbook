@@ -40,9 +40,6 @@ angular.module('UserCtrl', []).controller('UserController', ['$rootScope', '$sco
 		});
 	}
 
-
-
-
 	$scope.tagline = 'Controller for users, or golfer';	
 
 }]);
