@@ -1,8 +1,8 @@
 angular.module('UserService', [])
 
-	.factory('UserRoutes', ['$http' , 'CurrentUser', '$window', function($http, currentUser, $window) {
+	.factory('UserRoutes', ['$http' , 'CurrentUser', '$window', function($http, CurrentUser, $window) {
 
-        $http.defaults.headers.common['Authorization'] = $window.sessionStorage.getItem("basicString") || '';
+        $http.defaults.headers.common['Authorization'] = CurrentUser.basicString || '';
 	return {
 		signup: function(userData) {
 			return $http.post('/api/users', userData);
@@ -48,12 +48,9 @@ angular.module('UserService', [])
         factory.beforeLogin = function (userData) {
             var basic = 'Basic ' + btoa(userData.username+":"+userData.password);
 
-            // Setter basic string i header og CurrentUser og en basictring
-            //TODO: trenger ikke lagre både i basicstring da den her i currentuser, må hente den ut derifra.
+            // Setter basic string i header og CurrentUser
             $http.defaults.headers.common['Authorization'] = basic;
             CurrentUser.basicString = basic;
-            $window.sessionStorage.basicString = basic;
-
         };
 
         factory.afterLoginSuccess = function (data) {
@@ -74,7 +71,6 @@ angular.module('UserService', [])
             $http.defaults.headers.common['Authorization'] = '';
 
             // Fjerner session
-            $window.sessionStorage.removeItem("basicString");
             $window.sessionStorage.removeItem("currentUser");
 
         };
