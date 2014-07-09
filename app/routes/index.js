@@ -14,8 +14,8 @@ module.exports = function (app, express) {
 
   	// Users oversikt - returnerer bare alle brukere, ikke noe authendikasjon nødvendig per nå
 	router.route('/users')
-  		.get(authController.isAuthenticated, usersController.getUsers)
-      .post(authController.isAuthenticated, isAdmin, usersController.postUser);
+        .get(authController.isAuthenticated, usersController.getUsers)
+        .post(authController.isAuthenticated, isAdmin, usersController.postUser);
 
   	// Alt som har med 1 user å gjøre
 	router.route('/users/:user_id')
@@ -51,7 +51,7 @@ module.exports = function (app, express) {
 var isAdmin = function (req, res, next) {
 	if (!req.user.isAdmin) {
 		console.log('user not admin', req.user)
-		res.send(401);
+		res.send(403);
 	} else {
 		console.log('user is admin', req.user)
 		next();	

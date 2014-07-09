@@ -1,33 +1,6 @@
 angular.module('AuthCtrl', []).controller('AuthController', ['$scope', '$http', '$location', 'UserRoutes', 'CurrentUser', 'UserAuth' ,function( $scope, $http, $location, UserRoutes, CurrentUser, UserAuth) {
 	$scope.formData = {};
 
-    $scope.signupUser = function() {
-
-        // call the create function from our service (returns a promise object)
-        UserRoutes.signup($scope.formData)
-            // if successful creation, call our get function to get all the new users
-            .success(function(data, status, headers, config) {
-                $scope.formData = {}; // clear the form
-
-                if (data.user) {
-
-                    loginActions(data.user);
-
-                    console.log('headers:',headers)
-                    console.log('DATA:',data, 'CurrentUser', CurrentUser);
-
-                } else {
-                    console.log('succcess men ikke user object, returnert: ', data, status, headers, config)
-                }
-            })
-            .error(function(data, status, headers, config){
-                console.log('Error, returnert, Data: ', data,'status: ',  status, 'header: ', headers, 'config:', config)
-                if (status==401) {
-                    $scope.message = 'username: "' + $scope.formData.username + '" is taken, try again!'
-                    $scope.formData.username = '';
-                }
-            })
-    };
 
     $scope.loginUser = function() {
         UserAuth.beforeLogin($scope.formData)
@@ -59,6 +32,7 @@ angular.module('AuthCtrl', []).controller('AuthController', ['$scope', '$http', 
             })
     };
 
+    //TODO: Denne er også kanskje undøvendig, vil være fra menykontroller man kaller denne...
     $scope.logoutUser = function() {
         UserAuth.logout();
     };

@@ -4,7 +4,7 @@ angular.module('UserService', [])
 
         $http.defaults.headers.common['Authorization'] = CurrentUser.basicString || '';
 	return {
-		signup: function(userData) {
+		createUser: function(userData) {
 			return $http.post('/api/users', userData);
 		},
         login: function(userData) {

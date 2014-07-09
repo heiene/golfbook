@@ -2,18 +2,16 @@ angular.module('CourseCtrl', []).controller('CourseController', ['$scope', '$htt
 	
 	$scope.formData = {};
 
-    $scope.getGolfCourses = function () {
-        CourseRoutes.get()
-            .success(function(data) {
-                GolfCourses.courses = data;
+    CourseRoutes.get()
+        .success(function(data, status, headers, config) {
+            $scope.courses = data;
+            GolfCourses.courses = data;
 
-            })
-            .error(function(data) {
-                console.log('Error: ' + data);
-            });
-    }
+        })
+        .error(function(data, status, headers, config) {
+            console.log('Error: ', data, 'Status: ', status);
+    });
 
-    $scope.courses = GolfCourses.courses;
-	$scope.tagline = 'Controller for golfcourses';	
+	$scope.tagline = 'Controller for golfcourses';
 
 }]);

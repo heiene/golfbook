@@ -33,7 +33,7 @@ exports.getUser = function (req, res) {
 //Kun admin som får lov til å poste users
 exports.postUser = function (req, res) {
     var newUser	= new User();
-
+    console.log('hva blir sendt med inn', req.body)
     // set the user's basic credentials
     newUser.username    = req.body.username;
     newUser.password 	= newUser.generateHash(req.body.password);

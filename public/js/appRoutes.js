@@ -13,9 +13,9 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', '
             templateUrl: 'views/user.html',
             controller: 'UserController'
         })
-        .when('/signup', {
-            templateUrl: 'views/signup.html',
-            controller: 'AuthController'
+        .when('/admin', {
+            templateUrl: 'views/admin.html',
+            controller: 'AdminController'
         })
         .when('/login', {
             templateUrl: 'views/login.html',
@@ -68,6 +68,12 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', '
                 window.location = "/login";
                 return;
             }
+            if (status == 403) {
+                window.alert('You are not admin!!! Get out of here!')
+                window.location = "/profile";
+                return;
+            }
+
             // otherwise
             return $q.reject(response);
         }

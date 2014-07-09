@@ -1,0 +1,19 @@
+Create user:
+
+
+<form ng-submit="createUser()">
+    <input type="text" placeholder="username" ng-model="formData.username">
+    <input type="password" placeholder="password" ng-model="formData.password">
+    Is Admin: <input type="checkbox" ng-model="formData.isAdmin"/>
+    <input type="submit" name="submit"/>
+</form>
+
+{{formData.username}}
+{{formData.password}}
+
+
+        list users:
+        <div ng-repeat="user in users">
+            {{user.username}}
+            <button ng-click="deleteUser(user._id)">Delete</button>
+        </div>

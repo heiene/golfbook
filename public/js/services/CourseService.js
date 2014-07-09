@@ -1,5 +1,6 @@
 angular.module('CourseService', [])
-    .factory('CourseRoutes', ['$http', function($http) {
+    .factory('CourseRoutes', ['$http', 'CurrentUser', function($http, CurrentUser) {
+        $http.defaults.headers.common['Authorization'] = CurrentUser.basicString || '';
 
         return {
             // call to get all courses
@@ -13,7 +14,7 @@ angular.module('CourseService', [])
             },
 
             // call to DELETE a course
-            delete : function(id) {
+            remove : function(id) {
                 return $http.delete('/api/golfcourses/' + id);
             }
         }
