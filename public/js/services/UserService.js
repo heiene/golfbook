@@ -1,7 +1,8 @@
 angular.module('UserService', [])
 
-	.factory('UserRoutes', ['$http' , 'CurrentUser', function($http, currentUser) {
+	.factory('UserRoutes', ['$http' , 'CurrentUser', '$window', function($http, currentUser, $window) {
 
+        $http.defaults.headers.common['Authorization'] = $window.sessionStorage.getItem("basicString") || '';
 	return {
 		signup: function(userData) {
 			return $http.post('/api/users', userData);
@@ -23,32 +24,35 @@ angular.module('UserService', [])
 		deleteUser: function(id) {
 			return $http.delete('/api/users/' + id);
 		}
-	}
+    }
     }])
-
-	.factory('CurrentUser', [ function() {
-
-        return {
+    .factory('CurrentUser',  ['$window', function($window) {
+        var newUser =  {
             isLogged: false,
             user: '',
-            basicString: ''      //Denne må vel regnes ut i login og signup funksjon i controller!
+            basicString: ''
+            };
+        var oldUser;
+
+        if ($window.sessionStorage.currentUser) {
+            oldUser = JSON.parse($window.sessionStorage.currentUser);
         }
 
+        return oldUser ||newUser;
     }])
 
-    .factory('UserAuth', ['CurrentUser', '$http','$location',  function(CurrentUser, $http, $location) {
+    .factory('UserAuth', ['CurrentUser', '$http','$location', '$window',  function(CurrentUser, $http, $location, $window) {
+
         var factory = {};
 
         factory.beforeLogin = function (userData) {
             var basic = 'Basic ' + btoa(userData.username+":"+userData.password);
+
+            // Setter basic string i header og CurrentUser og en basictring
+            //TODO: trenger ikke lagre både i basicstring da den her i currentuser, må hente den ut derifra.
             $http.defaults.headers.common['Authorization'] = basic;
-
             CurrentUser.basicString = basic;
-            CurrentUser.isLogged    = true;
-
-            //
-            //TODO: evt en Session storage av CurrentUser objectet
-            //
+            $window.sessionStorage.basicString = basic;
 
         };
 
@@ -56,7 +60,10 @@ angular.module('UserService', [])
 
             // Setter User object til CurrentUser.user etter at passordet er strippa av.
             CurrentUser.user = data.user;
-            console.log('Etter login er Currentuser', CurrentUser, data);
+            CurrentUser.isLogged    = true;
+
+            // Lagrer user is session
+            $window.sessionStorage.currentUser = JSON.stringify(CurrentUser);
             $location.path('/profile');
         };
 
@@ -66,8 +73,10 @@ angular.module('UserService', [])
             CurrentUser.basicString = '';
             $http.defaults.headers.common['Authorization'] = '';
 
+            // Fjerner session
+            $window.sessionStorage.removeItem("basicString");
+            $window.sessionStorage.removeItem("currentUser");
 
-            console.log('Etter logut er Currentuser', CurrentUser);
         };
 
         return factory;

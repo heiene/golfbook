@@ -6,7 +6,8 @@ var User = require('../models/user');
 
 var basicOptions = {
     session : false,
-    passReqToCallback : true
+//    passReqToCallback : true,
+    disableBasicChallenge: true
 };
 
 passport.use('basic-auth', new Strategy(
