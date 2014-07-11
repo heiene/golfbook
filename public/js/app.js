@@ -7,6 +7,7 @@ angular.module('golfApp',
         'CourseCtrl',
         'RoundCtrl',
         'appRoutes',
+        'mm.foundation',
         'UserService',
 		'CourseService']
 	);

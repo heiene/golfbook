@@ -1,89 +1,183 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
+
 <head>
-	<meta charset="UTF-8">
+    <title>Himmerland</title>
 
-	<title>Starter MEAN Single Page Application</title>
-	<!-- CSS -->
-	<link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/style.css"> <!-- custom styles -->
+    <!-- CSS -->
 
-	<!-- JS -->
-	<script src="libs/angular/angular.min.js"></script>
-	<script src="libs/angular-route/angular-route.min.js"></script>
+    <link rel="stylesheet" href="css/style.css"> <!-- custom styles -->
+    <link rel="stylesheet" href="libs/foundation-5.3.0/css/foundation.css">
+    <!-- JS -->
+    <script src="libs/angular/angular.min.js"></script>
+    <script src="libs/angular-route/angular-route.min.js"></script>
+    <script src="libs/angular-foundation/mm-foundation.js"></script>
 
-	<!-- ANGULAR CUSTOM -->
-	<script src="js/controllers/AuthCtrl.js"></script>
-	<script src="js/controllers/UserCtrl.js"></script>
-	<script src="js/controllers/CourseCtrl.js"></script>
+
+    <!-- ANGULAR CUSTOM -->
+    <script src="js/controllers/AuthCtrl.js"></script>
+    <script src="js/controllers/UserCtrl.js"></script>
+    <script src="js/controllers/CourseCtrl.js"></script>
     <script src="js/controllers/RoundCtrl.js"></script>
     <script src="js/controllers/AdminCtrl.js"></script>
     <script src="js/controllers/MenuCtrl.js"></script>
     <script src="js/services/UserService.js"></script>
     <script src="js/services/CourseService.js"></script>
-	<script src="js/appRoutes.js"></script>
-	<script src="js/app.js"></script>
+    <script src="js/appRoutes.js"></script>
+    <script src="js/app.js"></script>
 </head>
 <body ng-app="golfApp" ng-controller="MenuController">
-<div class="container">
-
-	<!-- HEADER -->
-	<nav class="navbar navbar-inverse">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="/">Home</a>
-		</div>
-
-		<!-- LINK TO OUR PAGES. ANGULAR HANDLES THE ROUTING HERE -->
-		<ul class="nav navbar-nav">
-            <li ng-show="loggedIn"><a href="/" ng-click="logout()">Logout</a> </li>
-            <li ng-show="loggedIn" ng-if="currentUser.isAdmin"><a href="/admin">Admin Page</a></li>
-			<li ng-hide="loggedIn"><a href="/login">Login</a></li>
-			<li ><a href="/profile">TEST - skal bare funke når du er logga inn</a></li>
-            <li><a>{{currentUser.username}}</a></li>
-		</ul>
-	</nav>
 
 
+<!-- OFF CANVAS SECTIONS WRAPPING THE MAIN CONTENT -->
 
-    <!-- Page setup-->
-    <div id="site-wrapper" class="{{classToggle}}">
-        <a href="#" class="toggle-nav glyphicon glyphicon-th-list" id="big-sexy" ng-click="toggleMenu()"><i ></i></a>
 
-        <div id="site-canvas">
+<div class="off-canvas-wrap" data-offcanvas >
 
-            <!-- SIDEBAR MENU - Not logged in-->
+    <div class="inner-wrap">
 
-            <div ng-hide = "loggedIn" id ="site-menu"class="" ng-click="toggleMenu()">
-                <ul class="">
-                    <li><a href="#">Not logged in menu</a>
-                    </li>
-                </ul>
+        <!-- OFF CANVAS MENU BAR -->
+        <nav class="tab-bar <!--hide-for-large-up-->">
+
+            <section class="left-small">
+                <a class="left-off-canvas-toggle menu-icon" ><span></span></a>
+            </section>
+
+            <section class="right-small tab-bar-section">
+                <a class="title profile-icon"><span></span></a>
+            </section>
+
+            <section class="right tab-bar-section">
+                <h1 class="title">Menu</h1>
+            </section>
+
+        </nav> <!-- END NAV.TAB-BAR HIDE-FOR-LARGE-UP -->
+
+        <!-- OFF CANVAS MENU -->
+        <aside class="left-off-canvas-menu"  style="height: 1000px">
+            <ul class="off-canvas-list">
+                <li><label>Navigation</label></li>
+
+                <div ng-show="loggedIn">
+
+                    <li><a></a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/rounds">Golfrounds</a></li>
+                    <li><a href="/tournaments">Tournaments</a></li>
+
+                    <div  ng-if="currentUser.isAdmin">
+                        <li><a></a></li>
+                        <li><label>Admin</label></li>
+                        <li><a></a></li>
+                        <li><a href="/admin">Admin Users</a></li>
+                        <li><a href="/">Admin Colf Courses</a></li>
+                        <li><a href="/">Admin Tournaments</a></li>
+
+                    </div>
+                </div>
+
+                <li ng-hide="loggedIn"><a href="/login">Login</a></li>
+                <div ng-show="loggedIn" >
+                    <li><a></a></li>
+                    <li><label></label></li>
+                    <li ng-click="logout()"><a href="/">Logout</a></li>
+                    <li><label></label></li>
+                </div>
+            </ul>
+        </aside>
+
+        <!-- MAIN SECTION
+        <section class="main-section">
+            <!-- CONTENT SECTION -->
+            <!--
+            <section class="full-width content-section">
+                <div class="row">
+                    <div class="small-12 medium-12 large-12 columns">
+                        <h2>Moving aside for the Offcanvas people!</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae, minus molestias dolores blanditiis esse? Quam, accusamus, quo, eum, ipsum voluptatibus aliquam perspiciatis qui porro est sit eligendi suscipit. Expedita, eligendi, laboriosam animi itaque accusantium repudiandae dicta ullam quia ipsum amet quam nesciunt non! Porro, fuga molestiae quaerat accusantium nesciunt omnis.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, minima, quidem repellendus facilis dignissimos laboriosam doloribus sequi tempora iusto facere maxime quasi est ex qui commodi nobis aliquid id eius magnam consectetur. Ut deserunt repellat asperiores dolores odio! Incidunt, esse, distinctio modi ratione facilis iusto tempora saepe nisi nostrum culpa velit eaque quos dolore repellat facere accusamus architecto iure similique numquam autem asperiores error cumque eum. Dolor, minima aspernatur autem eaque ipsa officiis rem! Suscipit, esse, quos. Quos, perferendis, iure nobis modi perspiciatis enim error nulla asperiores dignissimos harum. Dolor, non rem in nobis illum id hic laboriosam blanditiis aliquid!</p>
+
+                    </div> <!-- END 12 COLUMNS
+                </div> <!-- END ROW
+            </section> <!-- END SECTION.CONTENT-SECTION
+
+            <!-- SERVICES SECTION
+            <section class="full-width services-section">
+                <div class="row">
+                    <div class="small-12 medium-4 large-4 columns">
+                        <h3>Service #1</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, veniam, asperiores fugit quas quaerat soluta in quibusdam placeat incidunt suscipit esse neque quisquam eaque rem!</p>
+                    </div>
+
+                    <div class="small-12 medium-4 large-4 columns">
+                        <h3>Service #3</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, nihil nemo tempore voluptatum veritatis corrupti id doloremque. Saepe, in sequi voluptatem impedit rem omnis aliquam?</p>
+                    </div>
+
+                    <div class="small-12 medium-4 large-4 columns">
+                        <h3>Service #3</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate ducimus aut commodi eius! Sequi, magni labore ea iusto quibusdam autem repellendus ipsum dolorem quasi maxime!</p>
+                    </div>
+
+                </div> <!-- END ROW
+            </section> <!-- END SECTION.FULL-WIDTH.SERVICES-SECTION
+
+            <!-- CALL 2 ACTION
+            <section class="full-width call-to-action">
+                <div class="row">
+                    <div class="small-12 medium-12 large-12 columns">
+                        <a href="#" class="button radius">Get in touch with us!</a>
+                    </div>
+                </div>
+            </section>
+        </section> <!-- END SECTION.MAIN-SECTION -
+
+        <!-- FOOTER SECTION --
+        <footer>
+            <div class="row">
+                <div class="small-12 medium-4 large-4 columns">
+                    <h4>Foundation</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, veniam, asperiores fugit quas quaerat soluta in quibusdam placeat incidunt suscipit esse neque quisquam eaque rem!</p>
+                </div>
+
+                <div class="small-12 medium-4 large-4 columns">
+                    <h4>Foundation</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, veniam, asperiores fugit quas quaerat soluta in quibusdam placeat incidunt suscipit esse neque quisquam eaque rem!</p>
+                </div>
+
+                <div class="small-12 medium-4 large-4 columns">
+                    <h4>Foundation</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, veniam, asperiores fugit quas quaerat soluta in quibusdam placeat incidunt suscipit esse neque quisquam eaque rem!</p>
+                </div>
+            </div> <!-- END ROW --
+        </footer> <!-- END FOOTER --
+
+        <!-- COPYRIGHT SECTION --
+        <section class="full-width copyright-section">
+            <div class="row">
+                <div class="small-12 columns">
+                    <p>&copy; 2014</p>
+        </div> <!-- END 12 COLUMNS --
+    </div> <!-- END ROW --
+</section> <!-- END SECTION.FULL-WIDTH COPYRIGHT-SECTION --
+
+ -->
+
+            <div class="row">
+
+                <div class="small-12 large-12 columns" ng-view style="height: 1000px"></div>
+
             </div>
-            <!-- SIDEBAR MENU - Logged in-->
-            <div ng-show = "loggedIn" id ="site-menu"class="" ng-click="toggleMenu()">
-                <ul class="">
-                    <li><a href="/profile">Profile</a>
-                    </li>
-                    <li><a href="/rounds">GolfRounds</a>
-                    </li>
-                    <li><a href="/addround">Add Golf Round</a>
-                    </li>
-                    <li><a href="/golfcourses">Golfcourses</a>
-                    </li>
-                    <li><a href="/tournaments">Tournaments</a>
-                    </li>
-                    <li><a href="/halloffame">Hall of Fame</a>
-                    </li>
-                    <li><a href="/users">Users</a>
-                    </li>
-                </ul>
-            </div>
 
-            <!-- ANGULAR DYNAMIC CONTENT -->
+<!-- CLOSE THE OFF-CANVAS MENU -->
 
-            <div ng-view></div>
+
+<a class="exit-off-canvas"></a>
+
         </div>
     </div>
-</div>
+
+
 </body>
 </html>
