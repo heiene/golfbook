@@ -62,3 +62,6 @@ core-toolbar {
 core-drawer-panel:not([narrow]) #navicon {
     display: none;
 }
+li {
+    list-style: none;
+}

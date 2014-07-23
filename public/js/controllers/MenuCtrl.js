@@ -3,13 +3,13 @@
  */
 angular.module('MenuCtrl', [])
     .controller('MenuController', ['$scope', 'CurrentUser', 'UserAuth', function($scope, CurrentUser, UserAuth) {
-        var menuToggle = false;
+
+        var drawerPanel = document.getElementById('drawerPanel');
 
         $scope.currentUser = {};
         $scope.loggedIn = false;
-        $scope.classToggle = '';
 
-        //TODO: Må sette opp en lik $scope.loggedInAdmin for admin, for å kunne gi en annen meny basert på admin.
+        //DONE: Må sette opp en lik $scope.loggedInAdmin for admin, for å kunne gi en annen meny basert på admin.
         //TODO: Man har faktisk tilgang på logged inn rutene så lenge den siden ikke henter noe fra server, bør legge en access controll på appRoutes også.
 
         // Satt opp en watch som ser på endringer på CurrentUser.isLogged, og setter scope.loggedIn lik den nye verdien.
@@ -26,16 +26,18 @@ angular.module('MenuCtrl', [])
             }, true);
 
         $scope.toggleMenu = function () {
-            menuToggle = !menuToggle;
-            if (menuToggle) {
-                $scope.classToggle = 'show-nav';
-            } else {
-                $scope.classToggle = '';
-            }
+            drawerPanel.togglePanel();
+        }
+
+        $scope.showMenu = function() {
+           drawerPanel.openDrawer();
+        }
+
+        $scope.hideMenu = function() {
+            drawerPanel.closeDrawer();
         }
 
         $scope.logout = function() {
-
             // Trenger ikke logge av server, fjerner bare basic auth fra header og blanker CurrentUser objektet i denne
             UserAuth.logout();
         }

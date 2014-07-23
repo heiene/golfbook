@@ -7,16 +7,16 @@
 
     <!-- web components -->
     <script src="libs/platform/platform.js"></script>
-
     <link rel="import" href="libs/core-drawer-panel/core-drawer-panel.html">
-    <link rel="import" href="libs/core-header-panel/core-header-panel.html">
+    <link rel="import" href="libs/core-scroll-header-panel/core-scroll-header-panel.html">
     <link rel="import" href="libs/core-toolbar/core-toolbar.html">
     <link rel="import" href="libs/core-menu/core-menu.html">
     <link rel="import" href="libs/paper-icon-button/paper-icon-button.html">
+    <link rel="import" href="libs/core-icons/core-icons.html"/>
 
     <!-- web components - instagram-->
-    <!--<script src="libs/x-instagram/app/bower_components/platform/platform.js"></script>-->
-    <!--<link rel="import" href="../libs/x-instagram/src/x-instagram.html">-->
+<!--    <script src="libs/x-instagram/app/bower_components/platform/platform.js"></script>
+    <link rel="import" href="../libs/x-instagram/src/x-instagram.html">-->
 
     <!-- CSS -->
 
@@ -41,14 +41,14 @@
     <script src="js/appRoutes.js"></script>
     <script src="js/app.js"></script>
 </head>
-<body ng-app="golfApp" ng-controller="MenuController">
+<body ng-app="golfApp" ng-controller="MenuController" ng-swipe-left="hideMenu()" ng-swipe-right="showMenu()">
 
 <core-drawer-panel id="drawerPanel">
     <core-header-panel drawer>
         <core-toolbar>
             Menu
         </core-toolbar>
-        <core-menu>
+        <core-menu >
             <ul>
                 <div ng-show="loggedIn">
                     <li><a href="/">Home</a></li>
@@ -64,40 +64,25 @@
                     <li><a href="/login">Login</a></li>
                 </div>
                 <div ng-show="loggedIn" >
+                    <br>
                     <li><a ng-click="logout()" a href="/">Logout</a></li>
                 </div>
             </ul>
         </core-menu>
     </core-header-panel>
 
-    <core-header-panel main>
+    <core-scroll-header-panel tall main>
         <core-toolbar id="mainheader">
-            <paper-icon-button
-                    id="navicon" icon="menu"></paper-icon-button>
+            <paper-icon-button id="navicon" icon="menu" ng-click="toggleMenu()" ></paper-icon-button>
             <span flex>Himmerland Invitational</span>
+            <div>{{currentUser.username}}</div>
         </core-toolbar>
-        <div class="content" ng-view>
+        <div content ng-view>
         </div>
-    </core-header-panel>
+    </core-scroll-header-panel>
 
-</core-drawer-panel>
-
-
-
-        </div>
-
-    </div>
 </core-drawer-panel>
 
 </body>
 
-<script>
-    document.addEventListener('polymer-ready', function() {
-        var navicon = document.getElementById('navicon');
-        var drawerPanel = document.getElementById('drawerPanel');
-        navicon.addEventListener('click', function() {
-            drawerPanel.togglePanel();
-        });
-    });
-</script>
 </html>
