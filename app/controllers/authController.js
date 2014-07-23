@@ -1,8 +1,14 @@
 var passport = require('passport');
 
-// Basci Strategy
+// Basic Strategy
 var Strategy = require('passport-http').BasicStrategy;
 var User = require('../models/user');
+
+// Override Basic strategy prototype challenge for å slippe popup
+Strategy.prototype._challenge = function() {
+    if (this._disableBasicChallenge) { return 401 };
+    return 'x-Basic realm="' + this._realm + '"';
+}
 
 var basicOptions = {
     session : false,

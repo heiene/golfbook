@@ -41,6 +41,10 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', '
             templateUrl: 'views/tournaments.html',
             controller: 'RoundController'
         })
+        .when('/pictures', {
+            templateUrl: 'views/pictures.html',
+            controller: 'AuthController'
+        })
         .when('/addround', {
             templateUrl: 'views/addround.html',
             controller: 'RoundController'

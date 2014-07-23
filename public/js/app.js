@@ -1,5 +1,6 @@
 angular.module('golfApp', 
 	[   'ngRoute',
+        'ngTouch',
         'MenuCtrl',
         'AuthCtrl',
         'AdminCtrl',
