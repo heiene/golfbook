@@ -1,38 +1,31 @@
-var Golfround   = require('../models/golfround');
-var GolfCourse  = require('../models/golfcourse');
-var dummyCourse  = {
-  name: "Test",
-  _id : 123456
-}
+var Score   = require('../models/score');
 
-
-exports.getGolfrounds = function (req, res) {
-	Golfround.find(function(err, golfrounds) {
+exports.getScores = function (req, res) {
+	Score.find(function(err, scores) {
 		if (err) {
 			res.send(err);
 		}
 		else {
-			res.json(golfrounds);
+			res.json(scores);
 		}
 	});
 };
 
 
-exports.postGolfround = function(req, res) {
-  // Create a new instance of the GolfRound model
-  var golfround = new Golfround();
-  var golfcourse = GolfCourse.findOne({name: req.body.golfcourse}) || dummyCourse;
-  console.log(golfcourse,dummyCourse, req.user)
-  // Set the golfRound properties that came from the POST data
-  golfround.score = req.body.score;
-  golfround.user_id = req.user._id;
-  golfround.golfcourse_id = golfcourse._id;
+exports.postScore = function(req, res) {
+  // Create a new instance of the Score model
+  var score = new Score();
 
-  // Save the golfRound and check for errors
-  golfround.save(function(err) {
+  // Set the Score properties that came from the POST data
+  score.hole_score = req.body.hole_score;
+  score.user_id = req.user._id;
+  score.golfcourse_id = req.body.golfcourse_id;
+
+  // Save the score and check for errors
+  score.save(function(err) {
     if (err)
       res.send(err);
 
-    res.json({ message: 'golfround added to the User!', data: {User: req.user, Golfround: golfround} });
+    res.json({ message: 'score added to the User!', data: {User: req.user, Score: score} });
   });
 };

@@ -33,7 +33,7 @@
     <script src="js/controllers/AuthCtrl.js"></script>
     <script src="js/controllers/UserCtrl.js"></script>
     <script src="js/controllers/CourseCtrl.js"></script>
-    <script src="js/controllers/RoundCtrl.js"></script>
+    <script src="js/controllers/ScoreCtrl.js"></script>
     <script src="js/controllers/AdminCtrl.js"></script>
     <script src="js/controllers/MenuCtrl.js"></script>
     <script src="js/services/UserService.js"></script>
@@ -45,7 +45,7 @@
 
 <core-drawer-panel id="drawerPanel">
     <core-header-panel drawer>
-        <core-toolbar>
+        <core-toolbar> <!--id="navheader"-->>
             Menu
         </core-toolbar>
         <core-menu >
@@ -53,6 +53,8 @@
                 <div ng-show="loggedIn">
                     <li><a href="/">Home</a></li>
                     <li><a href="/profile">Profile</a></li>
+                    <li><a href="/golfcourses">GolfCourses</a></li>
+                    <li><a href="/addscore">Add golf Score</a></li>
                     <li><a href="/tournaments">Tournaments</a></li>
                     <li><a href="/pictures">Pictures</a></li>
                 </div>
@@ -77,7 +79,7 @@
             <span flex>Himmerland Invitational</span>
             <div>{{currentUser.username}}</div>
         </core-toolbar>
-        <div content ng-view>
+        <div content class="content" ng-view>
         </div>
     </core-scroll-header-panel>
 

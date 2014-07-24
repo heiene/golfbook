@@ -48,7 +48,7 @@ exports.postUser = function (req, res) {
 	res.json({message: 'signup successfull', user: newUser})
 };
 
-//Svakhet her at man kan endre username i ettertid til å være likt et annet
+//TODO: Svakhet her at man kan endre username i ettertid til å være likt et annet
 //Enten kan man legge inn en sjekk her, eller så legger man no sånn 
 //"unik" parameter på mongodb - usermodellen. litt usikker
 exports.putUser = function (req, res) {

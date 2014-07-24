@@ -1,4 +1,4 @@
-var Golfcourse = require('../models/golfcourse');
+var Golfcourse = require('../models/course');
 
 
 exports.getGolfCourses = function (req, res) {
@@ -16,9 +16,9 @@ exports.postGolfCourse = function  (req, res) {
 	var golfcourse = new Golfcourse();
 
 	// Set the golfRound properties that came from the POST data
-	golfcourse.name 	= req.body.name;
-	golfcourse.par 		= req.body.par;
-	golfcourse.length 	= req.body.length;
+	golfcourse.name 	    = req.body.name;
+	golfcourse.slope_value 	= req.body.slope_value;
+	golfcourse.holes 	    = req.body.holes;
 
 	// Save the golfRound and check for errors
 	golfcourse.save(function(err) {

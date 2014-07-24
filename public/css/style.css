@@ -1,50 +1,3 @@
-/*#site-wrapper {*/
-    /*position: relative;*/
-    /*overflow: hidden;*/
-    /*width: 100%;*/
-    /*top: 0px;*/
-    /*padding-top: 0px;*/
-    /*height: 1000px; *//* Temp: Simulates a tall page. */
-/*}*/
-
-/*#site-canvas {*/
-    /*width: 100%;*/
-    /*height: 100%;*/
-    /*position: relative;*/
-    /*-webkit-transform: translateX(0);*/
-    /*transform: translateX(0);*/
-    /*-webkit-transition: .3s ease all;*/
-    /*transition: .3s ease all;*/
-
-    /*padding: 5% 0; *//* Temp: Just spacing. */
-/*}*/
-
-/*#site-menu {*/
-    /*width: 300px;*/
-    /*height: 100%;*/
-    /*position: fixed;*/
-    /*top: 0;*/
-    /*left: -300px;*/
-    /*background: lightgrey;*/
-    /*padding: 15px;*/
-/*}*/
-
-/*#site-menu ul li {*/
-    /*list-style: none;*/
-/*}*/
-
-/*#site-wrapper.show-nav #site-canvas {*/
-    /*-webkit-transform: translateX(300px);*/
-    /*transform: translateX(300px);*/
-/*}*/
-
-/*#big-sexy {*/
-    /*z-index: 5;*/
-    /*top: 60px;*/
-    /*position: fixed;*/
-
-/*}*/
-
 core-header-panel {
     background: white;
 }
@@ -59,6 +12,7 @@ core-toolbar {
 }
 /* drawer is always visible on a wide screen
    so menu button isn't required */
+
 core-drawer-panel:not([narrow]) #navicon {
     display: none;
 }

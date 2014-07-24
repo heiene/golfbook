@@ -7,16 +7,27 @@ var mongoose    = require('mongoose');
 // Tenkte også å lage en GolfCourse Model som man kan lage referanse til
 
 var User 		= require('./user');
-var GolfCourse 	= require('./golfcourse');
+var GolfCourse 	= require('./course');
 var Schema      = mongoose.Schema;
 
 
 var golfRoundSchema  = new Schema({
-	score: 			Number,
-	user_id: { 
-			type: Schema.Types.ObjectId, 
-			ref: 'User' },
-    golfcourse_id: 	/*{ type: Schema.Types.ObjectId, ref: 'GolfCourse' }*/ Number
+	user_id: {
+			type: Schema.Types.ObjectId,
+			ref: 'User',
+            required: true},
+    course_id: 	{
+        type: Schema.Types.ObjectId,
+        ref: 'GolfCourse',
+        required: true},
+	hole_score: [{
+        number:     Number,
+        strokes:    Number,
+        puts:       Number,
+        chips:      Number,
+        sand:       Number,
+        water:      Number,
+        ob:         Number }]
 })
 
 

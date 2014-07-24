@@ -1,0 +1,25 @@
+<div class="jumbotron text-center">
+    <h1>Courses</h1>
+
+    <p>{{ tagline }} Added</p>
+
+        Golfcourse: <select ng-model="scoreData.course" ng-options="course.name for course in golfCourses"></select>
+    <form role="form" ng-submit="addScore()">
+        Selected Course: {{scoreData.course.name}}
+        Selected Course ID: {{scoreData.course._id}}
+        <div ng-repeat="hole in scoreData.course.holes">
+            Hole Number: {{hole.number}}
+            Hole Strokes: {{hole.par}} Hole index: {{hole.index}} <input type="number" ng-model="scoreData.hole.strokes" placeholder="Add strokes">
+            Check the strokes:
+            <br>
+            {{scoreData}}
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+        </div>
+    </form>
+
+</div>

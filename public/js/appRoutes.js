@@ -33,25 +33,25 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', '
             templateUrl: 'views/editprofile.html',
             controller: 'UserController'
         })
-        .when('/rounds', {
-            templateUrl: 'views/rounds.html',
-            controller: 'RoundController'
+        .when('/scores', {
+            templateUrl: 'views/scores.html',
+            controller: 'ScoreController'
         })
         .when('/tournaments', {
             templateUrl: 'views/tournaments.html',
-            controller: 'RoundController'
+            controller: 'ScoreController'
         })
         .when('/pictures', {
             templateUrl: 'views/pictures.html',
             controller: 'AuthController'
         })
-        .when('/addround', {
-            templateUrl: 'views/addround.html',
-            controller: 'RoundController'
+        .when('/addscore', {
+            templateUrl: 'views/addscore.html',
+            controller: 'ScoreController'
         })
         .when('/halloffame', {
             templateUrl: 'views/halloffame.html',
-            controller: 'RoundController'
+            controller: 'ScoreController'
         })
         .when('/golfcourses', {
             templateUrl: 'views/golfcourses.html',

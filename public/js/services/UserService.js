@@ -23,7 +23,13 @@ angular.module('UserService', [])
         },
 		deleteUser: function(id) {
 			return $http.delete('/api/users/' + id);
-		}
+		},
+        getScores: function() {
+            return $http.get('/api/scores');
+        },
+        postScore: function(scoreData) {
+            return $http.post('/api/scores', scoreData);
+        }
     }
     }])
     .factory('CurrentUser',  ['$window', function($window) {

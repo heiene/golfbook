@@ -1,10 +1,9 @@
 var mongoose    = require('mongoose');
 var Schema      = mongoose.Schema;
-var Hole 		= require('./hole');
 
 var golfCourseSchema  = new Schema({
 	name: 		String,
-	slopevalue: Number,
+	slope_value: Number,
 	holes:  [{	
 		number: Number,
 		par: 	Number,
@@ -15,7 +14,7 @@ var golfCourseSchema  = new Schema({
 })
 
 golfCourseSchema.methods.calculateLength = function (holes) {
-	var lenght;
+	var length;
 	holes.forEach(function(hole) {
 		length += hole.lenght;
 	})

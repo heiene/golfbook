@@ -24,17 +24,17 @@ module.exports = function (app, express) {
 		.delete(authController.isAuthenticated, isAdmin, usersController.deleteUser);
 
 
-	// ----- Golf Rounds Routes ------------
-	router.route('/golfrounds')
-		.get(authController.isAuthenticated, golfroundController.getGolfrounds)
-		.post(authController.isAuthenticated, golfroundController.postGolfround);
+	// ----- Golf Rounds Scores Routes ------------
+	router.route('/scores')
+		.get(authController.isAuthenticated, golfroundController.getScores)
+		.post(authController.isAuthenticated, golfroundController.postScore);
 
 
 
 	// ----- Golf Course Routes ------------
-	router.route('/golfcourses')
+	router.route('/courses')
 		.get(authController.isAuthenticated, golfcourseController.getGolfCourses)
-		.post(authController.isAuthenticated, golfcourseController.postGolfCourse);
+		.post(authController.isAuthenticated, isAdmin, golfcourseController.postGolfCourse);
 
 
 	// Setter alle backend ruter til å bruke /api
