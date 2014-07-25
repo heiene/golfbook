@@ -7,7 +7,7 @@ var mongoose    = require('mongoose');
 // Tenkte også å lage en GolfCourse Model som man kan lage referanse til
 
 var User 		= require('./user');
-var GolfCourse 	= require('./course');
+var Course 	= require('./course');
 var Schema      = mongoose.Schema;
 
 
@@ -18,7 +18,7 @@ var golfRoundSchema  = new Schema({
             required: true},
     course_id: 	{
         type: Schema.Types.ObjectId,
-        ref: 'GolfCourse',
+        ref: 'Course',
         required: true},
 	hole_score: [{
         number:     Number,

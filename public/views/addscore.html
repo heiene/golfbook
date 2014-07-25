@@ -7,12 +7,18 @@
     <form role="form" ng-submit="addScore()">
         Selected Course: {{scoreData.course.name}}
         Selected Course ID: {{scoreData.course._id}}
+
         <div ng-repeat="hole in scoreData.course.holes">
             Hole Number: {{hole.number}}
-            Hole Strokes: {{hole.par}} Hole index: {{hole.index}} <input type="number" ng-model="scoreData.hole.strokes" placeholder="Add strokes">
+            Hole Par: {{hole.par}} Hole index: {{hole.index}}
+            {{scoreData.hole_score[$index].push({}) }}
+            Number <input type="number" ng-model="scoreData.hole_score[$index].number" value={{$index+1}} placeholder="Add strokes">
+            Strokes <input type="number" ng-model="scoreData.hole_score[$index].strokes" placeholder="Add strokes">
+            Puts    <input type="number" ng-model="scoreData.hole_score[$index].puts" placeholder="Add strokes">
+
             Check the strokes:
             <br>
-            {{scoreData}}
+            {{scoreData.hole_score[$index]}}
             <br>
             <br>
             <br>
