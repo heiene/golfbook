@@ -1,7 +1,7 @@
 angular.module('CourseCtrl', []).controller('CourseController', ['$scope', '$http', 'CourseRoutes', 'GolfCourses', '$window', function($scope, $http, CourseRoutes, GolfCourses, $window) {
 	
 	$scope.formData = {};
-    $scope.courses = [];
+    $scope.courses = GolfCourses;
 
 //    TODO: Wrap denne i en updateGolfcourse, og oppdater course i local storage
     $scope.refreshGolfCourse = function () {

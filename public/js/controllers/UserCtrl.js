@@ -2,11 +2,15 @@ angular.module('UserCtrl', []).controller('UserController', ['$rootScope', '$sco
 	$scope.formData = {};
 	$scope.currentUser = CurrentUser.user || 'nothing';
 
-	UserRoutes.getUsers()
+    UserRoutes.getUsers()
 		.success(function(data, status, headers, config) {
 			$scope.users = data;
 	});
 
+    UserRoutes.getScoresUser($scope.currentUser._id)
+        .success(function(data, status, headers, config) {
+            $scope.scores = data;
+        });
 
 	$scope.updateUser = function() {
 
@@ -18,7 +22,7 @@ angular.module('UserCtrl', []).controller('UserController', ['$rootScope', '$sco
 			});
 	};
 
-	$scope.showAlert = function() {
+/*	$scope.showAlert = function() {
 		
 		if ($scope.message) 
 			return true;
@@ -29,7 +33,7 @@ angular.module('UserCtrl', []).controller('UserController', ['$rootScope', '$sco
 	$scope.clearAlert = function() {
 		
 		$scope.message = ''
-	}
+	}*/
 
 	$scope.updateProfile = function (id) {
 		UserRoutes.updateUser(id, $scope.formData)

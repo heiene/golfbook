@@ -14,6 +14,13 @@
             <li>Hcp: </li>
         </ul>
     </aside>
+
+    <div ng-repeat="score in scores">
+        Round: {{$index + 1}}
+        <div ng-repeat="hole in score.hole_score">
+            Strokes in hole number {{$index+1}} : {{hole.strokes}}
+        </div>
+    </div>
     <div>
         <a href="/editprofile">edit</a>
     </div>

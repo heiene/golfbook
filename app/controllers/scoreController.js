@@ -11,6 +11,19 @@ exports.getScores = function (req, res) {
 	});
 };
 
+exports.getScoresUser = function (req, res) {
+    Score.find({ user_id: req.params.user_id}, function (err, scores) {
+        if (err) {
+            res.send(err);
+        }
+        else {
+            console.log(scores)
+            res.json(scores);
+
+        }
+    })
+};
+
 
 exports.postScore = function(req, res) {
   // Create a new instance of the Score model

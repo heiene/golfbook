@@ -3,8 +3,8 @@ module.exports = function (app, express) {
 	var router 					= express.Router();
 	var usersController 		= require('../controllers/usersController');
 	var authController 			= require('../controllers/authController');
-	var golfroundController  	= require('../controllers/golfRoundController');
-	var golfcourseController 	= require('../controllers/golfCourseController');
+	var scoreController  	    = require('../controllers/scoreController');
+	var courseController 	= require('../controllers/courseController');
 
 // ======== Her definerer vi rutene for backend ==============
 
@@ -26,15 +26,17 @@ module.exports = function (app, express) {
 
 	// ----- Golf Rounds Scores Routes ------------
 	router.route('/scores')
-		.get(authController.isAuthenticated, golfroundController.getScores)
-		.post(authController.isAuthenticated, golfroundController.postScore);
+		.get(authController.isAuthenticated, scoreController.getScores)
+		.post(authController.isAuthenticated, scoreController.postScore);
 
+    router.route('/scores/:user_id')
+        .get(authController.isAuthenticated, scoreController.getScoresUser);
 
 
 	// ----- Golf Course Routes ------------
 	router.route('/courses')
-		.get(authController.isAuthenticated, golfcourseController.getGolfCourses)
-		.post(authController.isAuthenticated, isAdmin, golfcourseController.postGolfCourse);
+		.get(authController.isAuthenticated, courseController.getGolfCourses)
+		.post(authController.isAuthenticated, isAdmin, courseController.postGolfCourse);
 
 
 	// Setter alle backend ruter til å bruke /api

@@ -8,7 +8,6 @@ angular.module('ScoreCtrl', [])
         $scope.selectedCourse = null;
         $scope.selectedNumberOfHoles = 0;
         $scope.scoreData.hole_score = [];
-
         $scope.golfCourses = GolfCourses;
 
 
@@ -20,11 +19,13 @@ angular.module('ScoreCtrl', [])
         }
 
         $scope.addScore = function () {
-          console.log('kommer til add score', $scope.scoreData);
             $scope.scoreData.course_id = $scope.selectedCourse._id
             UserRoutes.postScore($scope.scoreData)
                 .success(function(data, status, headers, config) {
-                    console.log('success:', data)
+                    $scope.scoreData = null;
+                    $scope.selectedCourse = null;
+                    $scope.selectedNumberOfHoles = 0;
+
                 })
                 .error(function(data, status, headers, config) {
                     console.log('Error: ', data, 'Status: ', status);

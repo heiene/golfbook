@@ -27,6 +27,9 @@ angular.module('UserService', [])
         getScores: function() {
             return $http.get('/api/scores');
         },
+        getScoresUser: function(id) {
+            return $http.get('/api/scores/' + id);
+        },
         postScore: function(scoreData) {
             return $http.post('/api/scores', scoreData);
         }
