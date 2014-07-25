@@ -20,9 +20,16 @@ angular.module('CourseService', [])
         }
 	}])
 
-    .factory('GolfCourses', [function() {
-        return {
+    .factory('GolfCourses', ['$window', function($window) {
+        var newCourse =  {
             courses: Object,
-            holes:  Number
-        };
+            holes: Number
+         };
+        var oldCourse;
+
+        if ($window.localStorage.golfCourses) {
+            oldCourse = JSON.parse($window.localStorage.golfCourses);
+        }
+
+        return oldCourse || newCourse;
     }]);

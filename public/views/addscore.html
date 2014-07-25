@@ -3,18 +3,30 @@
 
     <p>{{ tagline }} Added</p>
 
-        Golfcourse: <select ng-model="scoreData.course" ng-options="course.name for course in golfCourses"></select>
-    <form role="form" ng-submit="addScore()">
-        Selected Course: {{scoreData.course.name}}
-        Selected Course ID: {{scoreData.course._id}}
+        Golfcourse: <select ng-model="selectedCourse" ng-options="course.name for course in golfCourses"></select>
+        <div ng-show="selectedCourse">
+            <select ng-model="selectedNumberOfHoles">
+                <option value="6">6</option>
+                <option value="9">9</option>
+                <option value="18">18</option>
+            </select>
+        </div>
 
-        <div ng-repeat="hole in scoreData.course.holes">
-            Hole Number: {{hole.number}}
-            Hole Par: {{hole.par}} Hole index: {{hole.index}}
-            {{scoreData.hole_score[$index].push({}) }}
-            Number <input type="number" ng-model="scoreData.hole_score[$index].number" value={{$index+1}} placeholder="Add strokes">
+    <button ng-click="populateHoles()">Populate</button>
+
+    <form role="form" ng-submit="addScore()">
+        Selected Course: {{selectedCourse.name}}
+        Selected Course ID: {{selectedCourse._id}}
+
+        <div ng-repeat="hole_score in scoreData.hole_score">
+            Hole Number: {{selectedCourse.holes[$index].number}}
+            Hole Par: {{selectedCourse.holes[$index].par}} Hole index: {{selectedCourse.holes[$index].index}} <br>
             Strokes <input type="number" ng-model="scoreData.hole_score[$index].strokes" placeholder="Add strokes">
-            Puts    <input type="number" ng-model="scoreData.hole_score[$index].puts" placeholder="Add strokes">
+            Puts    <input type="number" ng-model="scoreData.hole_score[$index].puts" placeholder="Add puts">
+            Chips    <input type="number" ng-model="scoreData.hole_score[$index].chips" placeholder="Add chips">
+            Sand    <input type="number" ng-model="scoreData.hole_score[$index].sand" placeholder="Add Sand">
+            Water    <input type="number" ng-model="scoreData.hole_score[$index].water" placeholder="Add Water">
+            OB    <input type="number" ng-model="scoreData.hole_score[$index].ob" placeholder="Add OB">
 
             Check the strokes:
             <br>
@@ -26,6 +38,7 @@
             <br>
 
         </div>
+        <input type="submit" class="" value="Submit score">
     </form>
 
 </div>

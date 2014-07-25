@@ -19,7 +19,7 @@ exports.postScore = function(req, res) {
   // Set the Score properties that came from the POST data
   score.hole_score = req.body.hole_score;
   score.user_id = req.user._id;
-  score.golfcourse_id = req.body.golfcourse_id;
+  score.course_id = req.body.course_id;
 
   // Save the score and check for errors
   score.save(function(err) {
