@@ -1,3 +1,10 @@
+body {
+    font-family: RobotoDraft, sans-serif;
+}
+.hidden {
+    display: none;
+}
+
 core-header-panel {
     background: white;
 }
@@ -18,4 +25,46 @@ core-drawer-panel:not([narrow]) #navicon {
 }
 li {
     list-style: none;
+}
+
+paper-button.colored {
+    color: #4285f4;
+    fill: #4285f4;
+}
+paper-button[raisedButton].colored {
+    background: #4285f4;
+    color: #fff;
+}
+
+#register-score {
+    margin: 0;
+    border-collapse: collapse;
+    padding: 0;
+    color: #333;
+    text-align: center;
+}
+#register-score .scorecard {
+    padding: 4px 2px;
+    border: 1px solid #888;
+    font-size: 10px;
+    text-align: center;
+}
+#register-score .hole {
+    background-color: green;
+    color: #ffffff;
+}
+#register-score .distance {
+    background-color: blue;
+    color: #ffffff;
+}
+#register-score .par {
+    background-color: orangered;
+    color: #ffffff;
+}
+#register-score .index {
+    background-color: lightgreen;
+    color: #333;
+}
+#register-score .player {
+
 }

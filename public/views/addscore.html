@@ -1,4 +1,4 @@
-<div class="jumbotron text-center">
+<div class="jumbotron">
     <h1>Courses</h1>
 
     <p>{{ tagline }} Added</p>
@@ -12,7 +12,102 @@
             </select>
         </div>
 
-    <button ng-click="populateHoles()">Populate</button>
+    <div horizontal end-justified layout>
+        <paper-button raisedbutton class="colored" ng-click="populateHoles()" label="Populate"></paper-button>
+    </div>
+    <br>
+
+    <form role="form" ng-submit="addScore()" ng-if="selectedNumberOfHoles">
+
+        <table id="register-score">
+            <thead>
+                <tr>
+                    <th class="hole scorecard">
+                        Hole
+                    </th>
+                    <th class="distance scorecard">
+                        Length
+                    </th>
+                    <th class="par scorecard">
+                        Par
+                    </th>
+                    <th class="index scorecard">
+                        Index
+                    </th>
+                    <th class="player scorecard">
+                        {{ currentUser.name.first || "Player 1" }}
+                    </th>
+                    <th class="player scorecard">
+                        Player 2
+                    </th>
+                    <th class="player scorecard">
+                        Player 3
+                    </th>
+                    <th class="player scorecard">
+                        Player 4
+                    </th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="hole_score in scoreData.hole_score">
+                <tr>
+                    <td class="hole scorecard">
+                        {{ selectedCourse.holes[$index].number }}
+                    </td>
+                    <td class="distance scorecard">
+                        {{ selectedCourse.holes[$index].length }}
+                    </td>
+                    <td class="par scorecard">
+                        {{ selectedCourse.holes[$index].par }}
+                    </td>
+                    <td class="index scorecard">
+                        {{ selectedCourse.holes[$index].index }}
+                    </td>
+                    <td class="player scorecard" ng-click="toggleHoleScore(selectedCourse.holes[$index].number)">
+                        <paper-icon-button class="player1-button" icon="create" role="button"></paper-icon-button>
+                    </td>
+                    <td class="player scorecard">
+                        <paper-icon-button class="player2-button" label=" "></paper-icon-button>
+                    </td>
+                    <td class="player scorecard">
+                        <paper-icon-button class="player3-button" label=" "></paper-icon-button>
+                    </td>
+                    <td class="player scorecard">
+                        <paper-icon-button class="player4-button" label=" "></paper-icon-button>
+                    </td>
+                </tr>
+                <tr id="hole-score-{{ selectedCourse.holes[$index].number }}" class="hidden">
+                    <td colspan="8">
+                        <table>
+                            <tr>
+                                <td>Strokes: </td>
+                                <td>
+                                    <paper-slider pin snaps min="1" max="14" value="1" bind-polymer immediateValue="{{ scoreData.hole_score[$index].strokes }}" ></paper-slider>
+                                </td>
+                                <td>
+                                    {{ scoreData.hole_score[$index].strokes }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Puts: </td>
+                                <td>1</td>
+                                <td>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Chips: </td>
+                                <td>0</td>
+                                <td>
+
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </form>
 
     <form role="form" ng-submit="addScore()">
         Selected Course: {{selectedCourse.name}}

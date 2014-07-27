@@ -16,7 +16,7 @@ angular.module('ScoreCtrl', [])
                 var hole = {};
                 $scope.scoreData.hole_score.push(hole);
             }
-        }
+        };
 
         $scope.addScore = function () {
             $scope.scoreData.course_id = $scope.selectedCourse._id
@@ -30,5 +30,11 @@ angular.module('ScoreCtrl', [])
                 .error(function(data, status, headers, config) {
                     console.log('Error: ', data, 'Status: ', status);
                 })
+        };
+
+        $scope.toggleHoleScore = function(holeNumber) {
+            var holeScoreEl = document.getElementById('hole-score-' + holeNumber);
+            console.log(holeScoreEl);
+            (angular.element(holeScoreEl)).toggleClass('hidden');
         }
     }]);
