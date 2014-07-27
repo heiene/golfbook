@@ -7,6 +7,8 @@ body {
 
 core-header-panel {
     background: white;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
 }
 core-toolbar {
     background-color: #03A9F4;
