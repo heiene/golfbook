@@ -2,10 +2,8 @@
  * Created by oyvindheiene on 05/07/14.
  */
 angular.module('ScoreCtrl', [])
-    .controller('ScoreController', ['$scope', '$http', '$location', 'GolfCourses', 'UserRoutes', 'CurrentUser' ,function($scope, $http, $location, GolfCourses, UserRoutes, CurrentUser) {
+    .controller('ScoreController', ['$scope', '$http', '$location', 'GolfCourses', 'UserRoutes' ,function($scope, $http, $location, GolfCourses, UserRoutes) {
         $scope.tagline = 'Adding score'
-        $scope.currentUser = CurrentUser.user;
-        console.log(CurrentUser.user)
         $scope.scoreData = {};
         $scope.selectedCourse = null;
         $scope.selectedNumberOfHoles = 0;
