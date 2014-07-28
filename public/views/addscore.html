@@ -62,43 +62,103 @@
                     <td class="index scorecard">
                         {{ selectedCourse.holes[$index].index }}
                     </td>
-                    <td class="player scorecard" ng-click="toggleHoleScore(selectedCourse.holes[$index].number)">
+                    <td class="player scorecard" ng-click="toggleHoleScoreVisibility(selectedCourse.holes[$index].number, 'hole-score-' + {{ selectedCourse.holes[$index].number }})">
                         <paper-icon-button class="player1-button" icon="create" role="button"></paper-icon-button>
                     </td>
-                    <td class="player scorecard">
-                        <paper-icon-button class="player2-button" label=" "></paper-icon-button>
+                    <td class="flight-player scorecard" ng-click="toggleHoleScoreVisibility(selectedCourse.holes[$index].number, 'hole-score-' + {{ selectedCourse.holes[$index].number }} + '-player-XXX')">
+                        <paper-icon-button class="player2-button" icon="create" role="button"></paper-icon-button>
                     </td>
-                    <td class="player scorecard">
-                        <paper-icon-button class="player3-button" label=" "></paper-icon-button>
+                    <td class="flight-player scorecard" ng-click="toggleHoleScoreVisibility(selectedCourse.holes[$index].number, 'hole-score-' + {{ selectedCourse.holes[$index].number }} + '-player-XXX')">
+                        <paper-icon-button class="player3-button" icon="create" role="button"></paper-icon-button>
                     </td>
-                    <td class="player scorecard">
-                        <paper-icon-button class="player4-button" label=" "></paper-icon-button>
+                    <td class="flight-player scorecard" ng-click="toggleHoleScoreVisibility(selectedCourse.holes[$index].number, 'hole-score-' + {{ selectedCourse.holes[$index].number }} + '-player-XXX')">
+                        <paper-icon-button class="player4-button" icon="create" role="button"></paper-icon-button>
                     </td>
                 </tr>
                 <tr id="hole-score-{{ selectedCourse.holes[$index].number }}" class="hidden">
-                    <td colspan="8">
-                        <table>
+                    <td colspan="8" style="padding: 0">
+                        <table class="score-sliders" style="margin: 0">
+                            <thead>
+                                <tr>
+                                    <th colspan="3">
+                                        {{ currentUser.name.first || "Player 1" }}
+                                    </th>
+                                </tr>
+                            </thead>
                             <tr>
                                 <td>Strokes: </td>
                                 <td>
                                     <paper-slider pin snaps min="1" max="14" value="1" bind-polymer immediateValue="{{ scoreData.hole_score[$index].strokes }}" ></paper-slider>
                                 </td>
                                 <td>
-                                    {{ scoreData.hole_score[$index].strokes }}
+                                    0 {{ scoreData.hole_score[$index].strokes }}
                                 </td>
                             </tr>
                             <tr>
                                 <td>Puts: </td>
-                                <td>1</td>
                                 <td>
-
+                                    <paper-slider pin snaps min="0" max="8" value="0" bind-polymer immediateValue="{{ scoreData.hole_score[$index].puts }}" ></paper-slider>
+                                </td>
+                                <td>
+                                    0
                                 </td>
                             </tr>
                             <tr>
                                 <td>Chips: </td>
-                                <td>0</td>
                                 <td>
-
+                                    <paper-slider pin snaps min="0" max="8" value="0" bind-polymer immediateValue="{{ scoreData.hole_score[$index].chips }}" ></paper-slider>
+                                </td>
+                                <td>
+                                    0
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Sand: </td>
+                                <td>
+                                    <paper-slider pin snaps min="0" max="8" value="0" bind-polymer immediateValue="{{ scoreData.hole_score[$index].sand }}" ></paper-slider>
+                                </td>
+                                <td>
+                                    0
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Water: </td>
+                                <td>
+                                    <paper-slider pin snaps min="0" max="6" value="0" bind-polymer immediateValue="{{ scoreData.hole_score[$index].water }}" ></paper-slider>
+                                </td>
+                                <td>
+                                    0
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>OB: </td>
+                                <td>
+                                    <paper-slider pin snaps min="0" max="6" value="0" bind-polymer immediateValue="{{ scoreData.hole_score[$index].ob }}" ></paper-slider>
+                                </td>
+                                <td>
+                                    0
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr id="hole-score-{{ selectedCourse.holes[$index].number }}-player-XXX" class="hidden">
+                    <td colspan="8" style="padding: 0">
+                        <table class="score-sliders" style="margin: 0">
+                            <thead>
+                            <tr>
+                                <th colspan="3">
+                                    Player XXX
+                                </th>
+                            </tr>
+                            </thead>
+                            <tr>
+                                <td>Strokes: </td>
+                                <td>
+                                    <paper-slider pin snaps min="1" max="14" value="1" bind-polymer immediateValue=""></paper-slider>
+                                </td>
+                                <td>
+                                    0
                                 </td>
                             </tr>
                         </table>

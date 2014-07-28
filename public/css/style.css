@@ -1,17 +1,20 @@
 body {
     font-family: RobotoDraft, sans-serif;
+    color: #444;
+    background-color: #eee !important;
 }
 .hidden {
     display: none;
 }
 
 core-header-panel {
-    background: white;
+    background-color: #eee;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
 }
 core-toolbar {
-    background-color: #03A9F4;
+    background-color: #1f2036;
+    color: white;
 }
 #navheader {
     background-color: #56BA89;
@@ -45,27 +48,42 @@ paper-button[raisedButton].colored {
     color: #333;
     text-align: center;
 }
+#register-score td {
+    background-color: white;
+    color: #555;
+    font-size: 13px;
+}
+.flight-player {
+    color: #999 !important;
+}
+.score-sliders td {
+    padding: 2px 2px 2px 7px;
+}
+.score-sliders {
+    padding: 10px 0;
+    border: 0;
+}
 #register-score .scorecard {
     padding: 4px 2px;
-    border: 1px solid #888;
+    border: 1px solid #999;
     font-size: 10px;
     text-align: center;
 }
 #register-score .hole {
-    background-color: green;
+    background-color: #259b24;
     color: #ffffff;
 }
 #register-score .distance {
-    background-color: blue;
+    background-color: #3f51b5;
     color: #ffffff;
 }
 #register-score .par {
-    background-color: orangered;
+    background-color: #ff5722;
     color: #ffffff;
 }
 #register-score .index {
-    background-color: lightgreen;
-    color: #333;
+    background-color: #e91e63;
+    color: #ffffff;
 }
 #register-score .player {
 

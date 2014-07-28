@@ -32,9 +32,9 @@ angular.module('ScoreCtrl', [])
                 })
         };
 
-        $scope.toggleHoleScore = function(holeNumber) {
-            var holeScoreEl = document.getElementById('hole-score-' + holeNumber);
+        $scope.toggleHoleScoreVisibility = function(holeNumber, id) {
+            var holeScoreEl = document.getElementById(id);
             console.log(holeScoreEl);
             (angular.element(holeScoreEl)).toggleClass('hidden');
-        }
+        };
     }]);
