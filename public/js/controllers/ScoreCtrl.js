@@ -37,4 +37,9 @@ angular.module('ScoreCtrl', [])
             console.log(holeScoreEl);
             (angular.element(holeScoreEl)).toggleClass('hidden');
         };
+
+        $scope.calculateScoreHole = function (holeNumber, id) {
+            console.log('score added',holeNumber, id)
+            $scope.toggleHoleScoreVisibility(holeNumber,id);
+        }
     }]);

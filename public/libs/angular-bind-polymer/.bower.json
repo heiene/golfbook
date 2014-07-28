@@ -1,0 +1,35 @@
+{
+  "name": "angular-bind-polymer",
+  "version": "0.0.1",
+  "authors": [
+    "Chris Strom <github@eeecomputes.com>"
+  ],
+  "description": "Angular directive for *double* variable binding of Polymer attributes.",
+  "main": "angular_bind_polymer.js",
+  "keywords": [
+    "angular",
+    "polymer"
+  ],
+  "license": "MIT",
+  "homepage": "http://github.com/eee-c/angular-bind-polymer",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.9"
+  },
+  "_release": "0.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.1",
+    "commit": "74b1f146875128140df63cd6a076895b1454138c"
+  },
+  "_source": "git://github.com/eee-c/angular-bind-polymer.git",
+  "_target": "~0.0.1",
+  "_originalSource": "angular-bind-polymer",
+  "_direct": true
+}

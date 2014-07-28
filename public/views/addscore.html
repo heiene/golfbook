@@ -88,55 +88,54 @@
                             <tr>
                                 <td>Strokes: </td>
                                 <td>
-                                    <paper-slider pin snaps min="1" max="14" value="1" bind-polymer immediateValue="{{ scoreData.hole_score[$index].strokes }}" ></paper-slider>
+                                    <paper-slider pin snaps min="1" max="{{(selectedCourse.holes[$index].par*2)+1}}" editable value="{{selectedCourse.holes[$index].par}}" ></paper-slider>
                                 </td>
                                 <td>
-                                    0 {{ scoreData.hole_score[$index].strokes }}
                                 </td>
                             </tr>
                             <tr>
                                 <td>Puts: </td>
                                 <td>
-                                    <paper-slider pin snaps min="0" max="8" value="0" bind-polymer immediateValue="{{ scoreData.hole_score[$index].puts }}" ></paper-slider>
+                                    <paper-slider pin snaps min="0" editable max="8" value=2></paper-slider>
                                 </td>
                                 <td>
-                                    0
                                 </td>
                             </tr>
                             <tr>
                                 <td>Chips: </td>
                                 <td>
-                                    <paper-slider pin snaps min="0" max="8" value="0" bind-polymer immediateValue="{{ scoreData.hole_score[$index].chips }}" ></paper-slider>
+                                    <paper-slider pin snaps min="0" editable max="8" value="0"></paper-slider>
                                 </td>
                                 <td>
-                                    0
                                 </td>
                             </tr>
                             <tr>
                                 <td>Sand: </td>
                                 <td>
-                                    <paper-slider pin snaps min="0" max="8" value="0" bind-polymer immediateValue="{{ scoreData.hole_score[$index].sand }}" ></paper-slider>
+                                    <paper-slider pin snaps min="0" editable max="8" value="0"></paper-slider>
                                 </td>
                                 <td>
-                                    0
                                 </td>
                             </tr>
                             <tr>
                                 <td>Water: </td>
                                 <td>
-                                    <paper-slider pin snaps min="0" max="6" value="0" bind-polymer immediateValue="{{ scoreData.hole_score[$index].water }}" ></paper-slider>
+                                    <paper-slider pin snaps min="0" editable max="6" value="0"></paper-slider>
                                 </td>
                                 <td>
-                                    0
                                 </td>
                             </tr>
                             <tr>
                                 <td>OB: </td>
                                 <td>
-                                    <paper-slider pin snaps min="0" max="6" value="0" bind-polymer immediateValue="{{ scoreData.hole_score[$index].ob }}" ></paper-slider>
+                                    <paper-slider pin snaps min="0" editable max="6" value="0"></paper-slider>
                                 </td>
                                 <td>
-                                    0
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="8">
+                                    <paper-button horizontal center-justified layout raisedbutton class="colored" ng-click="calculateScoreHole(selectedCourse.holes[$index].number, 'hole-score-' + {{ selectedCourse.holes[$index].number}})" label="Finish"></paper-button>
                                 </td>
                             </tr>
                         </table>
@@ -155,10 +154,11 @@
                             <tr>
                                 <td>Strokes: </td>
                                 <td>
-                                    <paper-slider pin snaps min="1" max="14" value="1" bind-polymer immediateValue=""></paper-slider>
+                                    <paper-slider pin snaps min="1" max="{{(selectedCourse.holes[$index].par*2)+1}}" editable value="{{selectedCourse.holes[$index].par}}"></paper-slider>
                                 </td>
                                 <td>
-                                    0
+                                    <paper-button horizontal center-justified layout raisedbutton class="colored" ng-click="calculateScoreHole(selectedCourse.holes[$index].number, 'hole-score-' + {{ selectedCourse.holes[$index].number}}+'-player-XXX')" label="add"></paper-button>
+
                                 </td>
                             </tr>
                         </table>
