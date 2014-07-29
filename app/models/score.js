@@ -7,7 +7,7 @@ var mongoose    = require('mongoose');
 // Tenkte også å lage en GolfCourse Model som man kan lage referanse til
 
 var User 		= require('./user');
-var Course 	= require('./course');
+var Course 	    = require('./course');
 var Schema      = mongoose.Schema;
 
 

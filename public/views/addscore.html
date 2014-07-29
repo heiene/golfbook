@@ -13,13 +13,13 @@
         </div>
 
     <div horizontal end-justified layout>
-        <paper-button raisedbutton class="colored" ng-click="populateHoles()" label="Populate"></paper-button>
+        <paper-button raisedbutton class="colored" ng-click="populateHoles()" label="Start Round"></paper-button>
     </div>
     <br>
 
     <form role="form" ng-submit="addScore()" ng-if="selectedNumberOfHoles">
 
-        <table id="register-score">
+        <table id="register-score" class="right">
             <thead>
                 <tr>
                     <th class="hole scorecard">
@@ -63,7 +63,8 @@
                         {{ selectedCourse.holes[$index].index }}
                     </td>
                     <td class="player scorecard" ng-click="toggleHoleScoreVisibility(selectedCourse.holes[$index].number, 'hole-score-' + {{ selectedCourse.holes[$index].number }})">
-                        <paper-icon-button class="player1-button" icon="create" role="button"></paper-icon-button>
+                        <paper-icon-button ng-hide="scoreData.hole_score[$index].scoreSet" class="player1-button" icon="create" role="button"></paper-icon-button>
+                        <div ng-show="scoreData.hole_score[$index].scoreSet" class="player1-button" >{{scoreData.hole_score[$index].strokes}}</div>
                     </td>
                     <td class="flight-player scorecard" ng-click="toggleHoleScoreVisibility(selectedCourse.holes[$index].number, 'hole-score-' + {{ selectedCourse.holes[$index].number }} + '-player-XXX')">
                         <paper-icon-button class="player2-button" icon="create" role="button"></paper-icon-button>
@@ -135,7 +136,7 @@
                             </tr>
                             <tr>
                                 <td colspan="8">
-                                    <paper-button horizontal center-justified layout raisedbutton class="colored" ng-click="calculateScoreHole(selectedCourse.holes[$index].number, 'hole-score-' + {{ selectedCourse.holes[$index].number}})" label="Finish"></paper-button>
+                                    <paper-button horizontal center-justified layout raisedbutton class="colored" ng-click="calculateScoreHole($index, 'hole-score-' + {{ selectedCourse.holes[$index].number}})" label="Finish"></paper-button>
                                 </td>
                             </tr>
                         </table>
@@ -157,7 +158,7 @@
                                     <paper-slider pin snaps min="1" max="{{(selectedCourse.holes[$index].par*2)+1}}" editable value="{{selectedCourse.holes[$index].par}}"></paper-slider>
                                 </td>
                                 <td>
-                                    <paper-button horizontal center-justified layout raisedbutton class="colored" ng-click="calculateScoreHole(selectedCourse.holes[$index].number, 'hole-score-' + {{ selectedCourse.holes[$index].number}}+'-player-XXX')" label="add"></paper-button>
+                                    <paper-button horizontal center-justified layout raisedbutton class="colored" ng-click="setScorePlayer($index, 'hole-score-' + {{ selectedCourse.holes[$index].number}}+'-player-XXX')" label="add"></paper-button>
 
                                 </td>
                             </tr>

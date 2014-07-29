@@ -47,7 +47,21 @@ paper-button[raisedButton].colored {
     padding: 0;
     color: #333;
     text-align: center;
+    left: 10px;
+    top: 70px;
+    position: absolute;
+
+    transition: all .4s ease-in-out;
+
 }
+
+#register-score.right {
+    left: 900px;
+    top: 70px;
+    position: absolute;
+}
+
+
 #register-score td {
     background-color: white;
     color: #555;
