@@ -3,7 +3,7 @@ angular.module('AuthCtrl', []).controller('AuthController', ['$scope', '$http', 
 
 
     $scope.loginUser = function() {
-        getFormData();
+//        getFormData();
         UserAuth.beforeLogin($scope.formData)
         // call the create function from our service (returns a promise object)
         UserRoutes.login($scope.formData)
