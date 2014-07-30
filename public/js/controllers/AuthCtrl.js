@@ -3,6 +3,7 @@ angular.module('AuthCtrl', []).controller('AuthController', ['$scope', '$http', 
 
 
     $scope.loginUser = function() {
+        getFormData();
         UserAuth.beforeLogin($scope.formData)
         // call the create function from our service (returns a promise object)
         UserRoutes.login($scope.formData)
@@ -32,10 +33,16 @@ angular.module('AuthCtrl', []).controller('AuthController', ['$scope', '$http', 
             })
     };
 
-    //TODO: Denne er også kanskje undøvendig, vil være fra menykontroller man kaller denne...
-    $scope.logoutUser = function() {
-        UserAuth.logout();
-    };
+    var getFormData =function () {
+        var loginForm = document.getElementById("loginForm");
+        var el = (angular.element(loginForm)).find("paper-input")
+        console.log(el)
+        $scope.formData.username = el[0].value;
+        $scope.formData.password = el[1].value;
+        el[0].value = null;
+        el[1].value = null;
+
+    }
 
 }]);
 

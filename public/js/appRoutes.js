@@ -69,7 +69,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', '
         function error(response) {
             var status = response.status;
             if (status == 401) {
-                window.location = "/login";
+                window.location = "/";
                 return;
             }
             if (status == 403) {
@@ -85,6 +85,6 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', '
             return promise.then(success, error);
         }
     }];
-    $httpProvider.responseInterceptors.push(interceptor);
+//    $httpProvider.responseInterceptors.push(interceptor);
 
 }]);

@@ -13,11 +13,9 @@
     <link rel="import" href="libs/core-toolbar/core-toolbar.html">
     <link rel="import" href="libs/core-menu/core-menu.html">
 
-    <link rel="import" href="libs/paper-button/paper-button.html">
-    <link rel="import" href="libs/paper-slider/paper-slider.html">
+    <link rel="import" href="libs/paper-elements/paper-elements.html">
 
     <link rel="import" href="libs/core-icons/core-icons.html"/>
-    <link rel="import" href="libs/paper-icon-button/paper-icon-button.html">
 
     <!-- web components - instagram-->
 <!--    <script src="libs/x-instagram/app/bower_components/platform/platform.js"></script>
@@ -49,7 +47,7 @@
 </head>
 <body ng-app="golfApp" ng-controller="MenuController" ng-swipe-left="hideMenu()" ng-swipe-right="showMenu()">
 
-<core-drawer-panel id="drawerPanel">
+<core-drawer-panel id="drawerPanel" touch-action="auto">
     <core-header-panel drawer>
         <core-toolbar> <!--id="navheader"-->
             Menu
@@ -69,7 +67,19 @@
                     <li><a href="/admin">Admin Pages</a></li>
                 </div>
                 <div ng-hide="loggedIn">
-                    <li><a href="/login">Login</a></li>
+                    <div ng-controller="AuthController">
+                        <form role="form" id="loginForm">
+                            <div class="">
+                                <div class="loginforms">
+                                    <paper-input type="text" ng-model="formData.username" floatinglabel label="username" class="inpu"></paper-input>
+                                    <paper-input type="password" ng-model="formData.password" floatinglabel label="password" class="input"></paper-input>
+                                    <span class="">
+                                        <paper-button raisedbutton autofocus class="colored" label="Login" ng-click="loginUser()"></paper-button>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
                 <div ng-show="loggedIn" >
                     <br>
