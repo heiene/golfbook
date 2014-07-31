@@ -5,32 +5,15 @@
     <title>Himmerland</title>
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
 
-    <!-- web components -->
-    <script src="libs/platform/platform.js"></script>
-    <link rel="import" href="libs/font-roboto/roboto.html">
-    <link rel="import" href="libs/core-drawer-panel/core-drawer-panel.html">
-    <link rel="import" href="libs/core-scroll-header-panel/core-scroll-header-panel.html">
-    <link rel="import" href="libs/core-toolbar/core-toolbar.html">
-    <link rel="import" href="libs/core-menu/core-menu.html">
-
-    <link rel="import" href="libs/paper-elements/paper-elements.html">
-
-    <link rel="import" href="libs/core-icons/core-icons.html"/>
-
-    <!-- web components - instagram-->
-<!--    <script src="libs/x-instagram/app/bower_components/platform/platform.js"></script>
-    <link rel="import" href="../libs/x-instagram/src/x-instagram.html">-->
-
     <!-- CSS -->
 
     <link rel="stylesheet" href="css/style.css"> <!-- custom styles -->
-    <link rel="stylesheet" href="libs/foundation-5.3.0/css/foundation.css">
+
     <!-- JS -->
     <script src="libs/angular/angular.min.js"></script>
     <script src="libs/angular-route/angular-route.min.js"></script>
     <script src="libs/angular-foundation/mm-foundation.js"></script>
     <script src="libs/angular-touch/angular-touch.min.js"></script>
-    <script src="libs/angular-bind-polymer/angular_bind_polymer.js"></script>
 
 
     <!-- ANGULAR CUSTOM -->
@@ -45,14 +28,14 @@
     <script src="js/appRoutes.js"></script>
     <script src="js/app.js"></script>
 </head>
-<body ng-app="golfApp" ng-controller="MenuController" ng-swipe-left="hideMenu()" ng-swipe-right="showMenu()">
+<body ng-app="golfApp" ng-controller="MenuController"> <!--ng-swipe-left="hideMenu()" ng-swipe-right="showMenu()"-->
 
-<core-drawer-panel id="drawerPanel" touch-action="auto">
-    <core-header-panel drawer>
-        <core-toolbar> <!--id="navheader"-->
+<div id="drawerPanel" >
+    <div id="drawer" drawer>
+        <div id="menuheader"> <!--id="navheader"-->
             Menu
-        </core-toolbar>
-        <core-menu >
+        </div>
+        <div id="menu" >
             <ul>
                 <div ng-show="loggedIn">
                     <li><a href="/">Home</a></li>
@@ -86,20 +69,20 @@
                     <li><a ng-click="logout()" a href="/">Logout</a></li>
                 </div>
             </ul>
-        </core-menu>
-    </core-header-panel>
+        </div>
+    </div>
 
-    <core-scroll-header-panel tall main>
-        <core-toolbar id="mainheader">
-            <paper-icon-button id="navicon" icon="menu" ng-click="toggleMenu()" ></paper-icon-button>
+    <div id="mainpage">
+        <div id="mainheader">
+            <button id="navicon" icon="menu" ng-click="toggleMenu()" ></button>
             <span flex>Himmerland Invitational</span>
             <div>{{currentUser.username}}</div>
-        </core-toolbar>
+        </div>
         <div content class="content" ng-view>
         </div>
-    </core-scroll-header-panel>
+    </div>
 
-</core-drawer-panel>
+</div>
 
 </body>
 

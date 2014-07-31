@@ -2,13 +2,9 @@
   "name": "golf-app",
   "version": "1.0.0",
   "dependencies": {
-    "font-awesome": "latest",
-    "animate.css": "latest",
-    "angular": "latest",
-    "angular-route": "latest",
-    "angular-foundation": "latest",
-    "angular-touch": "latest",
-    "paper-elements": "Polymer/paper-elements#~0.3.4",
-    "x-instagram": "~0.0.1"
+      "angular": "latest",
+      "angular-route": "latest",
+      "angular-touch": "latest",
+      "angular-bootstrap": "latest"
   }
 }
