@@ -28,7 +28,18 @@ angular.module('CourseCtrl', []).controller('CourseController', ['$scope', '$htt
                 console.log('Error: ', data, 'Status: ', status);
             })
 
-    }
+    };
+
+    $scope.value = 0;
+
+    $scope.sliderOptions = {
+        "from": 1,
+        "to": 10,
+        "step": 1,
+        "smooth": false,
+        "scale": [1,2,3,4,5,6,7,8,9,10]
+
+    };
 
 	$scope.tagline = 'Controller for golfcourses';
 

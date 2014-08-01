@@ -26,16 +26,17 @@ angular.module('MenuCtrl', [])
             }, true);
 
         $scope.toggleMenu = function () {
-            drawerPanel.togglePanel();
+//            drawerPanel.togglePanel();
+            console.log("menu should toggle")
         }
 
-        $scope.showMenu = function() {
+        /*$scope.showMenu = function() {
            drawerPanel.openDrawer();
         }
 
         $scope.hideMenu = function() {
             drawerPanel.closeDrawer();
-        }
+        }*/
 
         $scope.logout = function() {
             // Trenger ikke logge av server, fjerner bare basic auth fra header og blanker CurrentUser objektet i denne

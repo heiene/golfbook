@@ -7,15 +7,23 @@ body {
     display: none;
 }
 
-core-header-panel {
-    background-color: #eee;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
+.animate-show.ng-hide-add, .animate-show.ng-hide-remove {
+    -webkit-transition:all linear 0.5s;
+    -moz-transition:all linear 0.5s;
+    -o-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+    display:block!important;
 }
-core-toolbar {
-    background-color: #1f2036;
-    color: white;
-}
+
+/*core-header-panel {*/
+    /*background-color: #eee;*/
+    /*overflow: auto;*/
+    /*-webkit-overflow-scrolling: touch;*/
+/*}*/
+/*core-toolbar {*/
+    /*background-color: #1f2036;*/
+    /*color: white;*/
+/*}*/
 #navheader {
     background-color: #56BA89;
 }
@@ -25,21 +33,21 @@ core-toolbar {
 /* drawer is always visible on a wide screen
    so menu button isn't required */
 
-core-drawer-panel:not([narrow]) #navicon {
-    display: none;
-}
+/*core-drawer-panel:not([narrow]) #navicon {*/
+    /*display: none;*/
+/*}*/
 li {
     list-style: none;
 }
 
-paper-button.colored {
-    color: #4285f4;
-    fill: #4285f4;
-}
-paper-button[raisedButton].colored {
-    background: #4285f4;
-    color: #fff;
-}
+/*paper-button.colored {*/
+    /*color: #4285f4;*/
+    /*fill: #4285f4;*/
+/*}*/
+/*paper-button[raisedButton].colored {*/
+    /*background: #4285f4;*/
+    /*color: #fff;*/
+/*}*/
 
 #register-score {
     margin: 0;
@@ -50,6 +58,7 @@ paper-button[raisedButton].colored {
     left: 10px;
     top: 70px;
     position: absolute;
+    width: calc(100% - 20px);
 
     transition: all .4s ease-in-out;
 

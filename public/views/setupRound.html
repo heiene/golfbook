@@ -1,0 +1,22 @@
+Golfcourse:
+<select ng-model="selectedCourse" ng-options="course.name for course in golfCourses"></select>
+<div ng-show="selectedCourse">
+    <select ng-model="selectedNumberOfHoles">
+        <option value="6">6</option>
+        <option value="9">9</option>
+        <option value="18">18</option>
+    </select>
+</div>
+
+<!--<div ng-show="selectedNumberOfHoles">-->
+    <!--<select ng-model="scoreCardInfo.numberOfAdditionalPlayers">-->
+        <!--<option value="2">2</option>-->
+        <!--<option value="3">3</option>-->
+        <!--<option value="4">4</option>-->
+    <!--</select>-->
+<!--</div>-->
+
+<div horizontal end-justified layout>
+    <button class="colored" ng-click="populateHoles()">Start round</button>
+</div>
+<

@@ -2,9 +2,12 @@
   "name": "golf-app",
   "version": "1.0.0",
   "dependencies": {
-      "angular": "latest",
-      "angular-route": "latest",
-      "angular-touch": "latest",
-      "angular-bootstrap": "latest"
+    "angular": "latest",
+    "angular-route": "latest",
+    "angular-touch": "latest",
+    "angular-bootstrap": "latest",
+    "angular-sanitize": "latest",
+    "ng-slider": "latest",
+    "angular-animate": "~1.2.21"
   }
 }

@@ -45,8 +45,12 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', '
             templateUrl: 'views/pictures.html',
             controller: 'AuthController'
         })
-        .when('/addscore', {
-            templateUrl: 'views/addscore.html',
+        .when('/scorecard', {
+            templateUrl: 'views/scorecard.html',
+            controller: 'ScoreController'
+        })
+        .when('/setupround', {
+            templateUrl: 'views/setupRound.html',
             controller: 'ScoreController'
         })
         .when('/halloffame', {
