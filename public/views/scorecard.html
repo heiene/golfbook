@@ -1,158 +1,230 @@
+<div id="register-score">
+    <div class="scorecard-wrapper">
+        <!-- Heading section -->
+        <div class="info">
+            <div class="scorecard hole">
+                Hole
+            </div>
+            <div class="scorecard distance">
+                Length
+            </div>
+            <div class="scorecard par">
+                Par
+            </div>
+            <div class="scorecard index">
+                Index
+            </div>
+        </div>
+        <div class="players">
+            <div class="scorecard player-heading">
+                {{ currentUser.name.first || "Player 1" }}
+            </div>
+            <div class="scorecard player-heading">
+               {{curentRound.players.player2.name || "Player 2"}}
+            </div>
+            <div class="scorecard player-heading">
+                {{curentRound.players.player3.name || "Player 3"}}
+            </div>
+            <div class="scorecard player-heading">
+                {{curentRound.players.player4.name || "Player 2"}}
+            </div>
 
-<form role="form" ng-submit="addScore()" >
-        <table id="register-score" ng-show="scoreData.hole_score">
-            <thead>
-                <tr>
-                    <th class="hole scorecard">
-                        Hole
-                    </th>
-                    <th class="distance scorecard">
-                        Length
-                    </th>
-                    <th class="par scorecard">
-                        Par
-                    </th>
-                    <th class="index scorecard">
-                        Index
-                    </th>
-                    <th class="player scorecard">
-                        {{ currentUser.name.first || "Player 1" }}
-                    </th>
-                    <th class="player scorecard">
-                        Player 2
-                    </th>
-                    <th class="player scorecard">
-                        Player 3
-                    </th>
-                    <th class="player scorecard">
-                        Player 4
-                    </th>
-                </tr>
-            </thead>
-            <tbody ng-repeat="hole_score in scoreData.hole_score">
-                <tr>
-                    <td class="hole scorecard">
-                        {{ selectedCourse.holes[$index].number }}
-                    </td>
-                    <td class="distance scorecard">
-                        {{ selectedCourse.holes[$index].length }}
-                    </td>
-                    <td class="par scorecard">
-                        {{ selectedCourse.holes[$index].par }}
-                    </td>
-                    <td class="index scorecard">
-                        {{ selectedCourse.holes[$index].index }}
-                    </td>
-                    <td class="player scorecard" ng-click="toggleHoleScoreVisibility($index)">
-                        <div>
-                            <span class="glyphicon glyphicon-pencil" ng-hide="scoreData.hole_score[$index].scoreSet" class="player1-button"></span>
+        </div>
+    </div>
+    <!-- End Heading section -->
+    <!-- Repeated section -->
+    <!-- Scorecard closed score section -->
+    <div ng-repeat="hole_score in currentRound.player1">
+
+        <div class="scorecard-wrapper">
+            <div class="info">
+                <div class="scorecard hole not-heading">
+                    {{ currentRound.selectedCourse.holes[$index].number }}
+                </div>
+                <div class="scorecard distance not-heading">
+                    {{ currentRound.selectedCourse.holes[$index].length }}
+                </div>
+                <div class="scorecard par not-heading">
+                    {{ currentRound.selectedCourse.holes[$index].par }}
+                </div>
+                <div class="scorecard index not-heading">
+                    {{ currentRound.selectedCourse.holes[$index].index }}
+                </div>
+            </div>
+            <div class="players">
+                <div class="scorecard player" ng-click="toggleHoleScoreVisibility($index)">
+                    <div class="icon">
+                        <span class="glyphicon glyphicon-pencil" ng-hide="currentRound.player1[$index].scoreSet" class="player1-button"></span>
+                    </div>
+                    <div class="icon">
+                        <div ng-show="currentRound.player1[$index].scoreSet" class="player1-button">
+                            {{currentRound.player1[$index].score.strokes}}
                         </div>
-                        <div ng-show="scoreData.hole_score[$index].scoreSet" class="player1-button" >{{scoreData.hole_score[$index].strokes}}</div>
-                    </td>
-                    <td class="flight-player scorecard" ng-click="toggleHoleScoreVisibility(selectedCourse.holes[$index].number, 'hole-score-' + {{ selectedCourse.holes[$index].number }} + '-player-XXX')">
-                        <span class="glyphicon glyphicon-pencil" class="player2-button"></span>
-                    </td>
-                    <td class="flight-player scorecard" ng-click="toggleHoleScoreVisibility(selectedCourse.holes[$index].number, 'hole-score-' + {{ selectedCourse.holes[$index].number }} + '-player-XXX')">
-                        <span class="glyphicon glyphicon-pencil" class="player3-button"></span>
-                    </td>
-                    <td class="flight-player scorecard" ng-click="toggleHoleScoreVisibility(selectedCourse.holes[$index].number, 'hole-score-' + {{ selectedCourse.holes[$index].number }} + '-player-XXX')">
-                        <span class="glyphicon glyphicon-pencil" class="player4-button"></span>
-                    </td>
-                </tr>
-                <tr id="hole-score-{{ selectedCourse.holes[$index].number }}" collapse="scoreData.hole_score[$index].collapse">
-                    <td colspan="8" style="padding: 0">
-                        <table class="score-sliders" style="margin: 0">
-                            <thead>
-                                <tr>
-                                    <th colspan="3">
-                                        {{ currentUser.name.first || "Player 1" }}
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tr>
-                                <td>Strokes: </td>
-                                <td>
-                                    <div colspan="4">
-                                        <input ng-model="scoreData.hole_score[$index].strokes" type="text" id="strokeslider-{{ selectedCourse.holes[$index].number }}" slider options="scoreData.hole_score[$index].strokeSliderOptions" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <input ng-model="scoreData.hole_score[$index].strokes" type="number"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Puts: </td>
-                                <td>
-                                    <input ng-model="scoreData.hole_score[$index].puts" type="text" id="putslider-{{ selectedCourse.holes[$index].number }}" slider options="scoreData.hole_score[$index].putSliderOptions" />
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Chips: </td>
-                                <td>
-                                    <input ng-model="scoreData.hole_score[$index].chips" type="text" id="chipslider-{{ selectedCourse.holes[$index].number }}" slider options="scoreData.hole_score[$index].restSliderOptions" />
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Sand: </td>
-                                <td>
-                                    <input ng-model="scoreData.hole_score[$index].sand" type="text" id="sandslider--{{ selectedCourse.holes[$index].number }}" slider options="scoreData.hole_score[$index].restSliderOptions" />
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Water: </td>
-                                <td>
-                                    <input ng-model="scoreData.hole_score[$index].water" type="text" id="waterslider--{{ selectedCourse.holes[$index].number }}" slider options="scoreData.hole_score[$index].restSliderOptions" />
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>OB: </td>
-                                <td>
-                                    <input ng-model="scoreData.hole_score[$index].ob" type="text" id="OB-{{ selectedCourse.holes[$index].number }}" slider options="scoreData.hole_score[$index].restSliderOptions" />
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="8">
-                                    <button type="button" ng-click="calculateScoreHole($index)">Set Score</button>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr id="hole-score-{{ selectedCourse.holes[$index].number }}-player-XXX" class="hidden">
-                    <td colspan="8" style="padding: 0">
-                        <table class="score-sliders" style="margin: 0">
-                            <thead>
-                            <tr>
-                                <th colspan="3">
-                                    Player XXX
-                                </th>
-                            </tr>
-                            </thead>
-                            <tr>
-                                <td>Strokes: </td>
-                                <td>
-                                    <paper-slider pin snaps min="1" max="{{(selectedCourse.holes[$index].par*2)+1}}" editable value="{{selectedCourse.holes[$index].par}}"></paper-slider>
-                                </td>
-                                <td>
-                                    <button horizontal center-justified layout raisedbutton class="colored" ng-click="setScorePlayer($index, 'hole-score-' + {{ selectedCourse.holes[$index].number}}+'-player-XXX')" label="add"></button>
+                    </div>
+                </div>
+                <div class="scorecard flight-player" ng-click="currentRound.players.player2.data[$index].collapse=!currentRound.players.player2.data[$index].collapse">
+                    <div class="icon">
+                        <span class="glyphicon glyphicon-pencil" ng-hide="currentRound.players.player2.data[$index].scoreSet" class="player1-button"></span>
+                    </div>
+                    <div class="icon">
+                        <div ng-show="currentRound.players.player2.data[$index].scoreSet">
+                            {{currentRound.players.player2.data[$index].score.strokes}}
+                        </div>
+                    </div>
+                </div>
+                <div class="scorecard flight-player" ng-click="currentRound.players.player3.data[$index].collapse=!currentRound.players.player3.data[$index].collapse">
+                    <div class="icon">
+                        <span class="glyphicon glyphicon-pencil" ng-hide="currentRound.players.player3.data[$index].scoreSet" class="player1-button"></span>
+                    </div>
+                    <div class="icon">
+                        <div ng-show="currentRound.players.player3.data[$index].scoreSet">
+                            {{currentRound.players.player3.data[$index].score.strokes}}
+                        </div>
+                    </div>
+                </div>
+                <div class="scorecard flight-player" ng-click="currentRound.players.player4.data[$index].collapse=!currentRound.players.player4.data[$index].collapse">
+                    <div class="icon">
+                        <span class="glyphicon glyphicon-pencil" ng-hide="currentRound.players.player4.data[$index].scoreSet" class="player1-button"></span>
+                    </div>
+                    <div class="icon">
+                        <div ng-show="currentRound.players.player4.data[$index].scoreSet">
+                            {{currentRound.players.player4.data[$index].score.strokes}}
+                        </div>
+                    </div>
+                </div>
 
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </tbody>
+            </div>
+        </div>
+        <!--End Scorecard closed score section -->
 
-        </table>
-    </form>
+        <!-- Scorecard Set Score for Player slider - section -->
+        <div class="scorecard sliders" collapse="currentRound.player1[$index].collapse">
+            <div class="slider-wrapper">
+                <div class="slider-text">
+                    Strokes
+                </div>
+                <div class="slider-slide">
+                    <input ng-model="currentRound.player1[$index].score.strokes" type="text" id="strokeslider-{{ currentRound.selectedCourse.holes[$index].number }}" slider options="currentRound.player1[$index].strokeSliderOptions" />
+                </div>
+                <div class="slider-value">
+                    {{currentRound.player1[$index].score.strokes}}
+                </div>
+            </div>
+            <div class="slider-wrapper">
+                <div class="slider-text">
+                    Puts
+                </div>
+                <div class="slider-slide">
+                    <input ng-model="currentRound.player1[$index].score.puts" type="text" id="putslider-{{ currentRound.selectedCourse.holes[$index].number }}" slider options="currentRound.player1[$index].putSliderOptions" />
+                </div>
+                <div class="slider-value">
+                    {{currentRound.player1[$index].score.puts}}
+                </div>
+            </div>
+            <div class="slider-wrapper">
+                <div class="slider-text">
+                    Chips
+                </div>
+                <div class="slider-slide">
+                    <input ng-model="currentRound.player1[$index].score.chips" type="text" id="chipslider-{{ currentRound.selectedCourse.holes[$index].number }}" slider options="currentRound.player1[$index].restSliderOptions" />
+                </div>
+                <div class="slider-value">
+                    {{currentRound.player1[$index].score.chips}}
+                </div>
+            </div>
+            <div class="slider-wrapper">
+                <div class="slider-text">
+                    Sand
+                </div>
+                <div class="slider-slide">
+                    <input ng-model="currentRound.player1[$index].score.sand" type="text" id="sandslider--{{ currentRound.selectedCourse.holes[$index].number }}" slider options="currentRound.player1[$index].restSliderOptions" />
+                </div>
+                <div class="slider-value">
+                    {{currentRound.player1[$index].score.sand}}
+                </div>
+            </div>
+            <div class="slider-wrapper">
+                <div class="slider-text">
+                    Water
+                </div>
+                <div class="slider-slide">
+                    <input ng-model="currentRound.player1[$index].score.water" type="text" id="waterslider--{{ currentRound.selectedCourse.holes[$index].number }}" slider options="currentRound.player1[$index].restSliderOptions" />
+                </div>
+                <div class="slider-value">
+                    {{currentRound.player1[$index].score.water}}
+                </div>
+            </div>
+            <div class="slider-wrapper">
+                <div class="slider-text">
+                    OB
+                </div>
+                <div class="slider-slide">
+                    <input ng-model="currentRound.player1[$index].score.ob" type="text" id="OB-{{ currentRound.selectedCourse.holes[$index].number }}" slider options="currentRound.player1[$index].restSliderOptions" />
+                </div>
+                <div class="slider-value">
+                    {{currentRound.player1[$index].score.ob}}
+                </div>
+            </div>
+            <button type="button" class="slider-button btn btn-info btn-xs" ng-click="calculateScoreHole($index)">Set score</button>
+        </div>
+        <!-- End Scorecard Set Score for Player slider - section -->
+
+        <!-- Set Score Other Players section -->
+        <!-- Player 2 scores -->
+        <div class="scorecard sliders" collapse="currentRound.players.player2.data[$index].collapse">
+            <div class="slider-wrapper">
+                <div class="slider-text">
+                    Strokes Player 2
+                </div>
+                <div class="slider-slide">
+                    <input ng-model="currentRound.players.player2.data[$index].score.strokes" type="text" id="strokeslider-{{ currentRound.selectedCourse.holes[$index].number }}-player2" slider options="currentRound.player1[$index].strokeSliderOptions" />
+                </div>
+                <div class="slider-value">
+                    {{currentRound.players.player2.data[$index].score.strokes}}
+                </div>
+            </div>
+            <button type="button" class="slider-button btn btn-info btn-xs" ng-click="calculateScorePlayer($index,currentRound.players.player2)">Set score</button>
+
+        </div>
+        <!-- End Player 2 scores -->
+
+        <!-- Player 3 scores -->
+        <div class="scorecard sliders" collapse="currentRound.players.player3.data[$index].collapse">
+            <div class="slider-wrapper">
+                <div class="slider-text">
+                    Strokes Player 3
+                </div>
+                <div class="slider-slide">
+                    <input ng-model="currentRound.players.player3.data[$index].score.strokes" type="text" id="strokeslider-{{ currentRound.selectedCourse.holes[$index].number }}-player3" slider options="currentRound.player1[$index].strokeSliderOptions" />
+                </div>
+                <div class="slider-value">
+                    {{currentRound.players.player3.data[$index].score.strokes}}
+                </div>
+            </div>
+            <button type="button" class="slider-button btn btn-info btn-xs" ng-click="calculateScorePlayer($index,currentRound.players.player3)">Set score</button>
+
+        </div>
+        <!-- End Player 3 scores -->
+
+        <!-- Player 4 scores -->
+        <div class="scorecard sliders" collapse="currentRound.players.player4.data[$index].collapse">
+            <div class="slider-wrapper">
+                <div class="slider-text">
+                    Strokes Player 4
+                </div>
+                <div class="slider-slide">
+                    <input ng-model="currentRound.players.player4.data[$index].score.strokes" type="text" id="strokeslider-{{ currentRound.selectedCourse.holes[$index].number }}-player4" slider options="currentRound.player1[$index].strokeSliderOptions" />
+                </div>
+                <div class="slider-value">
+                    {{currentRound.players.player4.data[$index].score.strokes}}
+                </div>
+            </div>
+            <button type="button" class="slider-button btn btn-info btn-xs" ng-click="calculateScorePlayer($index,currentRound.players.player4)">Set score</button>
+
+        </div>
+        <!-- End Player 4 scores -->
+        <!-- End Set Score Other Players section -->
+    </div>
+    <!-- End Repeated section -->
 </div>
+

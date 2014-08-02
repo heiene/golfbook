@@ -1,0 +1,158 @@
+
+<form role="form" ng-submit="addScore()" >
+        <table id="register-score" ng-show="scoreData.hole_score">
+            <thead>
+                <tr>
+                    <th class="hole scorecard">
+                        Hole
+                    </th>
+                    <th class="distance scorecard">
+                        Length
+                    </th>
+                    <th class="par scorecard">
+                        Par
+                    </th>
+                    <th class="index scorecard">
+                        Index
+                    </th>
+                    <th class="player scorecard">
+                        {{ currentUser.name.first || "Player 1" }}
+                    </th>
+                    <th class="player scorecard">
+                        Player 2
+                    </th>
+                    <th class="player scorecard">
+                        Player 3
+                    </th>
+                    <th class="player scorecard">
+                        Player 4
+                    </th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="hole_score in scoreData.hole_score">
+                <tr>
+                    <td class="hole scorecard">
+                        {{ selectedCourse.holes[$index].number }}
+                    </td>
+                    <td class="distance scorecard">
+                        {{ selectedCourse.holes[$index].length }}
+                    </td>
+                    <td class="par scorecard">
+                        {{ selectedCourse.holes[$index].par }}
+                    </td>
+                    <td class="index scorecard">
+                        {{ selectedCourse.holes[$index].index }}
+                    </td>
+                    <td class="player scorecard" ng-click="toggleHoleScoreVisibility($index)">
+                        <div>
+                            <span class="glyphicon glyphicon-pencil" ng-hide="scoreData.hole_score[$index].scoreSet" class="player1-button"></span>
+                        </div>
+                        <div ng-show="scoreData.hole_score[$index].scoreSet" class="player1-button" >{{scoreData.hole_score[$index].strokes}}</div>
+                    </td>
+                    <td class="flight-player scorecard" ng-click="toggleHoleScoreVisibility(selectedCourse.holes[$index].number, 'hole-score-' + {{ selectedCourse.holes[$index].number }} + '-player-XXX')">
+                        <span class="glyphicon glyphicon-pencil" class="player2-button"></span>
+                    </td>
+                    <td class="flight-player scorecard" ng-click="toggleHoleScoreVisibility(selectedCourse.holes[$index].number, 'hole-score-' + {{ selectedCourse.holes[$index].number }} + '-player-XXX')">
+                        <span class="glyphicon glyphicon-pencil" class="player3-button"></span>
+                    </td>
+                    <td class="flight-player scorecard" ng-click="toggleHoleScoreVisibility(selectedCourse.holes[$index].number, 'hole-score-' + {{ selectedCourse.holes[$index].number }} + '-player-XXX')">
+                        <span class="glyphicon glyphicon-pencil" class="player4-button"></span>
+                    </td>
+                </tr>
+                <tr id="hole-score-{{ selectedCourse.holes[$index].number }}" collapse="scoreData.hole_score[$index].collapse">
+                    <td colspan="8" style="padding: 0">
+                        <table class="score-sliders" style="margin: 0">
+                            <thead>
+                                <tr>
+                                    <th colspan="3">
+                                        {{ currentUser.name.first || "Player 1" }}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td>Strokes: </td>
+                                <td>
+                                    <div colspan="4">
+                                        <input ng-model="scoreData.hole_score[$index].strokes" type="text" id="strokeslider-{{ selectedCourse.holes[$index].number }}" slider options="scoreData.hole_score[$index].strokeSliderOptions" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <input ng-model="scoreData.hole_score[$index].strokes" type="number"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Puts: </td>
+                                <td>
+                                    <input ng-model="scoreData.hole_score[$index].puts" type="text" id="putslider-{{ selectedCourse.holes[$index].number }}" slider options="scoreData.hole_score[$index].putSliderOptions" />
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Chips: </td>
+                                <td>
+                                    <input ng-model="scoreData.hole_score[$index].chips" type="text" id="chipslider-{{ selectedCourse.holes[$index].number }}" slider options="scoreData.hole_score[$index].restSliderOptions" />
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Sand: </td>
+                                <td>
+                                    <input ng-model="scoreData.hole_score[$index].sand" type="text" id="sandslider--{{ selectedCourse.holes[$index].number }}" slider options="scoreData.hole_score[$index].restSliderOptions" />
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Water: </td>
+                                <td>
+                                    <input ng-model="scoreData.hole_score[$index].water" type="text" id="waterslider--{{ selectedCourse.holes[$index].number }}" slider options="scoreData.hole_score[$index].restSliderOptions" />
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>OB: </td>
+                                <td>
+                                    <input ng-model="scoreData.hole_score[$index].ob" type="text" id="OB-{{ selectedCourse.holes[$index].number }}" slider options="scoreData.hole_score[$index].restSliderOptions" />
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="8">
+                                    <button type="button" ng-click="calculateScoreHole($index)">Set Score</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr id="hole-score-{{ selectedCourse.holes[$index].number }}-player-XXX" class="hidden">
+                    <td colspan="8" style="padding: 0">
+                        <table class="score-sliders" style="margin: 0">
+                            <thead>
+                            <tr>
+                                <th colspan="3">
+                                    Player XXX
+                                </th>
+                            </tr>
+                            </thead>
+                            <tr>
+                                <td>Strokes: </td>
+                                <td>
+                                    <paper-slider pin snaps min="1" max="{{(selectedCourse.holes[$index].par*2)+1}}" editable value="{{selectedCourse.holes[$index].par}}"></paper-slider>
+                                </td>
+                                <td>
+                                    <button horizontal center-justified layout raisedbutton class="colored" ng-click="setScorePlayer($index, 'hole-score-' + {{ selectedCourse.holes[$index].number}}+'-player-XXX')" label="add"></button>
+
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </form>
+</div>

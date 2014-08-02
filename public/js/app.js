@@ -13,6 +13,6 @@ angular.module('golfApp',
         'ScoreCtrl',
         'appRoutes',
         'UserService',
-        'ScoreService',
+        'ScoreServiceModule',
 		'CourseService']
 	);

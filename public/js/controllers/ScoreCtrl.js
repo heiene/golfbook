@@ -2,29 +2,75 @@
  * Created by oyvindheiene on 05/07/14.
  */
 angular.module('ScoreCtrl', [])
-    .controller('ScoreController', ['$scope', '$http', '$location', 'GolfCourses', 'UserRoutes', 'CurrentScoreRound' ,function($scope, $http, $location, GolfCourses, UserRoutes, CurrentScoreRound) {
-        $scope.tagline = 'Adding score'
-        $scope.scoreData = CurrentScoreRound.currentRound;
-        console.log('location endring:',$scope.scoreData)
-        $scope.selectedCourse = CurrentScoreRound.selectedCourse;
-        $scope.selectedNumberOfHoles = 0;
+    .controller('ScoreController', ['$scope', '$http', '$location', 'GolfCourses', 'UserRoutes', 'ScoreService' ,function($scope, $http, $location, GolfCourses, UserRoutes, ScoreService) {
+        $scope.currentRound = ScoreService.currentRound;
+//        $scope.scoreData = ScoreService.currentRound;
+        console.log('location endring:',$scope.currentRound)
+//        $scope.selectedCourse = ScoreService.selectedCourse;
+        $scope.currentRound.selectedNumberOfHoles = 0;
         $scope.golfCourses = GolfCourses;
 
-
-
         $scope.populateHoles = function () {
-            $scope.scoreData.hole_score = [];
-            for (i = 0; i< $scope.selectedNumberOfHoles; i++) {
-                var hole = {};
-                hole.strokes = $scope.selectedCourse.holes[i].par;
-                hole.puts = 2;
+            $scope.currentRound.player1 = [];
+
+            //Setter opp et object for de andre spillerne
+            $scope.currentRound.players = {
+                player2: {
+                    name: "Player2",
+                    data: []
+                },
+                player3: {
+                    name: "Øyvind",
+                    data: []
+                },
+                player4: {
+                    name: "Player4",
+                    data: []
+                }
+            };
+            for (i = 0; i< $scope.currentRound.selectedNumberOfHoles; i++) {
+                var hole = {
+                    score: {}
+                };
+                var p2 = {
+                    score: {}
+                };
+                var p3 = {
+                    score: {}
+                };
+                var p4 = {
+                    score: {}
+                };
+
+
+                //Setter default verdier for hullene
+                hole.score.strokes = $scope.currentRound.selectedCourse.holes[i].par;
+                hole.score.puts = 2;
+                hole.score.chips = 0;
+                hole.score.sand = 0;
+                hole.score.water = 0;
+                hole.score.ob = 0;
+
+                //Sørger for at hull-score settingen er collapsed
                 hole.collapse = true;
+
+                //Setter opp det samme for players
+                p2.score.strokes = hole.score.strokes;
+                p2.collapse = true;
+
+                p3.score.strokes = hole.score.strokes;
+                p3.collapse = true;
+
+                p4.score.strokes = hole.score.strokes;
+                p4.collapse = true;
+
+
                 hole.strokeSliderOptions = {
                     "from": 1,
-                    "to": (($scope.selectedCourse.holes[i].par*2)+1),
+                    "to": (($scope.currentRound.selectedCourse.holes[i].par*2)+1),
                     "step": 1,
                     "smooth": false,
-                    "value": $scope.selectedCourse.holes[i].par
+                    "value": $scope.currentRound.selectedCourse.holes[i].par
                 };
                 hole.putSliderOptions = {
                     "from": 1,
@@ -40,12 +86,15 @@ angular.module('ScoreCtrl', [])
                     "smooth": false,
                     "value": 0
                 }
-                $scope.scoreData.hole_score.push(hole);
+                $scope.currentRound.player1.push(hole);
+                $scope.currentRound.players.player2.data.push(p2);
+                $scope.currentRound.players.player3.data.push(p3);
+                $scope.currentRound.players.player4.data.push(p4);
 
             }
-            console.log('REtt før location endring',$scope.scoreData)
-            CurrentScoreRound.currentRound = $scope.scoreData;
-            CurrentScoreRound.selectedCourse = $scope.selectedCourse;
+            console.log('REtt før location endring',$scope.currentRound)
+            ScoreService.currentRound = $scope.currentRound;
+//            ScoreService.selectedCourse = $scope.selectedCourse;
 //            var scoreCard = document.getElementById("register-score");
 //            (angular.element(scoreCard)).removeClass('right')
             $location.path('/scorecard');
@@ -53,10 +102,10 @@ angular.module('ScoreCtrl', [])
         };
 
         $scope.addScore = function () {
-            $scope.scoreData.course_id = $scope.selectedCourse._id
-            UserRoutes.postScore($scope.scoreData)
+            $scope.currentRound.course_id = $scope.currentRound.selectedCourse._id
+            UserRoutes.postScore($scope.currentRound)
                 .success(function(data, status, headers, config) {
-                    $scope.scoreData = null;
+                    $scope.currentRound = null;
                     $scope.selectedCourse = null;
                     $scope.selectedNumberOfHoles = 0;
 
@@ -67,21 +116,18 @@ angular.module('ScoreCtrl', [])
         };
 
         $scope.toggleHoleScoreVisibility = function(index) {
-            $scope.scoreData.hole_score[index].collapse = !$scope.scoreData.hole_score[index].collapse;
+            $scope.currentRound.player1[index].collapse = !$scope.currentRound.player1[index].collapse;
         };
 
         $scope.calculateScoreHole = function (index) {
-            console.log($scope.scoreData.hole_score[index].strokes);
-            $scope.scoreData.hole_score[index].scoreSet = true;
+            console.log($scope.currentRound.player1[index].strokes);
+            $scope.currentRound.player1[index].scoreSet = true;
             $scope.toggleHoleScoreVisibility(index);
         }
 
-        $scope.setScorePlayer = function (index, id) {
-            var holeScoreEl = document.getElementById(id);
-            var el = (angular.element(holeScoreEl)).find("paper-slider")
-            console.log(holeScoreEl, el)
-            $scope.scoreData.hole_score[index].player = el[0].value;
-            $scope.toggleHoleScoreVisibility(index+1,id);
+        $scope.calculateScorePlayer = function (index, player) {
+            player.data[index].scoreSet = true;
+            player.data[index].collapse = !player.data[index].collapse;
 
         }
     }]);

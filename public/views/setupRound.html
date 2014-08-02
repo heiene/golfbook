@@ -1,7 +1,7 @@
 Golfcourse:
-<select ng-model="selectedCourse" ng-options="course.name for course in golfCourses"></select>
-<div ng-show="selectedCourse">
-    <select ng-model="selectedNumberOfHoles">
+<select ng-model="currentRound.selectedCourse" ng-options="course.name for course in golfCourses"></select>
+<div ng-show="currentRound.selectedCourse">
+    <select ng-model="currentRound.selectedNumberOfHoles">
         <option value="6">6</option>
         <option value="9">9</option>
         <option value="18">18</option>
