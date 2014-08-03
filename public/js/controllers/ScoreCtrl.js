@@ -2,18 +2,23 @@
  * Created by oyvindheiene on 05/07/14.
  */
 angular.module('ScoreCtrl', [])
-    .controller('ScoreController', ['$scope', '$http', '$location', 'GolfCourses', 'UserRoutes', 'ScoreService' ,function($scope, $http, $location, GolfCourses, UserRoutes, ScoreService) {
+    .controller('ScoreController', ['$scope', '$http', '$location', '$timeout', 'GolfCourses', 'UserRoutes', 'ScoreService' ,function($scope, $http, $location, $timeout, GolfCourses, UserRoutes, ScoreService) {
         $scope.currentRound = ScoreService.currentRound;
 //        $scope.scoreData = ScoreService.currentRound;
         console.log('location endring:',$scope.currentRound)
 //        $scope.selectedCourse = ScoreService.selectedCourse;
-        $scope.currentRound.selectedNumberOfHoles = 0;
         $scope.golfCourses = GolfCourses;
 
-        $scope.populateHoles = function () {
+        $scope.prepareNewRound = function () {
             $location.path('/scorecard');
-
             $scope.currentRound.player1 = [];
+
+            $timeout(populateHoles, 1000)
+
+        };
+
+        var populateHoles = function () {
+
 
             //Setter opp et object for de andre spillerne
             $scope.currentRound.players = {

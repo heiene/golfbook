@@ -1,4 +1,4 @@
-<div id="register-score">
+<div id="register-score" >
     <div class="scorecard-wrapper">
         <!-- Heading section -->
         <div class="info">
@@ -34,7 +34,7 @@
     <!-- End Heading section -->
     <!-- Repeated section -->
     <!-- Scorecard closed score section -->
-    <div ng-repeat="hole_score in currentRound.player1" class="score-card-repeat">
+    <div ng-repeat="player in currentRound.player1" class="animate-repeat">
 
         <div class="scorecard-wrapper">
             <div class="info">
@@ -54,11 +54,11 @@
             <div class="players">
                 <div class="scorecard player" ng-click="toggleHoleScoreVisibility($index)">
                     <div class="icon">
-                        <span class="glyphicon glyphicon-pencil" ng-hide="currentRound.player1[$index].scoreSet" class="player1-button"></span>
+                        <span class="glyphicon glyphicon-pencil" ng-hide="player.scoreSet" class="player1-button"></span>
                     </div>
                     <div class="icon">
-                        <div ng-show="currentRound.player1[$index].scoreSet" class="player1-button">
-                            {{currentRound.player1[$index].score.strokes}}
+                        <div ng-show="player.scoreSet" class="player1-button">
+                            {{player.score.strokes}}
                         </div>
                     </div>
                 </div>
@@ -98,16 +98,16 @@
         <!--End Scorecard closed score section -->
 
         <!-- Scorecard Set Score for Player slider - section -->
-        <div class="scorecard sliders" collapse="currentRound.player1[$index].collapse">
+        <div class="scorecard sliders" collapse="player.collapse">
             <div class="slider-wrapper">
                 <div class="slider-text">
                     Strokes
                 </div>
                 <div class="slider-slide">
-                    <input ng-model="currentRound.player1[$index].score.strokes" type="text" id="strokeslider-{{ currentRound.selectedCourse.holes[$index].number }}" slider options="currentRound.player1[$index].strokeSliderOptions" />
+                    <input ng-model="player.score.strokes" type="text" id="strokeslider-{{ currentRound.selectedCourse.holes[$index].number }}" slider options="player.strokeSliderOptions" />
                 </div>
                 <div class="slider-value">
-                    {{currentRound.player1[$index].score.strokes}}
+                    {{player.score.strokes}}
                 </div>
             </div>
             <div class="slider-wrapper">
@@ -115,10 +115,10 @@
                     Puts
                 </div>
                 <div class="slider-slide">
-                    <input ng-model="currentRound.player1[$index].score.puts" type="text" id="putslider-{{ currentRound.selectedCourse.holes[$index].number }}" slider options="currentRound.player1[$index].putSliderOptions" />
+                    <input ng-model="player.score.puts" type="text" id="putslider-{{ currentRound.selectedCourse.holes[$index].number }}" slider options="player.putSliderOptions" />
                 </div>
                 <div class="slider-value">
-                    {{currentRound.player1[$index].score.puts}}
+                    {{player.score.puts}}
                 </div>
             </div>
             <div class="slider-wrapper">
@@ -126,10 +126,10 @@
                     Chips
                 </div>
                 <div class="slider-slide">
-                    <input ng-model="currentRound.player1[$index].score.chips" type="text" id="chipslider-{{ currentRound.selectedCourse.holes[$index].number }}" slider options="currentRound.player1[$index].restSliderOptions" />
+                    <input ng-model="player.score.chips" type="text" id="chipslider-{{ currentRound.selectedCourse.holes[$index].number }}" slider options="player.restSliderOptions" />
                 </div>
                 <div class="slider-value">
-                    {{currentRound.player1[$index].score.chips}}
+                    {{player.score.chips}}
                 </div>
             </div>
             <div class="slider-wrapper">
@@ -137,10 +137,10 @@
                     Sand
                 </div>
                 <div class="slider-slide">
-                    <input ng-model="currentRound.player1[$index].score.sand" type="text" id="sandslider--{{ currentRound.selectedCourse.holes[$index].number }}" slider options="currentRound.player1[$index].restSliderOptions" />
+                    <input ng-model="player.score.sand" type="text" id="sandslider--{{ currentRound.selectedCourse.holes[$index].number }}" slider options="player.restSliderOptions" />
                 </div>
                 <div class="slider-value">
-                    {{currentRound.player1[$index].score.sand}}
+                    {{player.score.sand}}
                 </div>
             </div>
             <div class="slider-wrapper">
@@ -148,10 +148,10 @@
                     Water
                 </div>
                 <div class="slider-slide">
-                    <input ng-model="currentRound.player1[$index].score.water" type="text" id="waterslider--{{ currentRound.selectedCourse.holes[$index].number }}" slider options="currentRound.player1[$index].restSliderOptions" />
+                    <input ng-model="player.score.water" type="text" id="waterslider--{{ currentRound.selectedCourse.holes[$index].number }}" slider options="player.restSliderOptions" />
                 </div>
                 <div class="slider-value">
-                    {{currentRound.player1[$index].score.water}}
+                    {{player.score.water}}
                 </div>
             </div>
             <div class="slider-wrapper">
@@ -159,10 +159,10 @@
                     OB
                 </div>
                 <div class="slider-slide">
-                    <input ng-model="currentRound.player1[$index].score.ob" type="text" id="OB-{{ currentRound.selectedCourse.holes[$index].number }}" slider options="currentRound.player1[$index].restSliderOptions" />
+                    <input ng-model="player.score.ob" type="text" id="OB-{{ currentRound.selectedCourse.holes[$index].number }}" slider options="player.restSliderOptions" />
                 </div>
                 <div class="slider-value">
-                    {{currentRound.player1[$index].score.ob}}
+                    {{player.score.ob}}
                 </div>
             </div>
             <button type="button" class="slider-button btn btn-info btn-xs" ng-click="calculateScoreHole($index)">Set score</button>
@@ -177,7 +177,7 @@
                     Strokes Player 2
                 </div>
                 <div class="slider-slide">
-                    <input ng-model="currentRound.players.player2.data[$index].score.strokes" type="text" id="strokeslider-{{ currentRound.selectedCourse.holes[$index].number }}-player2" slider options="currentRound.player1[$index].strokeSliderOptions" />
+                    <input ng-model="currentRound.players.player2.data[$index].score.strokes" type="text" id="strokeslider-{{ currentRound.selectedCourse.holes[$index].number }}-player2" slider options="player.strokeSliderOptions" />
                 </div>
                 <div class="slider-value">
                     {{currentRound.players.player2.data[$index].score.strokes}}
@@ -195,7 +195,7 @@
                     Strokes Player 3
                 </div>
                 <div class="slider-slide">
-                    <input ng-model="currentRound.players.player3.data[$index].score.strokes" type="text" id="strokeslider-{{ currentRound.selectedCourse.holes[$index].number }}-player3" slider options="currentRound.player1[$index].strokeSliderOptions" />
+                    <input ng-model="currentRound.players.player3.data[$index].score.strokes" type="text" id="strokeslider-{{ currentRound.selectedCourse.holes[$index].number }}-player3" slider options="player.strokeSliderOptions" />
                 </div>
                 <div class="slider-value">
                     {{currentRound.players.player3.data[$index].score.strokes}}
@@ -213,7 +213,7 @@
                     Strokes Player 4
                 </div>
                 <div class="slider-slide">
-                    <input ng-model="currentRound.players.player4.data[$index].score.strokes" type="text" id="strokeslider-{{ currentRound.selectedCourse.holes[$index].number }}-player4" slider options="currentRound.player1[$index].strokeSliderOptions" />
+                    <input ng-model="currentRound.players.player4.data[$index].score.strokes" type="text" id="strokeslider-{{ currentRound.selectedCourse.holes[$index].number }}-player4" slider options="player.strokeSliderOptions" />
                 </div>
                 <div class="slider-value">
                     {{currentRound.players.player4.data[$index].score.strokes}}
