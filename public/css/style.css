@@ -264,6 +264,7 @@ li {
 .main-animation.ng-enter {
     z-index:100;
     top:600px;
+    left: 5px;
     opacity:0;
 }
 .main-animation.ng-enter.ng-enter-active {
@@ -279,4 +280,5 @@ li {
 .main-animation.ng-leave.ng-leave-active {
     top:-600px;
     opacity:0;
+    left: 5px;
 }
