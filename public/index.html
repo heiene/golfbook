@@ -42,62 +42,73 @@
 </head>
 <body ng-app="golfApp" ng-controller="MenuController"> <!--ng-swipe-left="hideMenu()" ng-swipe-right="showMenu()"-->
 
-<div id="drawerPanel" >
-    <div id="drawer" drawer>
-        <div id="menuheader"> <!--id="navheader"-->
-            Menu
-        </div>
-        <div id="menu" >
-            <ul>
-                <div ng-show="loggedIn">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/profile">Profile</a></li>
-                    <li><a href="/golfcourses">GolfCourses</a></li>
-                    <li><a href="/setupround">Set up new round</a></li>
-                    <li><a href="/scorecard">Scorecards</a></li>
-                    <li><a href="/tournaments">Tournaments</a></li>
-                    <li><a href="/pictures">Pictures</a></li>
-                </div>
-                <div  ng-if="currentUser.isAdmin">
-                    <label>Admin</label>
-                    <li><a href="/admin">Admin Pages</a></li>
-                </div>
-                <div ng-hide="loggedIn">
-                    <div ng-controller="AuthController">
-                        <form role="form" id="loginForm">
-                            <div class="">
-                                <div class="loginforms">
-                                    <input type="text" ng-model="formData.username" floatinglabel label="username" class="inpu">
-                                    <input type="password" ng-model="formData.password" floatinglabel label="password" class="input">
-                                    <span class="">
-                                        <button class="btn btn-primary" ng-click="loginUser()">Login</button>
-                                    </span>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div ng-show="loggedIn" >
-                    <br>
-                    <li><a ng-click="logout()" a href="/">Logout</a></li>
-                </div>
-            </ul>
-        </div>
-    </div>
-
-    <div id="mainpage">
-        <div id="mainheader">
-            <button ng-click="toggleMenu()" >
-                <span class="glyphicon glyphicon-align-justify"></span>
+<nav id="navheader" class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed" type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
-            <span flex>Himmerland Invitational</span>
-            <div>{{currentUser.username}}</div>
+            <a class="navbar-brand" href="#">Himmerland Invitational</a>
         </div>
-        <div content class="content" ng-view>
-        </div>
-    </div>
 
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div collapse="navCollapsed" class="collapse navbar-collapse" id="menu">
+            <ul class="nav navbar-nav">
+                <li class="active" ng-click="navCollapsed=true"><a href="/">Home</a></li>
+                <li class="dropdown" ng-show="loggedIn">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Scores<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu" ng-click="navCollapsed=true">
+                        <li><a href="/setupround">Setup new round</a></li>
+                        <li><a href="/scorecard">Current Round</a></li>
+                        <li><a href="/scores">Round Scores</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/golfcourses">Golfcourses</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left" role="form" ng-hide="loggedIn" ng-controller="AuthController">
+                <div class="form-group" >
+                    <input type="text"  ng-model="formData.username" class="form-control" placeholder="username">
+                    <input type="password"  ng-model="formData.password" class="form-control" placeholder="password">
+                </div>
+                <button type="button" ng-click="loginUser()" class="btn btn-default">Login</button>
+            </form>
+            <ul class="nav navbar-nav navbar-left" ng-show="currentUser.isAdmin">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu" ng-click="navCollapsed=true">
+                        <li><a href="/admin">Admin Users</a></li>
+                        <li><a href="#">Admin Round</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Set up Tournament</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu" ng-click="navCollapsed=true">
+                        <li><a href="/editprofile">Edit Profile</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/" ng-click="logout()" >Log out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+
+<div id="mainpage" class="content main-animation-container">
+    <div ng-view class="main-animation">
+
+    </div>
 </div>
+
 
 </body>
 

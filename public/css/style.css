@@ -25,11 +25,15 @@ body {
     /*color: white;*/
 /*}*/
 #navheader {
-    background-color: #56BA89;
+    /*background-color: #56BA89;*/
+    margin-bottom: 0px;
 }
 .content {
     padding: 5px;
 }
+/*.nav .navbar .navbar-defualt {*/
+    /*margin-bottom: 0px;*/
+/*}*/
 
 li {
     list-style: none;
@@ -204,10 +208,6 @@ li {
     border-bottom: 1px dashed #999;
 }
 
-/*#register-score .sliders div {*/
-    /*border: 1px solid red;*/
-
-/*}*/
 
 .slider-text {
     text-align: left;
@@ -228,4 +228,55 @@ li {
     width:60%;
     padding-top: 0px;
     margin: 0px;
+}
+/*----------- Animations ---------------*/
+.score-card-repeat.ng-enter,
+.score-card-repeat.ng-leave {
+    -webkit-transition:0.5s linear all;
+    transition:0.5s all ease-in-out;
+}
+
+.score-card-repeat.ng-enter,
+.score-card-repeat.ng-leave.ng-leave-active {
+    opacity:0;
+}
+.score-card-repeat.ng-leave,
+.score-card-repeat.ng-enter.ng-enter-active {
+    opacity:1;
+}
+
+
+.main-animation-container {
+    position:relative;
+}
+
+.main-animation.ng-enter, .main-animation.ng-leave {
+    -webkit-transition:0.3s linear all;
+    transition:0.3s linear all;
+
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:600px;
+}
+
+.main-animation.ng-enter {
+    z-index:100;
+    top:600px;
+    opacity:0;
+}
+.main-animation.ng-enter.ng-enter-active {
+    top:0;
+    opacity:1;
+}
+
+.main-animation.ng-leave {
+    z-index:101;
+    /*top:0;*/
+    opacity:1;
+}
+.main-animation.ng-leave.ng-leave-active {
+    top:-600px;
+    opacity:0;
 }
