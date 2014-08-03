@@ -230,6 +230,8 @@ li {
     margin: 0px;
 }
 /*----------- Animations ---------------*/
+
+/* ---------- Animation for ng-repeat for scorecard ----------*/
 .score-card-repeat.ng-enter,
 .score-card-repeat.ng-leave {
     -webkit-transition:0.5s linear all;
@@ -245,7 +247,7 @@ li {
     opacity:1;
 }
 
-
+/* ----- Animation for main page how the pages load ------*/
 .main-animation-container {
     position:relative;
 }
@@ -285,3 +287,5 @@ li {
     opacity:0;
     left: 5px; /*Må være samme som content padding*/
 }
+
+/* ----- End Animation for main page how the pages load ------*/

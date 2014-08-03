@@ -11,6 +11,8 @@ angular.module('ScoreCtrl', [])
         $scope.golfCourses = GolfCourses;
 
         $scope.populateHoles = function () {
+            $location.path('/scorecard');
+
             $scope.currentRound.player1 = [];
 
             //Setter opp et object for de andre spillerne
@@ -97,7 +99,6 @@ angular.module('ScoreCtrl', [])
 //            ScoreService.selectedCourse = $scope.selectedCourse;
 //            var scoreCard = document.getElementById("register-score");
 //            (angular.element(scoreCard)).removeClass('right')
-            $location.path('/scorecard');
 
         };
 
