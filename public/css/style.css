@@ -270,15 +270,15 @@ li {
 .main-animation.ng-enter.ng-enter-active {
     top:0;
     opacity:1;
-    /*left: 5px; *//*Må være samme som content padding*/
-
+    left: 5px; /*Må være samme som content padding*/
+    top: 5px; /*Må være samme som content padding*/
 }
-
 .main-animation.ng-leave {
     z-index:101;
     top:0;
     opacity:1;
     left: 5px; /*Må være samme som content padding*/
+    top: 5px; /*Må være samme som content padding*/
 }
 .main-animation.ng-leave.ng-leave-active {
     top:-600px;
