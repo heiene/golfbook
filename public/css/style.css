@@ -251,8 +251,8 @@ li {
 }
 
 .main-animation.ng-enter, .main-animation.ng-leave {
-    -webkit-transition:0.3s linear all;
-    transition:0.3s linear all;
+    -webkit-transition:0.5s linear all;
+    transition:0.5s linear all;
 
     position:absolute;
     top:0;
@@ -264,21 +264,24 @@ li {
 .main-animation.ng-enter {
     z-index:100;
     top:600px;
-    left: 5px;
+    left: 5px; /*Må være samme som content padding*/
     opacity:0;
 }
 .main-animation.ng-enter.ng-enter-active {
     top:0;
     opacity:1;
+    /*left: 5px; *//*Må være samme som content padding*/
+
 }
 
 .main-animation.ng-leave {
     z-index:101;
-    /*top:0;*/
+    top:0;
     opacity:1;
+    left: 5px; /*Må være samme som content padding*/
 }
 .main-animation.ng-leave.ng-leave-active {
     top:-600px;
     opacity:0;
-    left: 5px;
+    left: 5px; /*Må være samme som content padding*/
 }
