@@ -104,7 +104,8 @@
                     Strokes
                 </div>
                 <div class="slider-slide">
-                    <input ng-model="player.score.strokes" type="text" id="strokeslider-{{ currentRound.selectedCourse.holes[$index].number }}" slider options="player.strokeSliderOptions" />
+                    <div id="testslider-0"></div>
+                    <!--<input ng-model="player.score.strokes" type="text" id="strokeslider-{{ currentRound.selectedCourse.holes[$index].number }}" slider options="player.strokeSliderOptions" />-->
                 </div>
                 <div class="slider-value">
                     {{player.score.strokes}}
@@ -227,4 +228,19 @@
     </div>
     <!-- End Repeated section -->
 </div>
+        <button type="button" class="btn btn-lg btn-default" ng-click="addRound()" >Add round</button>
 
+<!--<script>-->
+    <!--$(function(){-->
+
+        <!--$('.testslider').noUiSlider({-->
+            <!--start: [ 20 ],-->
+            <!--range: {-->
+                <!--'min': 10,-->
+                <!--'max': 40-->
+            <!--}-->
+        <!--});-->
+
+    <!--});-->
+
+<!--</script>-->

@@ -12,8 +12,20 @@ angular.module('ScoreCtrl', [])
         $scope.prepareNewRound = function () {
             $location.path('/scorecard');
             $scope.currentRound.player1 = [];
-
-            $timeout(populateHoles, 1000)
+            populateHoles();
+//            $timeout(populateHoles, 1000)
+            $timeout(function() {
+                var test = document.getElementById("testslider-0")
+                console.log("ideenene",test )
+                console.log('ang',angular.element(test));
+                (angular.element(test)).noUiSlider({
+                        start: [ 20 ],
+                        range: {
+                            'min': 10,
+                            'max': 40
+                        }
+                    });
+            }, 3000)
 
         };
 
@@ -51,6 +63,7 @@ angular.module('ScoreCtrl', [])
 
 
                 //Setter default verdier for hullene
+                hole.score.number = $scope.currentRound.selectedCourse.holes[i].number;
                 hole.score.strokes = $scope.currentRound.selectedCourse.holes[i].par;
                 hole.score.puts = 2;
                 hole.score.chips = 0;
@@ -105,9 +118,10 @@ angular.module('ScoreCtrl', [])
 //            var scoreCard = document.getElementById("register-score");
 //            (angular.element(scoreCard)).removeClass('right')
 
+
         };
 
-        $scope.addScore = function () {
+        $scope.addRound = function () {
             $scope.currentRound.course_id = $scope.currentRound.selectedCourse._id
             UserRoutes.postScore($scope.currentRound)
                 .success(function(data, status, headers, config) {

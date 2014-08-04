@@ -29,8 +29,13 @@ exports.postScore = function(req, res) {
   // Create a new instance of the Score model
   var score = new Score();
 
+var tempArray = [];
+    for (i in req.body.player1) {
+        tempArray.push(req.body.player1[i].score);
+    }
+
   // Set the Score properties that came from the POST data
-  score.hole_score = req.body.hole_score;
+  score.hole_score = tempArray;
   score.user_id = req.user._id;
   score.course_id = req.body.course_id;
 
