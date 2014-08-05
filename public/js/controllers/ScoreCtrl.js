@@ -5,7 +5,7 @@ angular.module('ScoreCtrl', [])
     .controller('ScoreController', ['$scope', '$http', '$location', '$timeout', 'GolfCourses', 'UserRoutes', 'ScoreService' ,function($scope, $http, $location, $timeout, GolfCourses, UserRoutes, ScoreService) {
         $scope.currentRound = ScoreService.currentRound;
 //        $scope.scoreData = ScoreService.currentRound;
-        console.log('location endring:',$scope.currentRound)
+        console.log('location endring:',$scope.currentRound);
 //        $scope.selectedCourse = ScoreService.selectedCourse;
         $scope.golfCourses = GolfCourses;
 
@@ -16,7 +16,7 @@ angular.module('ScoreCtrl', [])
 //            $timeout(populateHoles, 1000)
             $timeout(function() {
                 var test = document.getElementById("testslider-0")
-                console.log("ideenene",test )
+                console.log("ideenene",test );
                 console.log('ang',angular.element(test));
                 (angular.element(test)).noUiSlider({
                         start: [ 20 ],
@@ -105,7 +105,7 @@ angular.module('ScoreCtrl', [])
                     "step": 1,
                     "smooth": false,
                     "value": 0
-                }
+                };
                 $scope.currentRound.player1.push(hole);
                 $scope.currentRound.players.player2.data.push(p2);
                 $scope.currentRound.players.player3.data.push(p3);
@@ -143,11 +143,36 @@ angular.module('ScoreCtrl', [])
             console.log($scope.currentRound.player1[index].strokes);
             $scope.currentRound.player1[index].scoreSet = true;
             $scope.toggleHoleScoreVisibility(index);
-        }
+        };
 
         $scope.calculateScorePlayer = function (index, player) {
             player.data[index].scoreSet = true;
             player.data[index].collapse = !player.data[index].collapse;
 
-        }
+        };
+
+        $scope.testStrokeModel1 = 4;
+
+
+        $scope.testStrokeModel2 = 5;
+
+//        $scope.setTheScore = function (databack) {
+//            console.log('The model for score is now:', $scope.testStrokeModel)
+//        }
+
+//        var opts =  {
+//            start: $scope.testStrokeModel,
+//            range: {
+//                'min': 1,
+//                'max': 11
+//            },
+////            orientation: "vertical",
+//            step: 1
+////            snap: true
+//        }
+//
+//        var temp = document.getElementById("testslider");
+////        (angular.element(temp).noUiSlider(opts));
+
+
     }]);

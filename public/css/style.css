@@ -229,6 +229,13 @@ li {
     padding-top: 0px;
     margin: 0px;
 }
+
+.test {
+    height: 300px;
+}
+
+
+
 /*----------- Animations ---------------*/
 
 /* ---------- Animation for ng-repeat for scorecard ----------*/

@@ -14,5 +14,6 @@ angular.module('golfApp',
         'appRoutes',
         'UserService',
         'ScoreServiceModule',
-		'CourseService']
+		'CourseService',
+        'SliderDirective']
 	);
