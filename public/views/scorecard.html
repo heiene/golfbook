@@ -100,72 +100,20 @@
         <!-- Scorecard Set Score for Player slider - section -->
         <div class="scorecard sliders" collapse="player.collapse">
             <div class="slider-wrapper">
-                <div class="slider-text">
-                    Strokes
-                </div>
-                <div class="slider-slide">
-                    <div id="testslider-0"></div>
-                    <!--<input ng-model="player.score.strokes" type="text" id="strokeslider-{{ currentRound.selectedCourse.holes[$index].number }}" slider options="player.strokeSliderOptions" />-->
-                </div>
-                <div class="slider-value">
-                    {{player.score.strokes}}
-                </div>
+                <golf-slider id="stroke-{{player.score.number}}"  slidertype="stroke" slidermodel="player.score.strokes">
+                </golf-slider>
+                <golf-slider id="put-{{player.score.number}}"  slidertype="put" slidermodel="player.score.puts">
+                </golf-slider>
+                <golf-slider id="chip-{{player.score.number}}" slidertype="chips" slidermodel="player.score.chips">
+                </golf-slider>
+                <golf-slider id="sand-{{player.score.number}}" slidertype="sand" slidermodel="player.score.sand">
+                </golf-slider>
+                <golf-slider id="water-{{player.score.number}}" slidertype="water" slidermodel="player.score.water">
+                </golf-slider>
+                <golf-slider id="ob-{{player.score.number}}" slidertype="ob" slidermodel="player.score.ob">
+                </golf-slider>
             </div>
-            <div class="slider-wrapper">
-                <div class="slider-text">
-                    Puts
-                </div>
-                <div class="slider-slide">
-                    <input ng-model="player.score.puts" type="text" id="putslider-{{ currentRound.selectedCourse.holes[$index].number }}" slider options="player.putSliderOptions" />
-                </div>
-                <div class="slider-value">
-                    {{player.score.puts}}
-                </div>
-            </div>
-            <div class="slider-wrapper">
-                <div class="slider-text">
-                    Chips
-                </div>
-                <div class="slider-slide">
-                    <input ng-model="player.score.chips" type="text" id="chipslider-{{ currentRound.selectedCourse.holes[$index].number }}" slider options="player.restSliderOptions" />
-                </div>
-                <div class="slider-value">
-                    {{player.score.chips}}
-                </div>
-            </div>
-            <div class="slider-wrapper">
-                <div class="slider-text">
-                    Sand
-                </div>
-                <div class="slider-slide">
-                    <input ng-model="player.score.sand" type="text" id="sandslider--{{ currentRound.selectedCourse.holes[$index].number }}" slider options="player.restSliderOptions" />
-                </div>
-                <div class="slider-value">
-                    {{player.score.sand}}
-                </div>
-            </div>
-            <div class="slider-wrapper">
-                <div class="slider-text">
-                    Water
-                </div>
-                <div class="slider-slide">
-                    <input ng-model="player.score.water" type="text" id="waterslider--{{ currentRound.selectedCourse.holes[$index].number }}" slider options="player.restSliderOptions" />
-                </div>
-                <div class="slider-value">
-                    {{player.score.water}}
-                </div>
-            </div>
-            <div class="slider-wrapper">
-                <div class="slider-text">
-                    OB
-                </div>
-                <div class="slider-slide">
-                    <input ng-model="player.score.ob" type="text" id="OB-{{ currentRound.selectedCourse.holes[$index].number }}" slider options="player.restSliderOptions" />
-                </div>
-                <div class="slider-value">
-                    {{player.score.ob}}
-                </div>
-            </div>
+
             <button type="button" class="slider-button btn btn-info btn-xs" ng-click="calculateScoreHole($index)">Set score</button>
         </div>
         <!-- End Scorecard Set Score for Player slider - section -->

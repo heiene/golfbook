@@ -7,83 +7,67 @@ angular.module('SliderDirective', [])
             restrict: "E",
             scope: {
                 slidermodel: "=",
-                sliderid: "@",
-                sliderinputid: "@",
-                slidertype: "@",
-                par: "@"
+                slidertype: "@"
             },
             templateUrl: "../../templates/scoreslider_vertical_temp.html",
-//            template: 'Sliderinput: <input class="test2" ng-model="slidermodel"/>' +'{{sliderid}}<div id="{{sliderid}}"></div>', //må bare få denne til å oppdater slider så er det i boks...
             link: function(scope, elem, attrs) {
-                var slida = $("#"+elem.attr("id")+' .slida');
-                var slidaInput = $("#"+elem.attr("id")+' .slida-input');
+                var slida;
+                var slidaInput;
+                var rangeMin    = 0;
+                var rangeMax    = 6;
+                var start       = 0;
 
-                console.log("elem.id",elem.attr("id"));
+                /* -- Setter type på slider -- */
+                if(attrs.slidertype === "stroke") {
+                    rangeMin = 1;
+                    rangeMax = ((scope.slidermodel*2)+1);
+                    start = scope.slidermodel;
+                } else if (attrs.slidertype === "put") {
+                    start = 2;
+                }
 
-                console.log("div div div", $("#"+elem.attr("id")+' .slida'));
+                /* -- Venter på binding skal bli ferdig stilt og ID er klar -- */
+                attrs.$observe('id', function (newValue) {
+                    slida       = $("#"+attrs.id+' .slida');
+                    slidaInput  = $("#"+attrs.id+' .slida-input');
 
-//                console.log(scope.sliderid, $('#'+scope.sliderid))
-////                scope.$apply();
-//                console.log(scope.sliderid, $('#'+scope.sliderid))
+                    var options = {
+                        start: [start],
+                        range: {
+                            'min': rangeMin,
+                            'max': rangeMax
+                        },
+                        orientation: "vertical",
+                        direction: "rtl",
+                        step: 1,
+                        connect: "upper",
+                        serialization: {
+                            lower: [
+                                $.Link({
+                                    target: slidaInput,
+                                    format: {
+                                        decimals: 0
+                                    }
+                                })
+                            ]
+                        }
+                    };
 
-//console.log(scope.par);
+                    slida.noUiSlider(options);
+                    slida.on({
+                        set: function(n,a) {
+                            scope.$apply(function () {
+                                scope.slidermodel = slida.val();
+                            })
+                        },
+                        slide: function() {
+                            scope.$apply(function () {
+                                scope.slidermodel = slida.val();
+                            })
+                        }
+                    });
 
-                var options = {
-                    start: [scope.par],
-                    range: {
-                        'min': 1,
-                        'max': ((scope.par*2)+1)
-                    },
-                    orientation: "horizontal",
-                    step: 1,
-                    connect: "lower",
-                    serialization: {
-                    lower: [
-                        $.Link({
-                            target: slidaInput,
-                            format: {
-                                decimals: 0
-                            }
-                        })
-                    ]
-                    }
-                };
-
-//                elem.noUiSlider(options);
-//                elem.on('set', function(){
-//                    scope.$apply(function() {
-//                        scope.slidermodel = elem.val();
-//                    })
-//                });
-
-
-
-                slida.noUiSlider(options)
-
-                slida.on({
-                    set: function(n,a) {
-                            console.log(n,a,'SET IS CALLED, value: ',  slida.val())
-                        scope.$apply(function () {
-                            scope.slidermodel = slida.val();
-                        })
-                    }
-                    ,
-                    slide: function() {
-                        console.log('SLIDE IS CALLED, value: ',  slida.val())
-
-                        scope.$apply(function () {
-                            scope.slidermodel = slida.val();
-                        })
-                    }
                 });
-
-
-//                elem.noUiSlider(scope.options);
-//                elem.on('set', function(){
-//                    scope.$apply(function() {
-//                        scope.slidermodel = elem.val();
-//                    })
-//                });
             }
         }
     }]);

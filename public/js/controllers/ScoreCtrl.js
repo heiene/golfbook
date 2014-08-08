@@ -12,20 +12,8 @@ angular.module('ScoreCtrl', [])
         $scope.prepareNewRound = function () {
             $location.path('/scorecard');
             $scope.currentRound.player1 = [];
-            populateHoles();
-//            $timeout(populateHoles, 1000)
-            $timeout(function() {
-                var test = document.getElementById("testslider-0")
-                console.log("ideenene",test );
-                console.log('ang',angular.element(test));
-                (angular.element(test)).noUiSlider({
-                        start: [ 20 ],
-                        range: {
-                            'min': 10,
-                            'max': 40
-                        }
-                    });
-            }, 3000)
+//            populateHoles();
+            $timeout(populateHoles, 1000)
 
         };
 
