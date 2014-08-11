@@ -39,6 +39,8 @@
 
 .slider-heading {
     flex:1;
+    /*width: 100%;*/
+    align-self: center;
     color: #808080;
     padding: 0px;
     margin: 0px;
@@ -53,12 +55,17 @@
 
 .slider-inside-div {
     height: 15em;
+    /*width: 100%;*/
+    justify-content: center;
+    align-items: center;
+
 
     /*flex: 4;*/
 }
 
 .slida {
     height: 90%;
+
 
     /*width: 100%;*/
 }
