@@ -61,6 +61,10 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', '
             templateUrl: 'views/golfcourses.html',
             controller: 'CourseController'
         })
+        .when('/test', {
+            templateUrl: 'views/test.html',
+            controller: 'ScoreController'
+        })
         .otherwise({
             redirectTo: '/'
         });

@@ -1,17 +1,19 @@
-<div style="min-height: 200px; border: solid red 1px; display:flex; display: -webkit-flex; flex-direction: column; ">
-    <!-- Heading -->
+<link rel="stylesheet" href="../css/slider_vertical_styles.css"/>
 
-    <h3 class="" style=" width: 10%">
+<div class="slider-vertical-wrapper">
+
+    <!-- Heading -->
+    <h4 class="slider-heading">
         {{slidertype}}
-    </h3>
+    </h4>
 
     <!-- Input -->
-    <div style="width: 30px">
-        <input class="input-sm slida-input" ng-model="slidermodel" style=" width: 100%">
-    </div>
+    <input type="text" class="input-sm slida-input" ng-model="slidermodel" />
 
     <!-- Slider -->
-    <div style="  border: red solid 1px; height: 100px;" style=" width: 30px; align-self: flex-end">
-        <div class="slida" style=" height: 100%;"></div>
+    <div class="slider-inside-div">
+        <div class="slida"></div>
     </div>
+
 </div>
+

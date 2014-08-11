@@ -57,7 +57,7 @@ li {
 }
 
 #register-score div {
-    background-color: white;
+    /*background-color: white;*/
     color: #555;
     font-size: 13px;
 }
@@ -175,64 +175,7 @@ li {
     /*width: 100%;*/
 /*}*/
 
-/*.slider-wrapper {*/
-    /*width: 100%;*/
-    /*display: flex;*/
-    /*align-items: center;*/
-    /*display: -webkit-flex;*/
-    /*display: -webkit-box;*/
-    /*display: -moz-box;*/
-    /*display: -ms-flexbox;*/
-/*}*/
 
-
-#register-score .sliders {
-    border-bottom: #999 solid 1px;
-    border-left: #999 solid 1px;
-    border-right: #999 solid 1px;
-    border-radius: 5px;
-    padding-bottom: 5px;
-
-}
-
-#register-score .sliders .slider-wrapper {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    display: -webkit-flex;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    padding-top: 15px;
-    padding-bottom: 5px;
-    border-bottom: 1px dashed #999;
-}
-
-
-.slider-text {
-    text-align: left;
-    width: 20%
-}
-
-.slider-slide {
-    width:60%;
-    flex: 3;
-}
-
-.slider-value {
-    width: 20%;
-    flex: 1;
-}
-
-.slider-button {
-    width:60%;
-    padding-top: 0px;
-    margin: 0px;
-}
-
-.test {
-    height: 300px;
-}
 
 
 
@@ -302,3 +245,4 @@ li {
 }
 
 /* ----- End Animation for main page how the pages load ------*/
+

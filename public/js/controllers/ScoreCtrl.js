@@ -139,7 +139,14 @@ angular.module('ScoreCtrl', [])
 
         };
 
-        $scope.testStrokeModel1 = 4;
+        $scope.test = {
+            stroke: 5,
+            put: 0,
+            chip: 0,
+            sand: 0,
+            water: 0,
+            ob: 0
+        };
 
 
         $scope.testStrokeModel2 = 5;

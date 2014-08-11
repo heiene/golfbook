@@ -17,6 +17,7 @@ angular.module('SliderDirective', [])
                 var rangeMax    = 6;
                 var start       = 0;
 
+
                 /* -- Setter type på slider -- */
                 if(attrs.slidertype === "stroke") {
                     rangeMin = 1;
@@ -30,6 +31,10 @@ angular.module('SliderDirective', [])
                 attrs.$observe('id', function (newValue) {
                     slida       = $("#"+attrs.id+' .slida');
                     slidaInput  = $("#"+attrs.id+' .slida-input');
+                    var testFunciton = function (value) {
+                        console.log($(this))
+                        $(this).value = value;
+                    }
 
                     var options = {
                         start: [start],
@@ -40,13 +45,16 @@ angular.module('SliderDirective', [])
                         orientation: "vertical",
                         direction: "rtl",
                         step: 1,
-                        connect: "upper",
+                        connect: "lower",
+                        behaviour: 'extend-tap',
                         serialization: {
                             lower: [
                                 $.Link({
+//                                    method: testFunciton,
                                     target: slidaInput,
                                     format: {
-                                        decimals: 0
+                                        decimal: 0,
+                                        mark: ","
                                     }
                                 })
                             ]
