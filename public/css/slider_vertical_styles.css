@@ -131,4 +131,7 @@
 }
 .slida-horizontal {
     width: 90%;
+    align-items: center;
+    align-content: center;
+    align-self: center;
 }
