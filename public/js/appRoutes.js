@@ -93,6 +93,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', '
             return promise.then(success, error);
         }
     }];
+
     $httpProvider.responseInterceptors.push(interceptor);
 
 }]);
