@@ -121,55 +121,22 @@
         <!-- Set Score Other Players section -->
         <!-- Player 2 scores -->
         <div class="scorecard sliders" collapse="currentRound.players.player2.data[$index].collapse">
-            <div class="slider-wrapper">
-                <div class="slider-text">
-                    Strokes Player 2
-                </div>
-                <div class="slider-slide">
-                    <input ng-model="currentRound.players.player2.data[$index].score.strokes" type="text" id="strokeslider-{{ currentRound.selectedCourse.holes[$index].number }}-player2" slider options="player.strokeSliderOptions" />
-                </div>
-                <div class="slider-value">
-                    {{currentRound.players.player2.data[$index].score.strokes}}
-                </div>
-            </div>
-            <button type="button" class="slider-button btn btn-info btn-xs" ng-click="calculateScorePlayer($index,currentRound.players.player2)">Set score</button>
-
+            <horizontal-slider class="slider-horizontal" player="player2" id="strokeslider-{{ currentRound.selectedCourse.holes[$index].number }}-player2" slidertype="stroke" slidermodel="currentRound.players.player2.data[$index].score.strokes"></horizontal-slider>
+            <button type="button" class="slider-button btn btn-info btn-lg" ng-click="calculateScorePlayer($index,currentRound.players.player2)">Set score</button>
         </div>
         <!-- End Player 2 scores -->
 
         <!-- Player 3 scores -->
         <div class="scorecard sliders" collapse="currentRound.players.player3.data[$index].collapse">
-            <div class="slider-wrapper">
-                <div class="slider-text">
-                    Strokes Player 3
-                </div>
-                <div class="slider-slide">
-                    <input ng-model="currentRound.players.player3.data[$index].score.strokes" type="text" id="strokeslider-{{ currentRound.selectedCourse.holes[$index].number }}-player3" slider options="player.strokeSliderOptions" />
-                </div>
-                <div class="slider-value">
-                    {{currentRound.players.player3.data[$index].score.strokes}}
-                </div>
-            </div>
-            <button type="button" class="slider-button btn btn-info btn-xs" ng-click="calculateScorePlayer($index,currentRound.players.player3)">Set score</button>
-
+            <horizontal-slider class="slider-horizontal" player="player3" id="strokeslider-{{ currentRound.selectedCourse.holes[$index].number }}-player3" slidertype="stroke" slidermodel="currentRound.players.player3.data[$index].score.strokes"></horizontal-slider>
+            <button type="button" class="slider-button btn btn-info btn-lg" ng-click="calculateScorePlayer($index,currentRound.players.player3)">Set score</button>
         </div>
         <!-- End Player 3 scores -->
 
         <!-- Player 4 scores -->
         <div class="scorecard sliders" collapse="currentRound.players.player4.data[$index].collapse">
-            <div class="slider-wrapper">
-                <div class="slider-text">
-                    Strokes Player 4
-                </div>
-                <div class="slider-slide">
-                    <input ng-model="currentRound.players.player4.data[$index].score.strokes" type="text" id="strokeslider-{{ currentRound.selectedCourse.holes[$index].number }}-player4" slider options="player.strokeSliderOptions" />
-                </div>
-                <div class="slider-value">
-                    {{currentRound.players.player4.data[$index].score.strokes}}
-                </div>
-            </div>
-            <button type="button" class="slider-button btn btn-info btn-xs" ng-click="calculateScorePlayer($index,currentRound.players.player4)">Set score</button>
-
+            <horizontal-slider class="slider-horizontal" player="player4" id="strokeslider-{{ currentRound.selectedCourse.holes[$index].number }}-player4" slidertype="stroke" slidermodel="currentRound.players.player4.data[$index].score.strokes"></horizontal-slider>
+            <button type="button" class="slider-button btn btn-info btn-lg" ng-click="calculateScorePlayer($index,currentRound.players.player4)">Set score</button>
         </div>
         <!-- End Player 4 scores -->
         <!-- End Set Score Other Players section -->

@@ -101,7 +101,7 @@ angular.module('ScoreCtrl', [])
 
             }
             console.log('REtt før location endring',$scope.currentRound)
-            ScoreService.currentRound = $scope.currentRound;
+//            ScoreService.currentRound = $scope.currentRound;
 //            ScoreService.selectedCourse = $scope.selectedCourse;
 //            var scoreCard = document.getElementById("register-score");
 //            (angular.element(scoreCard)).removeClass('right')
@@ -145,29 +145,11 @@ angular.module('ScoreCtrl', [])
             chip: 0,
             sand: 0,
             water: 0,
-            ob: 0
+            ob: 0,
+            player: 4
         };
 
 
         $scope.testStrokeModel2 = 5;
-
-//        $scope.setTheScore = function (databack) {
-//            console.log('The model for score is now:', $scope.testStrokeModel)
-//        }
-
-//        var opts =  {
-//            start: $scope.testStrokeModel,
-//            range: {
-//                'min': 1,
-//                'max': 11
-//            },
-////            orientation: "vertical",
-//            step: 1
-////            snap: true
-//        }
-//
-//        var temp = document.getElementById("testslider");
-////        (angular.element(temp).noUiSlider(opts));
-
 
     }]);
