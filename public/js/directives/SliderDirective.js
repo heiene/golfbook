@@ -50,14 +50,13 @@ angular.module('SliderDirective', [])
                         serialization: {
                             lower: [
                                 $.Link({
-//                                    method: testFunciton,
-                                    target: slidaInput,
-                                    format: {
-                                        decimal: 0,
-                                        mark: ","
-                                    }
+                                    target: slidaInput
                                 })
-                            ]
+                            ],
+                            format: {
+                                decimals: 0,
+                                mark: ","
+                            }
                         }
                     };
 
