@@ -1,17 +1,17 @@
 
 <div >
     <div class="slider-wrapper">
-        <golf-slider  id="stroke-{{player.score.number}}"  slidertype="stroke" slidermodel="test.stroke">
+        <golf-slider class="slider" id="stroke-{{player.score.number}}"  slidertype="stroke" slidermodel="test.stroke">
         </golf-slider>
-        <golf-slider  id="put-{{player.score.number}}"  slidertype="put" slidermodel="test.put">
+        <golf-slider class="slider" id="put-{{player.score.number}}"  slidertype="put" slidermodel="test.put">
         </golf-slider>
-        <golf-slider  id="chip-{{player.score.number}}" slidertype="chips" slidermodel="test.chip">
+        <golf-slider class="slider" id="chip-{{player.score.number}}" slidertype="chips" slidermodel="test.chip">
         </golf-slider>
-        <golf-slider  id="sand-{{player.score.number}}" slidertype="sand" slidermodel="test.sand">
+        <golf-slider class="slider" id="sand-{{player.score.number}}" slidertype="sand" slidermodel="test.sand">
         </golf-slider>
-        <golf-slider  id="water-{{player.score.number}}" slidertype="water" slidermodel="test.water">
+        <golf-slider class="slider" id="water-{{player.score.number}}" slidertype="water" slidermodel="test.water">
         </golf-slider>
-        <golf-slider  id="ob-{{player.score.number}}" slidertype="ob" slidermodel="test.ob">
+        <golf-slider class="slider" id="ob-{{player.score.number}}" slidertype="ob" slidermodel="test.ob">
         </golf-slider>
     </div>
     <button type="button" class="slider-button btn btn-info btn-lg" ng-click="calculateScoreHole($index)">Set score</button>
