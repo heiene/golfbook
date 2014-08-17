@@ -7,6 +7,20 @@ body {
     display: none;
 }
 
+.button-group {
+    width: 100%
+}
+
+
+.button-group-3 {
+    width: 33.333%
+}
+
+
+.button-group-4 {
+    width: 25%
+}
+
 /*.animate-show.ng-hide-add, .animate-show.ng-hide-remove {*/
     /*-webkit-transition:all linear 0.5s;*/
     /*-moz-transition:all linear 0.5s;*/
@@ -245,4 +259,22 @@ li {
 }
 
 /* ----- End Animation for main page how the pages load ------*/
+
+/* ----- General Animation for showing/hiding ------*/
+
+.animate-show {
+    -webkit-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+    line-height:20px;
+    opacity:1;
+    /*padding:10px;*/
+    /*border:1px solid black;*/
+    /*background:white;*/
+}
+
+.animate-show.ng-hide {
+    line-height:0;
+    opacity:0;
+    /*padding:0 10px;*/
+}
 

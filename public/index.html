@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="libs/bootstrap-3.2.0-dist/css/bootstrap.css">
     <link rel="stylesheet" href="libs/ng-slider/src/css/ng-slider.css">
     <link rel="stylesheet" href="libs/nouislider-6.2.0/jquery.nouislider.css">
+    <link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css">
 
     <!-- Imported JS -->
 
@@ -25,6 +26,7 @@
     <script type="application/javascript" src="libs/angular-touch/angular-touch.min.js"></script>
     <script type="application/javascript" src="libs/angular-animate/angular-animate.min.js"></script>
     <script type="application/javascript" src="libs/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script type="application/javascript" src="libs/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script type="application/javascript" src="libs/angular-sanitize/angular-sanitize.min.js"></script>
     <script type="application/javascript" src="libs/ng-slider/src/ng-slider.js"></script>
     <script type="text/javascript" src="libs/nouislider-6.2.0/jquery.nouislider.min.js"></script>
@@ -96,7 +98,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile for: {{currentUser.username}}<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu" ng-click="navCollapsed=true">
                         <li><a href="/editprofile">Edit Profile</a></li>
                         <li class="divider"></li>

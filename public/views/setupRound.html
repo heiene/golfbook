@@ -1,28 +1,104 @@
-Golfcourse:
-<select ng-model="currentRound.selectedCourse" ng-options="course.name for course in golfCourses"></select>
-<div ng-show="currentRound.selectedCourse">
-    <select ng-model="currentRound.selectedNumberOfHoles">
-        <option value="6">6</option>
-        <option value="9">9</option>
-        <option value="18">18</option>
-    </select>
+<!--Golfcourse:-->
+<!--<select ng-model="currentRound.selectedCourse" ng-options="course.name for course in golfCourses"></select>-->
+
+<h4>Golfcourse</h4>
+<!--<pre>Model: {{currentRound.selectedCourse.name | json}}</pre>-->
+<input type="text" ng-model="currentRound.selectedCourse" typeahead="course as course.name for course in golfCourses | filter:$viewValue" placeholder="Type in Golfcourse" class="form-control">
+
+<div ng-show="currentRound.selectedCourse" class=" animate-show">
+    <h4>Number of Holes:</h4>
+    <div class="btn-group button-group" >
+        <label class="btn btn-primary btn-lg button-group-3" ng-model="currentRound.selectedNumberOfHoles" btn-radio="6">6</label>
+        <label class="btn btn-primary btn-lg button-group-3" ng-model="currentRound.selectedNumberOfHoles" btn-radio="9">9</label>
+        <label class="btn btn-primary btn-lg button-group-3" ng-model="currentRound.selectedNumberOfHoles" btn-radio="18">18</label>
+    </div>
 </div>
 
-<!--<div ng-show="selectedNumberOfHoles">-->
-    <!--<select ng-model="scoreCardInfo.numberOfAdditionalPlayers">-->
-        <!--<option value="2">2</option>-->
-        <!--<option value="3">3</option>-->
-        <!--<option value="4">4</option>-->
-    <!--</select>-->
-<!--</div>-->
-
-<div horizontal end-justified layout>
-    <button class="colored" ng-click="prepareNewRound()">Start round</button>
+<div ng-show="currentRound.selectedNumberOfHoles" class=" animate-show form-group">
+    <h4>Number of Players:</h4>
+    <div class="btn-group btn-block" >
+        <label class="btn btn-primary btn-lg button-group-4" ng-model="currentRound.numberOfPlayers" btn-radio="1">1</label>
+        <label class="btn btn-primary btn-lg button-group-4" ng-model="currentRound.numberOfPlayers" btn-radio="2">2</label>
+        <label class="btn btn-primary btn-lg button-group-4" ng-model="currentRound.numberOfPlayers" btn-radio="3">3</label>
+        <label class="btn btn-primary btn-lg button-group-4" ng-model="currentRound.numberOfPlayers" btn-radio="4">4</label>
+    </div>
 </div>
 
-        <div class="container">
-            <div class="row">
 
+<div ng-show="currentRound.numberOfPlayers" class=" animate-show">
+    <h4>Player names and hcp:</h4>
+    <!--<div class="btn-group btn-block" >-->
+    <div class="form-group" >
+        <div class="form-inline">
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-child fa-fw"></i>
+                </div>
+                <input class="form-control "  value="{{currentUser.username}}" disabled="true"/>
             </div>
-
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-wheelchair fa-fw"></i>
+                </div>
+                <input class="form-control" value="{{currentUser.hcp}}" disabled="true"/>
+            </div>
         </div>
+    </div>
+
+    <div class="form-group animate-show" ng-show="currentRound.players.player2.visible">
+        <div class="form-inline">
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-child fa-fw"></i>
+                </div>
+                <input class="form-control " ng-model="currentRound.players.player2.name" placeholder="Player2"/>
+            </div>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-wheelchair fa-fw"></i>
+                </div>
+                <input class="form-control" ng-model="currentRound.players.player2.hcp" placeholder="hcp"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group animate-show" ng-show="currentRound.players.player3.visible">
+        <div class="form-inline">
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-child fa-fw"></i>
+                </div>
+                <input class="form-control " ng-model="currentRound.players.player3.name" placeholder="Player3"/>
+            </div>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-wheelchair fa-fw"></i>
+                </div>
+                <input class="form-control" ng-model="currentRound.players.player3.hcp" placeholder="hcp"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group  animate-show" ng-show="currentRound.players.player4.visible">
+        <div class="form-inline">
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-child fa-fw"></i>
+                </div>
+                <input class="form-control " ng-model="currentRound.players.player4.name" placeholder="Player4"/>
+            </div>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-wheelchair fa-fw"></i>
+                </div>
+                <input class="form-control" ng-model="currentRound.players.player4.hcp" placeholder="hcp"/>
+            </div>
+        </div>
+    </div>
+    <!--</div>-->
+</div>
+
+<div ng-show="currentRound.numberOfPlayers" class=" animate-show">
+    <button class="btn btn-lg btn-default btn-block" ng-click="prepareNewRound()">Start round</button>
+</div>
+

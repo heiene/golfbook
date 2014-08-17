@@ -4,10 +4,31 @@
 angular.module('ScoreCtrl', [])
     .controller('ScoreController', ['$scope', '$http', '$location', '$timeout', 'GolfCourses', 'UserRoutes', 'ScoreService' ,function($scope, $http, $location, $timeout, GolfCourses, UserRoutes, ScoreService) {
         $scope.currentRound = ScoreService.currentRound;
-//        $scope.scoreData = ScoreService.currentRound;
         console.log('location endring:',$scope.currentRound);
-//        $scope.selectedCourse = ScoreService.selectedCourse;
+        $scope.fuck = [{name: "enfuck"}, {name: "tocuk"}, {name: "trecock"}];
         $scope.golfCourses = GolfCourses;
+//
+//        $scope.currentRound.players.player2.visibie = false;
+//        $scope.currentRound.players.player3.visibie = false;
+//        $scope.currentRound.players.player4.visibie = false;
+
+        if(!$scope.currentRound.players) {
+            $scope.currentRound.players = {
+                player2: {
+                    name: "",
+                    data: []
+                },
+                player3: {
+                    name: "",
+                    data: []
+                },
+                player4: {
+                    name: "",
+                    data: []
+                }
+            };
+        };
+
 
         $scope.prepareNewRound = function () {
             $location.path('/scorecard');
@@ -18,23 +39,12 @@ angular.module('ScoreCtrl', [])
         };
 
         var populateHoles = function () {
-
+//            $scope.currentRound.players.player2.data = [];
+//            $scope.currentRound.players.player3.data = [];
+//            $scope.currentRound.players.player4.data = [];
 
             //Setter opp et object for de andre spillerne
-            $scope.currentRound.players = {
-                player2: {
-                    name: "Player2",
-                    data: []
-                },
-                player3: {
-                    name: "Øyvind",
-                    data: []
-                },
-                player4: {
-                    name: "Player4",
-                    data: []
-                }
-            };
+
             for (i = 0; i< $scope.currentRound.selectedNumberOfHoles; i++) {
                 var hole = {
                     score: {}
@@ -48,7 +58,6 @@ angular.module('ScoreCtrl', [])
                 var p4 = {
                     score: {}
                 };
-
 
                 //Setter default verdier for hullene
                 hole.score.number = $scope.currentRound.selectedCourse.holes[i].number;
@@ -65,47 +74,39 @@ angular.module('ScoreCtrl', [])
                 //Setter opp det samme for players
                 p2.score.strokes = hole.score.strokes;
                 p2.collapse = true;
-
                 p3.score.strokes = hole.score.strokes;
                 p3.collapse = true;
-
                 p4.score.strokes = hole.score.strokes;
                 p4.collapse = true;
 
 
-                hole.strokeSliderOptions = {
-                    "from": 1,
-                    "to": (($scope.currentRound.selectedCourse.holes[i].par*2)+1),
-                    "step": 1,
-                    "smooth": false,
-                    "value": $scope.currentRound.selectedCourse.holes[i].par
-                };
-                hole.putSliderOptions = {
-                    "from": 1,
-                    "to": 6,
-                    "step": 1,
-                    "smooth": false,
-                    "value": 2
-                };
-                hole.restSliderOptions = {
-                    "from": 1,
-                    "to": 6,
-                    "step": 1,
-                    "smooth": false,
-                    "value": 0
-                };
+//                hole.strokeSliderOptions = {
+//                    "from": 1,
+//                    "to": (($scope.currentRound.selectedCourse.holes[i].par*2)+1),
+//                    "step": 1,
+//                    "smooth": false,
+//                    "value": $scope.currentRound.selectedCourse.holes[i].par
+//                };
+//                hole.putSliderOptions = {
+//                    "from": 1,
+//                    "to": 6,
+//                    "step": 1,
+//                    "smooth": false,
+//                    "value": 2
+//                };
+//                hole.restSliderOptions = {
+//                    "from": 1,
+//                    "to": 6,
+//                    "step": 1,
+//                    "smooth": false,
+//                    "value": 0
+//                };
                 $scope.currentRound.player1.push(hole);
                 $scope.currentRound.players.player2.data.push(p2);
                 $scope.currentRound.players.player3.data.push(p3);
                 $scope.currentRound.players.player4.data.push(p4);
 
             }
-            console.log('REtt før location endring',$scope.currentRound)
-//            ScoreService.currentRound = $scope.currentRound;
-//            ScoreService.selectedCourse = $scope.selectedCourse;
-//            var scoreCard = document.getElementById("register-score");
-//            (angular.element(scoreCard)).removeClass('right')
-
 
         };
 
@@ -138,6 +139,36 @@ angular.module('ScoreCtrl', [])
             player.data[index].collapse = !player.data[index].collapse;
 
         };
+
+        $scope.$watch(function () {
+                return $scope.currentRound.numberOfPlayers;
+            },
+            function(newVal, oldVal) {
+               console.log(newVal);
+                calcVisibility(newVal);
+            }, true);
+
+var calcVisibility = function (newVal) {
+
+        if (newVal === 1) {
+            $scope.currentRound.players.player2.visible = false;
+            $scope.currentRound.players.player3.visible = false;
+            $scope.currentRound.players.player4.visible = false;
+        } else if (newVal === 2) {
+            $scope.currentRound.players.player2.visible = true;
+            $scope.currentRound.players.player3.visible = false;
+            $scope.currentRound.players.player4.visible = false;
+        } else if (newVal === 3) {
+            $scope.currentRound.players.player2.visible = true;
+            $scope.currentRound.players.player3.visible = true;
+            $scope.currentRound.players.player4.visible = false;
+        } else if (newVal === 4) {
+            console.log("kjem eg hit")
+            $scope.currentRound.players.player2.visible = true;
+            $scope.currentRound.players.player3.visible = true;
+            $scope.currentRound.players.player4.visible = true;
+        }
+}
 
         $scope.test = {
             stroke: 5,
