@@ -1,32 +1,57 @@
 
 
 .slider-wrapper {
-    width: 100%;
+    /*width: 100%;*/
+    border: 2px dashed #ffff00;
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
     display: flex;
-    -webkit-display: flex;
+
 }
 
 golf-slider{
     border: black 1px solid;
-    width: 16.66667%;
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
     display: flex;
-    -webkit-display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
+
+    -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: 1;         /* OLD - Firefox 19- */
+    width: 16.66667%;               /* For old syntax, otherwise collapses. */
+    -webkit-flex: 1;          /* Chrome */
+    -ms-flex: 1;              /* IE 10 */
+    flex: 1;
+    width: 16.66667%;
+
 
 }
 
 
 .slider-vertical-wrapper {
-    display:flex;
-    -webkit-display: flex;
-    align-items: center;
+
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex;
+
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    box-align: center;
+
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    box-pack: center;
+    /*align-items: center;*/
     justify-content: center;
     align-content: center;
     flex-direction: column;
-    width: 100%;
-    height: 100%;
+    /*width: 100%;*/
+    /*height: 100%;*/
     border: grey 1px dotted;
     /*border-collapse: collapse;*/
 
@@ -36,29 +61,34 @@ golf-slider{
 
 .slider-heading {
     /*flex:1;*/
-    width: 80%;
+    /*width: 80%;*/
     text-align: center;
     border: lightblue dotted 1px;
     /*align-self: center;*/
-    color: #808080;
+    color: #28801e;
     padding: 0px;
     margin: 0px;
 }
 .slida-input {
-    text-align: center;
-    width: 80%;
+    /*text-align: center;*/
+    /*width: 80%;*/
     border-radius: 10px;
     margin-bottom: 4px;
+    border: 1px solid blueviolet;
 }
 
 .slider-inside-div {
-    height: 15em;
+    height: 50vh ;
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
     display: flex;
-    -webkit-display: flex;
-    width: 80%;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
+
+    /*width: 80%;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    /*align-content: center;*/
 
 
     border: red solid 1px;

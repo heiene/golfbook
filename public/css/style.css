@@ -13,7 +13,7 @@ body {
 
 
 .button-group-3 {
-    width: 33.333%
+    width: 33.33334%
 }
 
 
@@ -263,9 +263,9 @@ li {
 /* ----- General Animation for showing/hiding ------*/
 
 .animate-show {
-    -webkit-transition:all linear 0.5s;
-    transition:all linear 0.5s;
-    line-height:20px;
+    -webkit-transition:all ease-in-out 0.5s;
+    transition:all ease-in-out 0.5s;
+    /*line-height:100px;*/
     opacity:1;
     /*padding:10px;*/
     /*border:1px solid black;*/
@@ -273,7 +273,7 @@ li {
 }
 
 .animate-show.ng-hide {
-    line-height:0;
+    /*line-height:0;*/
     opacity:0;
     /*padding:0 10px;*/
 }
