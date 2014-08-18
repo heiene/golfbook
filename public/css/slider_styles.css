@@ -67,6 +67,12 @@ golf-slider{
 }
 
 .slider-heading {
+    -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: 1;         /* OLD - Firefox 19- */
+    /*width: 16.66667%;               *//* For old syntax, otherwise collapses. */
+    -webkit-flex: 1;          /* Chrome */
+    -ms-flex: 1;              /* IE 10 */
+    flex: 1;
     /*flex:1;*/
     /*width: 80%;*/
     /*text-align: center;*/
@@ -77,6 +83,12 @@ golf-slider{
     margin: 0px;
 }
 .slida-input {
+    -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: 1;         /* OLD - Firefox 19- */
+    /*width: 16.66667%;               *//* For old syntax, otherwise collapses. */
+    -webkit-flex: 1;          /* Chrome */
+    -ms-flex: 1;              /* IE 10 */
+    flex: 1;
     /*text-align: center;*/
     /*width: 80%;*/
     border-radius: 10px;
@@ -85,6 +97,13 @@ golf-slider{
 }
 
 .slider-inside-div {
+    -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: 1;         /* OLD - Firefox 19- */
+    /*width: 16.66667%;               *//* For old syntax, otherwise collapses. */
+    -webkit-flex: 1;          /* Chrome */
+    -ms-flex: 1;              /* IE 10 */
+    flex: 1;
+
     height: 50vh ;
     display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
     display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
