@@ -149,14 +149,14 @@ golf-slider{
 }
 
 .slider-horizontal {
-    display: flex;
     /*border: 1px red solid;*/
     /*justify-content: center;*/
     align-items: center;
-    display: -webkit-flex;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
+    /*display: -webkit-box;*/
+    /*display: -moz-box;*/
+    /*display: -ms-flexbox;*/
+    /*display: -webkit-flex;*/
+    display: flex;
     margin: 5px;
 }
 
@@ -192,14 +192,14 @@ golf-slider{
 
 .slida-slide-horizontal-wrapper {
     /*flex: 4;*/
-    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
-    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
-    display: -ms-flexbox;      /* TWEENER - IE 10 */
-    display: -webkit-flex;
+    /*display: -webkit-box;      *//* OLD - iOS 6-, Safari 3.1-6 */
+    /*display: -moz-box;         *//* OLD - Firefox 19- (buggy but mostly works) */
+    /*display: -ms-flexbox;      *//* TWEENER - IE 10 */
+    /*display: -webkit-flex;*/
     display: flex;
 
 
-    -webkit-align-items: center;
+    -webkit-align-items: center; /*VIKTIG!!*/
     align-items: center;
 
     justify-content: center;
