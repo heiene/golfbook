@@ -121,6 +121,8 @@ golf-slider{
     /*justify-content: center;*/
     -webkit-align-items: center;
     align-items: center;
+
+    -webkit-align-content: center;
     align-content: center;
 
 
