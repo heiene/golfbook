@@ -192,6 +192,10 @@ golf-slider{
 
 .slida-slide-horizontal-wrapper {
     /*flex: 4;*/
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -201,9 +205,5 @@ golf-slider{
 
 }
 .slida-horizontal {
-    width: 90%;
-    align-items: center;
-    align-content: center;
-    webkit-align-self: center;
-    align-self: center;
+ width: 90%;
 }
