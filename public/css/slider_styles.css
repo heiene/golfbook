@@ -155,7 +155,12 @@ golf-slider{
     display: -webkit-flex;
     display: flex;
 
-    /*align-items: center;*/
+    -webkit-align-items: center; /*VIKTIG for opp ned alignment på row basert flexbox!!*/
+    align-items: center;
+
+    -webkit-justify-content: center;
+    justify-content: center;
+    
     margin: 5px;
 }
 
