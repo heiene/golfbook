@@ -74,6 +74,8 @@ golf-slider{
     flex: 1;
 
     text-align: center;
+    font-size: 18px;
+    font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial;
     width: 80%;
     border-radius: 7px;
     /*border: 1px solid blueviolet;*/
@@ -166,6 +168,9 @@ golf-slider{
 
     width: 80%;
     border-radius: 7px;
+    text-align: center;
+    font-size: 18px;
+    font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial;
 
     -webkit-align-items: center; /*VIKTIG for opp ned alignment på row basert flexbox!!*/
     align-items: center;
