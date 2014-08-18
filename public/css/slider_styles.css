@@ -113,7 +113,7 @@ golf-slider{
     display: -webkit-flex;     /* NEW - Chrome */
     display: flex;
 
-    -webkit-align-self: center;
+    -webkit-align-self: center; /*Denne fikser venstre/høyre alignment for iphone*/
     align-self: center;
 
 
@@ -123,8 +123,8 @@ golf-slider{
     -webkit-align-items: center; /*Denne fikser opp/ned alignment av slider inne i div*/
     align-items: center;
 
-    -webkit-align-content: center;
-    align-content: center;
+    /*-webkit-align-content: center;*/
+    /*align-content: center;*/
 
 
     border: red solid 1px;
