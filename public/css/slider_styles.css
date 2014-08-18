@@ -160,24 +160,33 @@ golf-slider{
 
     -webkit-justify-content: center;
     justify-content: center;
-    
+
     margin: 5px;
 }
 
 .slider-heading-horizontal {
     /*flex: 1;*/
+    width: 20%;
     color: #808080;
 
-    width: 20%;
+    -webkit-align-items: center; /*VIKTIG for opp ned alignment på row basert flexbox!!*/
+    align-items: center;
+
+    -webkit-justify-content: center;
+    justify-content: center;
 }
 
 .slida-input-horizontal-wrapper {
     /*flex: 1;*/
     width: 20%;
+
+
     justify-content: center;
-    align-items: center;
-    webkit-align-self: center;
-    align-self: center;
+    -webkit-justify-content: center;
+    /*align-items: center;*/
+
+    /*webkit-align-self: center;*/
+    /*align-self: center;*/
     /*border: 1px blue dotted;*/
     display: flex
 
@@ -189,6 +198,12 @@ golf-slider{
     /*flex: 1;*/
     width: 80%;
     border-radius: 10px;
+
+    -webkit-align-items: center; /*VIKTIG for opp ned alignment på row basert flexbox!!*/
+    align-items: center;
+
+    -webkit-justify-content: center;
+    justify-content: center;
 
     /*align-items: center;*/
 
