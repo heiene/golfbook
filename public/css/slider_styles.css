@@ -197,10 +197,12 @@ golf-slider{
     display: flex;
 
 
-    -webkit-align-items: center; /*VIKTIG!!*/
+    -webkit-align-items: center; /*VIKTIG for opp ned alignment på row basert flexbox!!*/
     align-items: center;
 
+    -webkit-justify-content: center;
     justify-content: center;
+
     align-content: center;
     width: 60%;
     border: grey 1px dotted;
