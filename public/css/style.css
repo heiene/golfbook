@@ -88,7 +88,10 @@ li {
     background-color: #259b24;
     color: #ffffff;
     border-bottom: 1px solid #298727;
-    width: 25%;
+    -ms-flex: 4;              /* IE 10 */
+    -webkit-flex: 4;          /* Chrome */
+    flex: 4;
+    /*width: 25%;*/
 }
 
 
@@ -96,21 +99,30 @@ li {
     background-color: #3f51b5;
     border-bottom: 1px solid #2C3B80;
     color: #ffffff;
-    width: 30%;
+    -ms-flex: 5;              /* IE 10 */
+    -webkit-flex: 5;          /* Chrome */
+    flex: 5;
+    /*width: 30%;*/
 }
 
 #register-score .par {
     background-color: #ff5722;
     border-bottom: 1px solid #C94F21;
     color: #ffffff;
-    width: 20%;
+    -ms-flex: 3;              /* IE 10 */
+    -webkit-flex: 3;          /* Chrome */
+    flex: 3;
+    /*width: 20%;*/
 }
 
 #register-score .index{
     background-color: #e91e63;
     border-bottom: 1px solid #B8184E;
     color: #ffffff;
-    width: 25%;
+    -ms-flex: 4;              /* IE 10 */
+    -webkit-flex: 4;          /* Chrome */
+    flex: 4;
+    /*width: 25%;*/
 }
 
 .not-heading {
@@ -119,42 +131,45 @@ li {
 
 .scorecard-wrapper {
     width: 100%;
-    display: flex;
     align-items: center;
-    display: -webkit-flex;
-    display: -webkit-box;
-    display: -moz-box;
+
     display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
 }
 
 .players {
     width: 60%;
-    display: flex;
     align-items: center;
-    display: -webkit-flex;
-    display: -webkit-box;
-    display: -moz-box;
+
     display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
 }
 
 .info {
     width: 40%;
-    display: flex;
     align-items: center;
-    display: -webkit-flex;
-    display: -webkit-box;
-    display: -moz-box;
+
     display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
 }
 
 #register-score .player-heading {
-    width: 25%;
+    -ms-flex: 1;              /* IE 10 */
+    -webkit-flex: 1;          /* Chrome */
+    flex: 1;
+    /*width: 25%;*/
     background-color: grey;
     color: white;
 }
 
 #register-score .player {
-    width: 25%;
+    -ms-flex: 1;              /* IE 10 */
+    -webkit-flex: 1;          /* Chrome */
+    flex: 1;
+    /*width: 25%;*/
     background-color: #f9f9f9;
     color: white;
     padding-top: 4px;
@@ -168,7 +183,10 @@ li {
     padding-top: 4px;
     border-right: 1px solid #999;
     border-bottom: 1px solid #999;
-    width: 25%;
+    /*width: 25%;*/
+    -ms-flex: 1;              /* IE 10 */
+    -webkit-flex: 1;          /* Chrome */
+    flex: 1;
 }
 
 

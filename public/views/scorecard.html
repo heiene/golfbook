@@ -19,13 +19,13 @@
             <div class="scorecard player-heading">
                 {{ currentUser.name.first || "Player 1" }}
             </div>
-            <div class="scorecard player-heading">
+            <div class="scorecard player-heading" ng-show="currentRound.players.player2.visible">
                {{currentRound.players.player2.name || "Player 2"}}
             </div>
-            <div class="scorecard player-heading">
+            <div class="scorecard player-heading" ng-show="currentRound.players.player3.visible">
                 {{currentRound.players.player3.name || "Player 3"}}
             </div>
-            <div ngif="currentRounr" class="scorecard player-heading">
+            <div class="scorecard player-heading" ng-show="currentRound.players.player4.visible">
                 {{currentRound.players.player4.name || "Player 4"}}
             </div>
 
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="scorecard flight-player" ng-click="currentRound.players.player2.data[$index].collapse=!currentRound.players.player2.data[$index].collapse">
+                <div class="scorecard flight-player" ng-show="currentRound.players.player2.visible" ng-click="currentRound.players.player2.data[$index].collapse=!currentRound.players.player2.data[$index].collapse">
                     <div class="icon">
                         <span class="glyphicon glyphicon-pencil" ng-hide="currentRound.players.player2.data[$index].scoreSet" class="player1-button"></span>
                     </div>
@@ -72,7 +72,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="scorecard flight-player" ng-click="currentRound.players.player3.data[$index].collapse=!currentRound.players.player3.data[$index].collapse">
+                <div class="scorecard flight-player" ng-show="currentRound.players.player3.visible" ng-click="currentRound.players.player3.data[$index].collapse=!currentRound.players.player3.data[$index].collapse">
                     <div class="icon">
                         <span class="glyphicon glyphicon-pencil" ng-hide="currentRound.players.player3.data[$index].scoreSet" class="player1-button"></span>
                     </div>
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="scorecard flight-player" ng-click="currentRound.players.player4.data[$index].collapse=!currentRound.players.player4.data[$index].collapse">
+                <div class="scorecard flight-player" ng-show="currentRound.players.player4.visible" ng-click="currentRound.players.player4.data[$index].collapse=!currentRound.players.player4.data[$index].collapse">
                     <div class="icon">
                         <span class="glyphicon glyphicon-pencil" ng-hide="currentRound.players.player4.data[$index].scoreSet" class="player1-button"></span>
                     </div>

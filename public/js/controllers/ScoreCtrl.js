@@ -5,7 +5,6 @@ angular.module('ScoreCtrl', [])
     .controller('ScoreController', ['$scope', '$http', '$location', '$timeout', 'GolfCourses', 'UserRoutes', 'ScoreService' ,function($scope, $http, $location, $timeout, GolfCourses, UserRoutes, ScoreService) {
         $scope.currentRound = ScoreService.currentRound;
         console.log('location endring:',$scope.currentRound);
-        $scope.fuck = [{name: "enfuck"}, {name: "tocuk"}, {name: "trecock"}];
         $scope.golfCourses = GolfCourses;
 //
 //        $scope.currentRound.players.player2.visibie = false;
