@@ -1,8 +1,7 @@
 
 
 .slider-wrapper {
-    /*width: 100%;*/
-    border: 2px dashed #ffff00;
+    /*border: 2px dashed #ffff00;*/
 
     display: -ms-flexbox;      /* TWEENER - IE 10 */
     display: -webkit-flex;     /* NEW - Chrome */
@@ -11,14 +10,14 @@
 }
 
 golf-slider{
-    border:  2px orange solid;
+    /*border:  2px orange solid;*/
 
     display: -ms-flexbox;      /* TWEENER - IE 10 */
-    display: -webkit-flex;     /* NEW - Chrome */
+    display: -webkit-flex;     /* Chrome */
     display: flex;
 
-    -webkit-flex: 1;          /* Chrome */
     -ms-flex: 1;              /* IE 10 */
+    -webkit-flex: 1;          /* Chrome */
     flex: 1;
 
 
@@ -32,14 +31,19 @@ golf-slider{
     flex: 1;
 
     display: -ms-flexbox;      /* TWEENER - IE 10 */
-    display: -webkit-flex;     /* NEW - Chrome */
+    display: -webkit-flex;     /* Chrome */
     display: flex;
 
-    -ms-flex-direction: column;
-    -webkit-flex-direction: column;
+    -ms-flex-direction: column; /* TWEENER - IE 10 */
+    -webkit-flex-direction: column; /* Chrome */
     flex-direction: column;
 
-    border: grey 3px dotted;
+    -webkit-align-items: center; /*VIKTIG for opp ned alignment på row basert flexbox!!*/
+    align-items: center;
+
+    -webkit-justify-content: center;
+    justify-content: center;
+    /*border: grey 3px dotted;*/
 
 }
 
@@ -48,13 +52,19 @@ golf-slider{
     -ms-flex: 1;              /* IE 10 */
     -webkit-flex: 1;          /* Chrome */
     flex: 1;
-    /*flex:1;*/
-    /*width: 80%;*/
-    /*text-align: center;*/
-    border: cyan dotted 2px;
-    align-self: center;
-    color: #28801e;
-    padding: 0px;
+
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* Chrome */
+    display: flex;
+
+    -webkit-align-items: center; /*VIKTIG for opp ned alignment på row basert flexbox!!*/
+    align-items: center;
+
+    -webkit-justify-content: center;
+    justify-content: center;
+
+    color: #808080;
+    padding-bottom: 6px;
     margin: 0px;
 }
 .slida-input {
@@ -62,11 +72,11 @@ golf-slider{
     -ms-flex: 1;              /* IE 10 */
     -webkit-flex: 1;          /* Chrome */
     flex: 1;
-    /*text-align: center;*/
-    /*width: 80%;*/
-    border-radius: 10px;
-    margin-bottom: 4px;
-    border: 1px solid blueviolet;
+
+    text-align: center;
+    width: 80%;
+    border-radius: 7px;
+    /*border: 1px solid blueviolet;*/
 }
 
 .slider-inside-div {
@@ -83,17 +93,14 @@ golf-slider{
     -webkit-align-items: center; /*Denne fikser opp/ned alignment av slider inne i div*/
     align-items: center;
 
-
-
-
-    border: red solid 1px;
+    /*border: red solid 1px;*/
 
 
 }
 
 .slida {
     height: 90%;
-    border: 1px green solid;
+    /*border: 1px green solid;*/
 
 }
 
@@ -123,8 +130,6 @@ golf-slider{
 }
 
 .slider-heading-horizontal {
-    /*flex: 1;*/
-    /*width: 20%;*/
     -ms-flex: 1;
     -webkit-flex: 1;
     flex: 1;
@@ -150,30 +155,23 @@ golf-slider{
     -webkit-justify-content: center;
     justify-content: center;
 
-
-
-    /*width: 20%;*/
+    width: 20%;
     -ms-flex: 1;
     -webkit-flex: 1;
     flex: 1;
 
-
-
-
 }
 
 .slida-input-horizontal {
-    /*flex: 1;*/
+
     width: 80%;
-    border-radius: 10px;
+    border-radius: 7px;
 
     -webkit-align-items: center; /*VIKTIG for opp ned alignment på row basert flexbox!!*/
     align-items: center;
 
     -webkit-justify-content: center;
     justify-content: center;
-
-    /*align-items: center;*/
 
 }
 
@@ -190,12 +188,10 @@ golf-slider{
     -webkit-justify-content: center;
     justify-content: center;
 
-    /*align-content: center;*/
-    /*width: 60%;*/
     -ms-flex: 3;
     -webkit-flex: 3;
     flex: 3;
-    border: grey 1px dotted;
+    /*border: grey 1px dotted;*/
 
 }
 .slida-horizontal {
