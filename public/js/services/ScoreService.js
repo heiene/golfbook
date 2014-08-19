@@ -10,6 +10,14 @@ angular.module('ScoreServiceModule', [])
         factory.rounds = {};
         factory.selectedCourse = {};
 
+        factory.setCurrentRound = function() {
+            $window.sessionStorage.currentRound = JSON.stringify(factory.currentRound);
+        }
+
+        if ($window.sessionStorage.currentRound) {
+            factory.currentRound = JSON.parse($window.sessionStorage.currentRound);
+        }
+
 
         return factory;
 

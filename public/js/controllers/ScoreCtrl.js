@@ -106,6 +106,7 @@ angular.module('ScoreCtrl', [])
                 $scope.currentRound.players.player4.data.push(p4);
 
             }
+            ScoreService.setCurrentRound();
 
         };
 
