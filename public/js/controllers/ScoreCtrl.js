@@ -7,6 +7,13 @@ angular.module('ScoreCtrl', [])
         console.log('location endring:',$scope.currentRound);
         $scope.golfCourses = GolfCourses;
 
+        $scope.$watch(function () {
+            return ScoreService.currentRound;
+        },
+            function (newVal, oldVal) {
+                $scope.currentRound = newVal;
+        }, true);
+
         //Setter opp et object for de andre spillerne
         if(!$scope.currentRound.players) {
             $scope.currentRound.players = {

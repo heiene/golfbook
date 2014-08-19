@@ -25,6 +25,8 @@ angular.module('ScoreServiceModule', [])
 
         factory.sessionDeleteCurrentRound = function() {
             $window.sessionStorage.removeItem("currentRound");
+            factory.currentRound = {};
+
         };
 
         factory.addTournamentRound = function (round) {
