@@ -39,16 +39,16 @@
         <div class="scorecard-wrapper">
             <div class="info">
                 <div class="scorecard hole not-heading">
-                    {{ currentRound.selectedCourse.holes[$index].number }}
+                    {{ currentRound.selectedCourse.loops[0].holes[$index].number }}
                 </div>
                 <div class="scorecard distance not-heading">
-                    {{ currentRound.selectedCourse.holes[$index].length }}
+                    {{ currentRound.selectedCourse.loops[0].holes[$index].length }}
                 </div>
                 <div class="scorecard par not-heading">
-                    {{ currentRound.selectedCourse.holes[$index].par }}
+                    {{ currentRound.selectedCourse.loops[0].holes[$index].par }}
                 </div>
                 <div class="scorecard index not-heading">
-                    {{ currentRound.selectedCourse.holes[$index].index }}
+                    {{ currentRound.selectedCourse.loops[0].holes[$index].index }}
                 </div>
             </div>
             <div class="players">
@@ -121,21 +121,21 @@
         <!-- Set Score Other Players section -->
         <!-- Player 2 scores -->
         <div class="scorecard sliders" collapse="currentRound.players.player2.data[$index].collapse">
-            <horizontal-slider class="slider-horizontal" player="{{currentRound.players.player2.name}}" id="strokeslider-{{ currentRound.selectedCourse.holes[$index].number }}-player2" slidertype="stroke" slidermodel="currentRound.players.player2.data[$index].score.strokes"></horizontal-slider>
+            <horizontal-slider class="slider-horizontal" player="{{currentRound.players.player2.name}}" id="stroke-{{player.score.number}}-player2" slidertype="stroke" slidermodel="currentRound.players.player2.data[$index].score.strokes"></horizontal-slider>
             <button type="button" class="slider-button btn btn-info btn-lg" ng-click="calculateScorePlayer($index,currentRound.players.player2)">Set score</button>
         </div>
         <!-- End Player 2 scores -->
 
         <!-- Player 3 scores -->
         <div class="scorecard sliders" collapse="currentRound.players.player3.data[$index].collapse">
-            <horizontal-slider class="slider-horizontal" player="{{currentRound.players.player3.name}}" id="strokeslider-{{ currentRound.selectedCourse.holes[$index].number }}-player3" slidertype="stroke" slidermodel="currentRound.players.player3.data[$index].score.strokes"></horizontal-slider>
+            <horizontal-slider class="slider-horizontal" player="{{currentRound.players.player3.name}}" id="stroke-{{player.score.number}}-player3" slidertype="stroke" slidermodel="currentRound.players.player3.data[$index].score.strokes"></horizontal-slider>
             <button type="button" class="slider-button btn btn-info btn-lg" ng-click="calculateScorePlayer($index,currentRound.players.player3)">Set score</button>
         </div>
         <!-- End Player 3 scores -->
 
         <!-- Player 4 scores -->
         <div class="scorecard sliders" collapse="currentRound.players.player4.data[$index].collapse">
-            <horizontal-slider class="slider-horizontal" player="{{currentRound.players.player4.name}}" id="strokeslider-{{ currentRound.selectedCourse.holes[$index].number }}-player4" slidertype="stroke" slidermodel="currentRound.players.player4.data[$index].score.strokes"></horizontal-slider>
+            <horizontal-slider class="slider-horizontal" player="{{currentRound.players.player4.name}}" id="stroke-{{player.score.number}}-player4" slidertype="stroke" slidermodel="currentRound.players.player4.data[$index].score.strokes"></horizontal-slider>
             <button type="button" class="slider-button btn btn-info btn-lg" ng-click="calculateScorePlayer($index,currentRound.players.player4)">Set score</button>
         </div>
         <!-- End Player 4 scores -->

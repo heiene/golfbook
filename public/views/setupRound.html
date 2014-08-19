@@ -2,6 +2,7 @@
 <!--<select ng-model="currentRound.selectedCourse" ng-options="course.name for course in golfCourses"></select>-->
 
 <h4>Golfcourse</h4>
+        <div ng-show="currentRound.selectedCourse" class="btn btn-default float" ng-click="resetCurrentRound()"> Reset Round</div>
 <!--<pre>Model: {{currentRound.selectedCourse.name | json}}</pre>-->
 <input type="text" ng-model="currentRound.selectedCourse" typeahead="course as course.name for course in golfCourses | filter:$viewValue" placeholder="Type in Golfcourse" class="form-control">
 

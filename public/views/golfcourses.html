@@ -8,5 +8,6 @@
     <button ng-click="refreshGolfCourse()">Refresh golf courses</button>
     <button ng-click="createGolfCourse()">Add Golf Courses</button>
 
-    <input ng-model="value" type="text" id="mySlider1" slider options="sliderOptions" />
+    <div ng-repeat="course in courses">{{course | json}}</div>
+
 </div>

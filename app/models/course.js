@@ -4,13 +4,20 @@ var Schema      = mongoose.Schema;
 var golfCourseSchema  = new Schema({
 	name: 		String,
 	slope_value: Number,
-	holes:  [{	
-		number: Number,
-		par: 	Number,
-		index: 	Number,
-		length: Number,
-		gps: { 	longitude: 	Number,
-				latitude: 	Number}}]
+	loops:  [
+        {
+            name: String,
+            holes: [
+                {
+                    number: Number,
+                    par: 	Number,
+                    index: 	Number,
+                    length: Number,
+                    gps: { 	longitude: 	Number,
+                            latitude: 	Number}
+                }
+            ]
+        }]
 })
 
 golfCourseSchema.methods.calculateLength = function (holes) {

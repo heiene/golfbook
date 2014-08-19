@@ -1,17 +1,19 @@
-
+.sliders {
+    border-radius: 5px;
+    border-left: #999999 dotted 2px;
+    border-right: #999999 dotted 2px;
+    border-bottom: #999999 dotted 2px;
+}
 
 .slider-wrapper {
     /*border: 2px dashed #ffff00;*/
-
     display: -ms-flexbox;      /* TWEENER - IE 10 */
     display: -webkit-flex;     /* NEW - Chrome */
     display: flex;
-
 }
 
 golf-slider{
     /*border:  2px orange solid;*/
-
     display: -ms-flexbox;      /* TWEENER - IE 10 */
     display: -webkit-flex;     /* Chrome */
     display: flex;
@@ -107,9 +109,10 @@ golf-slider{
 }
 
 .slider-button {
-    width:100%;
+    width:80%;
     padding-top: 5px;
     margin-top: 2px;
+    margin-bottom: 10px;
 }
 
 .noUi-connect {
@@ -127,6 +130,7 @@ golf-slider{
 
     -webkit-justify-content: center;
     justify-content: center;
+
 
     margin: 5px;
 }
@@ -202,3 +206,5 @@ golf-slider{
 .slida-horizontal {
  width: 90%;
 }
+
+

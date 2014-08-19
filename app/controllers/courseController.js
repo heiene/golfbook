@@ -18,7 +18,7 @@ exports.postGolfCourse = function  (req, res) {
 	// Set the golfRound properties that came from the POST data
 	golfcourse.name 	    = req.body.name;
 	golfcourse.slope_value 	= req.body.slope_value;
-	golfcourse.holes 	    = req.body.holes;
+	golfcourse.loops 	    = req.body.loops;
 
 	// Save the golfRound and check for errors
 	golfcourse.save(function(err) {

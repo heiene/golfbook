@@ -6,11 +6,8 @@ angular.module('ScoreCtrl', [])
         $scope.currentRound = ScoreService.currentRound;
         console.log('location endring:',$scope.currentRound);
         $scope.golfCourses = GolfCourses;
-//
-//        $scope.currentRound.players.player2.visibie = false;
-//        $scope.currentRound.players.player3.visibie = false;
-//        $scope.currentRound.players.player4.visibie = false;
 
+        //Setter opp et object for de andre spillerne
         if(!$scope.currentRound.players) {
             $scope.currentRound.players = {
                 player2: {
@@ -26,7 +23,7 @@ angular.module('ScoreCtrl', [])
                     data: []
                 }
             };
-        };
+        }
 
 
         $scope.prepareNewRound = function () {
@@ -38,11 +35,6 @@ angular.module('ScoreCtrl', [])
         };
 
         var populateHoles = function () {
-//            $scope.currentRound.players.player2.data = [];
-//            $scope.currentRound.players.player3.data = [];
-//            $scope.currentRound.players.player4.data = [];
-
-            //Setter opp et object for de andre spillerne
 
             for (i = 0; i< $scope.currentRound.selectedNumberOfHoles; i++) {
                 var hole = {
@@ -59,8 +51,8 @@ angular.module('ScoreCtrl', [])
                 };
 
                 //Setter default verdier for hullene
-                hole.score.number = $scope.currentRound.selectedCourse.holes[i].number;
-                hole.score.strokes = $scope.currentRound.selectedCourse.holes[i].par;
+                hole.score.number = $scope.currentRound.selectedCourse.loops[0].holes[i].number;
+                hole.score.strokes = $scope.currentRound.selectedCourse.loops[0].holes[i].par;
                 hole.score.puts = 2;
                 hole.score.chips = 0;
                 hole.score.sand = 0;
@@ -78,35 +70,15 @@ angular.module('ScoreCtrl', [])
                 p4.score.strokes = hole.score.strokes;
                 p4.collapse = true;
 
-
-//                hole.strokeSliderOptions = {
-//                    "from": 1,
-//                    "to": (($scope.currentRound.selectedCourse.holes[i].par*2)+1),
-//                    "step": 1,
-//                    "smooth": false,
-//                    "value": $scope.currentRound.selectedCourse.holes[i].par
-//                };
-//                hole.putSliderOptions = {
-//                    "from": 1,
-//                    "to": 6,
-//                    "step": 1,
-//                    "smooth": false,
-//                    "value": 2
-//                };
-//                hole.restSliderOptions = {
-//                    "from": 1,
-//                    "to": 6,
-//                    "step": 1,
-//                    "smooth": false,
-//                    "value": 0
-//                };
                 $scope.currentRound.player1.push(hole);
                 $scope.currentRound.players.player2.data.push(p2);
                 $scope.currentRound.players.player3.data.push(p3);
                 $scope.currentRound.players.player4.data.push(p4);
 
             }
-            ScoreService.setCurrentRound();
+
+            // Lagrer currentRound i sessionstorage
+            ScoreService.sessionStoreCurrentRound();
 
         };
 
@@ -123,6 +95,10 @@ angular.module('ScoreCtrl', [])
                     console.log('Error: ', data, 'Status: ', status);
                 })
         };
+
+        $scope.resetCurrentRound = function () {
+            ScoreService.sessionDeleteCurrentRound();
+        }
 
         $scope.toggleHoleScoreVisibility = function(index) {
             $scope.currentRound.player1[index].collapse = !$scope.currentRound.player1[index].collapse;
